@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { FLAVORS, PRODUCTS, Flavor } from './data/flavors.ts';
-import Header from './components/Header.tsx';
-import Can3DViewer from './components/Can3DViewer.tsx';
-import HeroSection from './components/HeroSection.tsx';
-import FeaturesCircle from './components/FeaturesCircle.tsx';
-import EditorialDuo from './components/EditorialDuo.tsx';
-import WordParagraph from './components/WordParagraph.tsx';
-import ProductShopGrid from './components/ProductShopGrid.tsx';
-import NewsletterSection from './components/NewsletterSection.tsx';
-import InstagramMarquee from './components/InstagramMarquee.tsx';
-import CartDrawer, { CartItem } from './components/CartDrawer.tsx';
-import Footer from './components/Footer.tsx';
+import React, { useState } from "react";
+import { FLAVORS, PRODUCTS, Flavor } from "./data/flavors.ts";
+import Header from "./components/Header.tsx";
+import Can3DViewer from "./components/Can3DViewer.tsx";
+import HeroSection from "./components/HeroSection.tsx";
+import FeaturesCircle from "./components/FeaturesCircle.tsx";
+import ImageDuoSection from "./components/ImageDuoSection.tsx";
+import FlavourTextSection from "./components/FlavourTextSection.tsx";
+import ProductShopGrid from "./components/ProductShopGrid.tsx";
+import NewsletterSection from "./components/NewsletterSection.tsx";
+import InstagramMarquee from "./components/InstagramMarquee.tsx";
+import CartDrawer, { CartItem } from "./components/CartDrawer.tsx";
+import Footer from "./components/Footer.tsx";
 
 export function App() {
-  const [currentFlavorId, setCurrentFlavorId] = useState<Flavor['id']>('grapefruit');
+  const [currentFlavorId, setCurrentFlavorId] =
+    useState<Flavor["id"]>("grapefruit");
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
       product: PRODUCTS[0],
@@ -22,9 +23,10 @@ export function App() {
   ]);
   const [cartOpen, setCartOpen] = useState(false);
 
-  const currentFlavor = FLAVORS.find((f) => f.id === currentFlavorId) || FLAVORS[0];
+  const currentFlavor =
+    FLAVORS.find((f) => f.id === currentFlavorId) || FLAVORS[0];
 
-  const handleSelectFlavor = (flavorId: Flavor['id']) => {
+  const handleSelectFlavor = (flavorId: Flavor["id"]) => {
     setCurrentFlavorId(flavorId);
   };
 
@@ -36,7 +38,7 @@ export function App() {
         return prev.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
-            : item
+            : item,
         );
       }
       return [...prev, { product, quantity: 1 }];
@@ -54,19 +56,24 @@ export function App() {
           }
           return item;
         })
-        .filter((item): item is CartItem => item !== null)
+        .filter((item): item is CartItem => item !== null),
     );
   };
 
   const handleRemoveItem = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
+    setCartItems((prev) =>
+      prev.filter((item) => item.product.id !== productId),
+    );
   };
 
   const handleClearCart = () => {
     setCartItems([]);
   };
 
-  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalCartCount = cartItems.reduce(
+    (acc, item) => acc + item.quantity,
+    0,
+  );
 
   return (
     <div className="min-h-screen flex flex-col w-full overflow-x-clip selection:bg-neutral-900 selection:text-white">
@@ -102,10 +109,10 @@ export function App() {
         {/* Content sections scrolling OVER the 3D can (can sits behind the images) */}
         <div className="relative z-20 bg-[#FEF7E6]">
           {/* 1. Full-width Editorial Photo Duo with Parallax & Center Divider */}
-          <EditorialDuo />
+          <ImageDuoSection />
 
           {/* 2. Big Animated Rainbow Flavors Title & Editorial Paragraph */}
-          <WordParagraph />
+          <FlavourTextSection />
 
           {/* 3. Recommended Products Carousel */}
           <ProductShopGrid onAddToCart={handleAddToCart} />

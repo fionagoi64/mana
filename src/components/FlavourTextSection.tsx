@@ -1,19 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslation } from 'react-i18next';
-import { RainbowBouncingText } from './RainbowBouncingText';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
+import { RainbowBouncingText } from "./RainbowBouncingText";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const WordParagraph: React.FC = () => {
+export const FlavourTextSection = () => {
   const { i18n } = useTranslation();
-  const isFrench = Boolean(i18n.language && i18n.language.startsWith('fr'));
+  const isFrench = Boolean(i18n.language && i18n.language.startsWith("fr"));
   const sectionRef = useRef<HTMLElement>(null);
   const layer1Ref = useRef<HTMLDivElement>(null);
   const layer2Ref = useRef<HTMLDivElement>(null);
 
-  const word = isFrench ? 'Saveurs' : 'Flavors';
+  const word = isFrench ? "Saveurs" : "Flavors";
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -31,14 +31,14 @@ export const WordParagraph: React.FC = () => {
         { y: -90 },
         {
           y: 90,
-          ease: 'none',
+          ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: 'top bottom+=90px',
-            end: 'bottom top-=90px',
+            start: "top bottom+=90px",
+            end: "bottom top-=90px",
             scrub: true,
           },
-        }
+        },
       );
     }
 
@@ -49,14 +49,14 @@ export const WordParagraph: React.FC = () => {
         {
           y: 120,
           rotate: 15,
-          ease: 'none',
+          ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: 'top bottom+=60px',
-            end: 'bottom top-=60px',
+            start: "top bottom+=60px",
+            end: "bottom top-=60px",
             scrub: true,
           },
-        }
+        },
       );
     }
 
@@ -156,4 +156,4 @@ export const WordParagraph: React.FC = () => {
   );
 };
 
-export default WordParagraph;
+export default FlavourTextSection;

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const EditorialDuo: React.FC = () => {
+export const ImageDuoSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
 
@@ -15,11 +15,11 @@ export const EditorialDuo: React.FC = () => {
 
     const tween = gsap.to(el, {
       y: 0,
-      ease: 'none',
+      ease: "none",
       scrollTrigger: {
         trigger: container,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: "top bottom",
+        end: "bottom top",
         scrub: true,
       },
     });
@@ -57,4 +57,4 @@ export const EditorialDuo: React.FC = () => {
   );
 };
 
-export default EditorialDuo;
+export default ImageDuoSection;
