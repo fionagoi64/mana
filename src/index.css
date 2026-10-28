@@ -135,7 +135,7 @@ path.c-orange, span.c-orange { fill: #f15b40; color: #f15b40; }
   transform: scale(0.8);
   transform-origin: center center;
   user-select: none;
-  cursor: pointer;
+  cursor: default;
   will-change: transform, color;
 }
 
@@ -146,7 +146,7 @@ svg.rainbow {
 
 svg.rainbow .lettre {
   transform-origin: center center;
-  cursor: pointer;
+  cursor: default;
   will-change: transform, fill;
 }
 

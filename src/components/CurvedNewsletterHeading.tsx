@@ -86,26 +86,25 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
     gsap.killTweensOf(letters);
     letters.forEach(clearElementTimeouts);
 
-    gsap.set(letters, { scale: 0.8, transformOrigin: 'center center' });
+    letters.forEach((letter, i) => {
+      letter.classList.remove(...RAINBOW_CLASSES);
+      letter.classList.add('c-beige');
+      gsap.set(letter, { scale: 0.8, transformOrigin: 'center center' });
 
-    // Synchronous letter stagger: color wave begins immediately as each letter pops
-    gsap.set(letters, {
-      stagger: {
-        each: 0.07,
-        onComplete: function () {
-          const target = this.targets()[0] as SVGPathElement;
-          if (target) {
-            triggerRainbowLetter(target);
-          }
-        },
-      },
-    });
+      gsap.to(letter, {
+        scale: 1,
+        duration: 0.6,
+        delay: i * 0.07,
+        ease: 'elastic.out(2, 0.5)',
+      });
 
-    gsap.to(letters, {
-      scale: 1,
-      stagger: 0.07,
-      duration: 0.6,
-      ease: 'elastic.out(2, 0.5)',
+      const timer = setTimeout(() => {
+        triggerRainbowLetter(letter);
+      }, i * 70);
+
+      const activeTimers = timeoutsMap.current.get(letter) || [];
+      activeTimers.push(timer);
+      timeoutsMap.current.set(letter, activeTimers);
     });
   }, [clearElementTimeouts, triggerRainbowLetter]);
 
@@ -126,10 +125,13 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
       // Authentic GSAP ScrollTrigger stagger bounce
       ScrollTrigger.create({
         trigger: svg,
-        start: 'top 70%',
+        start: 'top 80%',
         once: false,
         onEnter: () => {
           hasAnimatedRef.current = true;
+          playCascadeWave();
+        },
+        onEnterBack: () => {
           playCascadeWave();
         },
       });
@@ -149,13 +151,12 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
       {/* Authentic Mana Artistic Curved Vector Typography SVG */}
       <svg
         ref={svgRef}
-        className={`tenBoirais rainbow ${isFrench ? 'visibleFR' : 'visibleEN'} w-[95%] max-w-[1435px] h-auto block mx-auto cursor-pointer`}
+        className={`tenBoirais rainbow ${isFrench ? 'visibleFR' : 'visibleEN'} w-[95%] max-w-[1435px] h-auto block mx-auto cursor-default`}
         fill="none"
         height="857"
         viewBox="0 0 1435 857"
         width="1435"
         xmlns="http://www.w3.org/2000/svg"
-        onClick={playCascadeWave}
       >
         <g fill="#0e0e0e">
           {paths.map((d, index) => (
@@ -163,7 +164,6 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
               key={`${isFrench ? 'fr' : 'en'}-${index}`}
               className="lettre c-beige"
               d={d}
-              onMouseEnter={(e) => bounceSingleLetter(e.currentTarget)}
             />
           ))}
         </g>

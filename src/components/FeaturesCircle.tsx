@@ -197,10 +197,12 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
             animsRef.current.forEach((anim) => anim.pause());
           },
           onUpdate: (self) => {
-            // ONLY animate ONCE when entering view!
-            if (self.progress >= 0.72 && !hasAnimatedOnlyBestRef.current) {
+            // Trigger rainbow bounce when Slide 5 rotates into view
+            if (self.progress >= 0.70 && !hasAnimatedOnlyBestRef.current) {
               hasAnimatedOnlyBestRef.current = true;
               rainbowRef.current?.play();
+            } else if (self.progress < 0.60) {
+              hasAnimatedOnlyBestRef.current = false;
             }
           },
         },

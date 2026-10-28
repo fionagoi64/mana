@@ -93,26 +93,25 @@ export const CurvedOnlyTheBestHeading = forwardRef<
     gsap.killTweensOf(letters);
     letters.forEach(clearElementTimeouts);
 
-    gsap.set(letters, { scale: 0.8, transformOrigin: 'center center' });
+    letters.forEach((letter, i) => {
+      letter.classList.remove(...RAINBOW_CLASSES);
+      letter.classList.add('c-beige');
+      gsap.set(letter, { scale: 0.8, transformOrigin: 'center center' });
 
-    // Synchronous letter stagger: color wave begins immediately as each letter pops
-    gsap.set(letters, {
-      stagger: {
-        each: 0.07,
-        onComplete: function () {
-          const target = this.targets()[0] as SVGPathElement;
-          if (target) {
-            triggerRainbowLetter(target);
-          }
-        },
-      },
-    });
+      gsap.to(letter, {
+        scale: 1,
+        duration: 0.6,
+        delay: i * 0.07,
+        ease: 'elastic.out(2, 0.5)',
+      });
 
-    gsap.to(letters, {
-      scale: 1,
-      stagger: 0.07,
-      duration: 0.6,
-      ease: 'elastic.out(2, 0.5)',
+      const timer = setTimeout(() => {
+        triggerRainbowLetter(letter);
+      }, i * 70);
+
+      const activeTimers = timeoutsMap.current.get(letter) || [];
+      activeTimers.push(timer);
+      timeoutsMap.current.set(letter, activeTimers);
     });
   }, [clearElementTimeouts, triggerRainbowLetter]);
 
@@ -143,13 +142,12 @@ export const CurvedOnlyTheBestHeading = forwardRef<
       {/* Authentic Mana Curved "ONLY THE BEST" / "QUE DU BON" Typography SVG */}
       <svg
         ref={svgRef}
-        className={`rainbow rainbowSpe ${isFrench ? 'visibleFR' : 'visibleEN'} w-full h-auto max-w-[1397px] block mx-auto cursor-pointer`}
+        className={`rainbow rainbowSpe ${isFrench ? 'visibleFR' : 'visibleEN'} w-full h-auto max-w-[1397px] block mx-auto cursor-default`}
         fill="none"
         height="256"
         viewBox="0 0 1397 256"
         width="1397"
         xmlns="http://www.w3.org/2000/svg"
-        onClick={play}
       >
         <g fill="#0e0e0e">
           {paths.map((d, index) => (
@@ -157,7 +155,6 @@ export const CurvedOnlyTheBestHeading = forwardRef<
               key={`${isFrench ? 'fr' : 'en'}-${index}`}
               className="lettre c-beige"
               d={d}
-              onMouseEnter={(e) => bounceSingleLetter(e.currentTarget)}
             />
           ))}
         </g>
