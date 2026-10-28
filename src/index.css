@@ -212,3 +212,18 @@ html[lang='en'] .rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
   overflow: visible;
 }
 
+.shadow-btn-top {
+  transform: translateY(0);
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.group:hover .shadow-btn-top,
+.group:focus-visible .shadow-btn-top {
+  transform: translateY(var(--shadow-offset, 4px));
+}
+
+.group:active .shadow-btn-top {
+  transform: translateY(var(--shadow-offset, 4px));
+}
+

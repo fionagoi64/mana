@@ -82,8 +82,12 @@ export const ShadowButton: React.FC<ShadowButtonProps> = (props) => {
       "px-10 sm:px-14 py-3.5 sm:py-4 text-base sm:text-xl font-bold min-w-[200px] sm:min-w-[260px]";
   }
 
-  // Border style
-  const borderStyle = borderColor ? `1.5px solid ${borderColor}` : undefined;
+  // Border style: defaults to shadowColor if not explicitly specified so every button has a clean outline
+  const finalBorderColor = borderColor ?? shadowColor;
+  const borderStyle =
+    finalBorderColor && finalBorderColor !== "none" && finalBorderColor !== "transparent"
+      ? `1.5px solid ${finalBorderColor}`
+      : undefined;
 
   // Render inner content based on variant
   const renderContent = () => {
@@ -115,20 +119,21 @@ export const ShadowButton: React.FC<ShadowButtonProps> = (props) => {
     <>
       {/* 1. Authentic 3D Shadow Base Layer Underneath */}
       <div
-        className={`absolute inset-0 ${roundedClass} pointer-events-none transition-transform duration-150 ease-out`}
+        className={`absolute inset-0 ${roundedClass} pointer-events-none transition-transform duration-100 ease-out`}
         style={{
           backgroundColor: shadowColor,
           transform: `translateY(${shadowOffset}px)`,
         }}
       />
 
-      {/* 2. Top Interactive Button Surface */}
+      {/* 2. Top Interactive Button Surface: On hover, smoothly glides down by shadowOffset so it covers the bottom shadow fill, leaving only the border */}
       <div
-        className={`relative ${roundedClass} ${sizeClass} flex items-center justify-center transition-transform duration-150 ease-out group-hover:translate-y-[2px] group-active:translate-y-[${shadowOffset}px] ${innerClassName}`}
+        className={`shadow-btn-top relative ${roundedClass} ${sizeClass} flex items-center justify-center ${innerClassName}`}
         style={{
           backgroundColor: bg,
           color: textColor,
           border: borderStyle,
+          ['--shadow-offset' as string]: `${shadowOffset}px`,
         }}
       >
         {renderContent()}
@@ -136,7 +141,7 @@ export const ShadowButton: React.FC<ShadowButtonProps> = (props) => {
     </>
   );
 
-  const containerClasses = `relative inline-flex group cursor-pointer select-none transition-transform active:scale-95 shrink-0 ${
+  const containerClasses = `relative inline-flex group cursor-pointer select-none transition-transform active:scale-[0.98] shrink-0 ${
     disabled ? "opacity-50 pointer-events-none" : ""
   } ${className}`;
 
