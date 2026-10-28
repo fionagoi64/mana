@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Book.woff2') format('woff2');
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Book.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Regular.woff2') format('woff2');
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Medium.woff2') format('woff2');
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-main: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-main:
+    "Neue Montreal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   color-scheme: light;
 }
 
@@ -33,12 +35,13 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: var(--font-main);
   background-color: #fef7e6;
-  color: #1a1a1a;
+  color: #0e0e0e;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -51,9 +54,9 @@ html, body {
   flex-direction: column;
 }
 
-/* Custom whimsical animations */
 @keyframes floatSlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -61,32 +64,16 @@ html, body {
   }
 }
 
-@keyframes floatReverse {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(14px) rotate(-5deg);
-  }
-}
-
-@keyframes spinSlow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulseSubtle {
-  0%, 100% {
+@keyframes bounceSpe {
+  0%,
+  100% {
     transform: scale(1);
-    opacity: 0.9;
   }
-  50% {
-    transform: scale(1.06);
-    opacity: 1;
+  40% {
+    transform: scale(1.07);
+  }
+  80% {
+    transform: scale(0.96);
   }
 }
 
@@ -94,40 +81,63 @@ html, body {
   animation: floatSlow 6s ease-in-out infinite;
 }
 
-.animate-float-reverse {
-  animation: floatReverse 7s ease-in-out infinite;
+.bounce-btn {
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  will-change: transform;
 }
 
-.animate-spin-slow {
-  animation: spinSlow 24s linear infinite;
+@media (hover: hover) and (pointer: fine) {
+  .bounce-btn:hover {
+    animation: bounceSpe 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
 }
 
-.animate-pulse-subtle {
-  animation: pulseSubtle 3s ease-in-out infinite;
+.bounce-btn:active {
+  transform: scale(0.93) !important;
 }
 
-/* Hide scrollbar for tabs */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+path.c-beige,
+span.c-beige {
+  fill: #fef7e6;
+  color: #fef7e6;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+path.c-noir,
+span.c-noir {
+  fill: #0e0e0e;
+  color: #0e0e0e;
 }
-
-/* Authentic Mana rainbow letter palette and styling */
-path.c-beige, span.c-beige { fill: #fef7e6; color: #fef7e6; }
-path.c-noir, span.c-noir { fill: #0e0e0e; color: #0e0e0e; }
-path.c-jaune, span.c-jaune { fill: #ffd372; color: #ffd372; }
-path.c-bleu, span.c-bleu { fill: #88c1f8; color: #88c1f8; }
-path.c-bleu2, span.c-bleu2 { fill: #2b3d73; color: #2b3d73; }
-path.c-rose, span.c-rose { fill: #f6b1cf; color: #f6b1cf; }
-path.c-rouge, span.c-rouge { fill: #e72f63; color: #e72f63; }
-path.c-orange, span.c-orange { fill: #f15b40; color: #f15b40; }
-
-.rainbow .mot {
-  display: inline-block;
-  white-space: nowrap;
+path.c-jaune,
+span.c-jaune {
+  fill: #ffd372;
+  color: #ffd372;
+}
+path.c-bleu,
+span.c-bleu {
+  fill: #88c1f8;
+  color: #88c1f8;
+}
+path.c-bleu2,
+span.c-bleu2 {
+  fill: #2b3d73;
+  color: #2b3d73;
+}
+path.c-rose,
+span.c-rose {
+  fill: #f6b1cf;
+  color: #f6b1cf;
+}
+path.c-rouge,
+span.c-rouge {
+  fill: #e72f63;
+  color: #e72f63;
+}
+path.c-orange,
+span.c-orange {
+  fill: #f15b40;
+  color: #f15b40;
 }
 
 .rainbow span.lettre {
@@ -139,7 +149,6 @@ path.c-orange, span.c-orange { fill: #f15b40; color: #f15b40; }
   will-change: transform, color;
 }
 
-/* Authentic Mana curved SVG letters */
 svg.rainbow {
   overflow: visible;
 }
@@ -150,40 +159,56 @@ svg.rainbow .lettre {
   will-change: transform, fill;
 }
 
-/* Authentic Mana bespoke kerning pairs */
-.rainbow .ls + .la { margin: 0 0 0 -0.01em; }
-.rainbow .la + .lv { margin: 0 0 0 -0.14em; }
-.rainbow .lt + .lo { margin: 0 0 0 -0.1em; }
-.rainbow .lt + .la { margin: 0 0 0 -0.12em; }
-.rainbow .la + .lc { margin: 0 0 0 -0.05em; }
-.rainbow .lc + .lt { margin: 0 0 0 -0.05em; }
+.rainbow .ls + .la {
+  margin: 0 0 0 -0.01em;
+}
+.rainbow .la + .lv {
+  margin: 0 0 0 -0.14em;
+}
+.rainbow .lt + .lo {
+  margin: 0 0 0 -0.1em;
+}
+.rainbow .lt + .la {
+  margin: 0 0 0 -0.12em;
+}
+.rainbow .la + .lc {
+  margin: 0 0 0 -0.05em;
+}
+.rainbow .lc + .lt {
+  margin: 0 0 0 -0.05em;
+}
+.rainbow .lf + .ll {
+  margin: 0 0 0 -0.02em;
+}
+.rainbow .ll + .la {
+  margin: 0 0 0 -0.08em;
+}
+.rainbow .lv + .lo {
+  margin: 0 0 0 -0.08em;
+}
+.rainbow .lo + .lr {
+  margin: 0 0 0 -0.03em;
+}
+.rainbow .lr + .ls {
+  margin: 0 0 0 -0.02em;
+}
+.rainbow .lv + .le {
+  margin: 0 -0.04em 0 -0.14em;
+}
+.rainbow .le + .lu {
+  margin: 0 0 0 -0.02em;
+}
+.rainbow .lu + .lr {
+  margin: 0 0 0 -0.01em;
+}
 
-/* English letter kerning */
-html[lang='en'] .rainbow .la + .lv { margin: 0; }
-html[lang='en'] .rainbow .lt + .lo { margin: 0; }
-html[lang='en'] .rainbow .lt + .la { margin: 0; }
-html[lang='en'] .rainbow .la + .lc { margin: 0; }
-html[lang='en'] .rainbow .lc + .lt { margin: 0; }
-html[lang='en'] .rainbow .lv + .le { margin: 0 -0.04em 0 -0.14em; }
-html[lang='en'] .rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
+html[lang="en"] .rainbow .lt + .lo,
+html[lang="en"] .rainbow .lt + .la,
+html[lang="en"] .rainbow .la + .lc,
+html[lang="en"] .rainbow .lc + .lt {
+  margin: 0;
+}
 
-/* Dedicated FLAVORS letter kerning (F-L-A-V-O-R-S) */
-.rainbow .lf + .ll { margin: 0 0 0 -0.02em; }
-.rainbow .ll + .la { margin: 0 0 0 -0.08em; }
-.rainbow .la + .lv { margin: 0 0 0 -0.14em; }
-.rainbow .lv + .lo { margin: 0 0 0 -0.08em; }
-.rainbow .lo + .lr { margin: 0 0 0 -0.03em; }
-.rainbow .lr + .ls { margin: 0 0 0 -0.02em; }
-
-/* Dedicated SAVEURS letter kerning (S-A-V-E-U-R-S) */
-.rainbow .ls + .la { margin: 0 0 0 -0.01em; }
-.rainbow .la + .lv { margin: 0 0 0 -0.14em; }
-.rainbow .lv + .le { margin: 0 -0.04em 0 -0.14em; }
-.rainbow .le + .lu { margin: 0 0 0 -0.02em; }
-.rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
-.rainbow .lr + .ls { margin: 0 0 0 -0.02em; }
-
-/* Gros titre typography matching Mana live site */
 .grosTitre {
   font-family: var(--font-main);
   font-size: clamp(80px, 23.2vw, 446px);
@@ -203,15 +228,6 @@ html[lang='en'] .rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
   }
 }
 
-.tenBoirais {
-  width: 95%;
-  max-width: 1440px;
-  display: block;
-  height: auto;
-  margin: 0 auto;
-  overflow: visible;
-}
-
 .shadow-btn-top {
   transform: translateY(0);
   transition: transform 0.1s ease-out;
@@ -219,11 +235,19 @@ html[lang='en'] .rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
 }
 
 .group:hover .shadow-btn-top,
-.group:focus-visible .shadow-btn-top {
-  transform: translateY(var(--shadow-offset, 2.5px));
-}
-
+.group:focus-visible .shadow-btn-top,
 .group:active .shadow-btn-top {
   transform: translateY(var(--shadow-offset, 2.5px));
 }
 
+.feature-lottie-container svg path[stroke],
+.feature-lottie-container svg [stroke]:not([stroke="none"]) {
+  stroke: var(--flavor-color, #f15b40) !important;
+  transition: stroke 0.5s ease;
+}
+
+.feature-lottie-container svg path[fill],
+.feature-lottie-container svg [fill]:not([fill="none"]) {
+  fill: var(--flavor-color, #f15b40) !important;
+  transition: fill 0.5s ease;
+}

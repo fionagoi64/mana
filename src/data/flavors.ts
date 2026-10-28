@@ -1,197 +1,260 @@
-export interface Flavor {
-  id: 'grapefruit' | 'hibiscus' | 'tropical' | 'melon';
-  name: string;
-  frenchName: string;
-  colorName: string;
-  bg: string;
-  bgLight: string;
-  accent: string;
-  tagline: string;
-  description: string;
-  caffeine: string;
-  sugar: string;
-  calories: string;
-  rating: number;
-  reviews: number;
-  price: number;
-  packSize: string;
-  thumb: string;
-  hero1: string;
-  hero2: string;
-  tastingNotes: string[];
-  metrics: {
-    sweetness: number;
-    tartness: number;
-    energy: number;
-    fizz: number;
-  };
-  quote: string;
-  author: string;
-}
+import { Flavor, FlavorId } from "../types/types.ts";
 
-export interface Product {
-  id: string;
-  name: string;
-  frenchName: string;
-  flavorId: string;
-  price: number;
-  rating: number;
-  reviews: number;
-  thumb: string;
-  badge?: string;
-  desc: string;
-}
+export type { Flavor, FlavorId };
+
+export const FLAVOR_ORDER: FlavorId[] = [
+  "grapefruit",
+  "hibiscus",
+  "tropical",
+  "melon",
+];
 
 export const FLAVORS: Flavor[] = [
   {
-    id: 'grapefruit',
-    name: 'Grapefruit',
-    frenchName: 'Pamplemousse',
-    colorName: 'yellow',
-    bg: '#ffd372',
-    bgLight: '#fff8db',
-    accent: '#d9480f',
-    tagline: 'Tart, sparkling and invigorating with every sip.',
-    description:
-      'Crisp organic pink grapefruit paired with shade-grown South American yerba mate. Delivers a clean, sustained lift without the afternoon slump.',
-    caffeine: '120 mg',
-    sugar: '8 g',
-    calories: '45 kcal',
-    rating: 4.9,
-    reviews: 412,
-    price: 39.99,
-    packSize: '12 x 355 ml',
-    thumb: '/images/pamplemousse_thumb.jpg',
-    hero1: '/images/pamp_hero_1.jpg',
-    hero2: '/images/pamp_hero_2.jpg',
-    tastingNotes: ['Pink Grapefruit', 'Crushed Zest', 'Earthy Herbal', 'Crisp Fizz'],
-    metrics: {
-      sweetness: 35,
-      tartness: 85,
-      energy: 90,
-      fizz: 80,
+    id: "grapefruit",
+    bg: "#ffd372",
+    sliderBg: "#ffd372",
+    btnBg: "#f15b40",
+    btnShadow: "#2b3d73",
+    texturePath: "/models/MANA_canette_pamp_color_for_mat_v2.png",
+    sliderBaseImg: "/images/slider/pamp-01.jpg",
+    sliderHoverImg: "/images/slider/pamp-02.jpg",
+    heroArt: {
+      left: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_pamp_1.json",
+          className:
+            "absolute top-[48%] left-[-10vw] -translate-y-1/2 w-[50vw] max-w-[780px]",
+        },
+        {
+          type: "image",
+          src: "/svg/home_bulles.svg",
+          className:
+            "absolute top-[15%] left-[25vw] w-[5vw] max-w-[80px] opacity-90 animate-float-slow",
+        },
+        {
+          type: "lottie",
+          src: "/lottie/lottie_pamp_2.json",
+          className:
+            "absolute bottom-[12vh] left-[18vw] w-[30vw] max-w-[500px] rotate-20",
+        },
+      ],
+      right: [
+        {
+          type: "image",
+          src: "/svg/woman.svg",
+          className:
+            "absolute top-[-22vh] right-[18vw] w-[30vw] max-w-[480px] object-contain animate-float-slow",
+        },
+        {
+          type: "lottie",
+          src: "/lottie/lottie_pamp_4.json",
+          className:
+            "absolute bottom-[-20vh] right-[-8vw] w-[40vw] max-w-[750px]",
+        },
+      ],
     },
-    quote: 'The grapefruit punch is unbeatable for early morning deep work sessions.',
-    author: 'Mathieu L., Montreal',
   },
   {
-    id: 'hibiscus',
-    name: 'Blackberry & Hibiscus',
-    frenchName: 'Mûre & Hibiscus',
-    colorName: 'blue',
-    bg: '#85baea',
-    bgLight: '#e0effd',
-    accent: '#2b3d73',
-    tagline: 'Deep berry richness balanced with delicate floral botanicals.',
-    description:
-      'Wild Canadian blackberries steeped with tart organic hibiscus flowers. A sophisticated, vibrant berry infusion that awakens the palate.',
-    caffeine: '120 mg',
-    sugar: '8 g',
-    calories: '45 kcal',
-    rating: 4.95,
-    reviews: 520,
-    price: 39.99,
-    packSize: '12 x 355 ml',
-    thumb: '/images/mure_thumb.jpg',
-    hero1: '/images/mure_hero_1.jpg',
-    hero2: '/images/mure_hero_2.jpg',
-    tastingNotes: ['Wild Blackberry', 'Tart Hibiscus', 'Botanical Tannins', 'Smooth Finish'],
-    metrics: {
-      sweetness: 50,
-      tartness: 75,
-      energy: 90,
-      fizz: 75,
+    id: "hibiscus",
+    bg: "#85baea",
+    sliderBg: "#88c1f8",
+    btnBg: "#2b3d73",
+    btnShadow: "#0e0e0e",
+    texturePath: "/models/MANA_canette_hibiscus_color_for_mat.png",
+    sliderBaseImg: "/images/slider/mure-01.jpg",
+    sliderHoverImg: "/images/slider/mure-02.jpg",
+    heroArt: {
+      left: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_hibi_1.json",
+          className:
+            "absolute top-[6vh] left-[3vw] w-[30vw] max-w-[720px]",
+        },
+        {
+          type: "image",
+          src: "/svg/home_star.svg",
+          className:
+            "absolute top-[12vh] left-[35vw] w-[3vw] max-w-[80px]",
+        },
+        {
+          type: "lottie",
+          src: "/lottie/lottie_hibi_2.json",
+          className:
+            "absolute bottom-[6vh] left-[7vw] w-[18vw] max-w-[360px]",
+        },
+        {
+          type: "image",
+          src: "/svg/home_star.svg",
+          className:
+            "absolute top-[60vh] left-[5vw] w-[3vw] max-w-[45px]",
+        },
+      ],
+      right: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_hibi_3.json",
+          className:
+            "absolute top-[2vh] right-[-2vw] w-[50vw] max-w-[800px]",
+        },
+        {
+          type: "image",
+          src: "/svg/home_planet.svg",
+          className:
+            "absolute bottom-[-4vh] right-[2vw] w-[22vw] max-w-[340px]",
+        },
+      ],
     },
-    quote: 'Tastes like an artisanal natural soda, but powers my whole afternoon.',
-    author: 'Chloe D., Quebec City',
   },
   {
-    id: 'tropical',
-    name: 'Tropical Punch',
-    frenchName: 'Punch Tropical',
-    colorName: 'pink',
-    bg: '#f6b1cf',
-    bgLight: '#fde8f1',
-    accent: '#e72f63',
-    tagline: 'A sunny vacation in a can — passion fruit, mango & pineapple.',
-    description:
-      'Lush tropical fruit juices blended with energizing yerba mate. Naturally golden, intensely refreshing, and bursting with vibrant sunshine.',
-    caffeine: '120 mg',
-    sugar: '8 g',
-    calories: '45 kcal',
-    rating: 4.88,
-    reviews: 380,
-    price: 39.99,
-    packSize: '12 x 355 ml',
-    thumb: '/images/tropical_thumb.jpg',
-    hero1: '/images/trop_hero_1.jpg',
-    hero2: '/images/trop_hero_2.jpg',
-    tastingNotes: ['Ripe Mango', 'Passion Fruit', 'Juicy Pineapple', 'Bright Mate'],
-    metrics: {
-      sweetness: 65,
-      tartness: 50,
-      energy: 90,
-      fizz: 85,
+    id: "tropical",
+    bg: "#f6b1cf",
+    sliderBg: "#f6b1cf",
+    btnBg: "#e72f63",
+    btnShadow: "#2b3d73",
+    texturePath: "/models/MANA_canette_tropical_color_for_mat.png",
+    sliderBaseImg: "/images/slider/trop-01.jpg",
+    sliderHoverImg: "/images/slider/trop-02.jpg",
+    heroArt: {
+      left: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_trop_1.json",
+          className:
+            "absolute bottom-[-6vh] left-[0vw] w-[40vw] max-w-[720px]",
+        },
+        {
+          type: "image",
+          src: "/svg/home_eau.svg",
+          className:
+            "absolute top-[-38vh] left-[6vw] w-[26vw] max-w-[480px]",
+        },
+        {
+          type: "image",
+          src: "/svg/mangue.svg",
+          className:
+            "absolute top-[-4vh] left-[36vw] w-[11vw] max-w-[280px]",
+        },
+      ],
+      right: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_trop_2.json",
+          className:
+            "absolute top-[6vh] right-[-10vw] w-[50vw] max-w-[860px]",
+        },
+        {
+          type: "lottie",
+          src: "/lottie/lottie_trop_4.json",
+          className:
+            "absolute top-[44%] right-[20vw] w-[20vw] max-w-[460px]",
+        },
+      ],
     },
-    quote: 'The tropical punch is literally summer in a can. Instant mood booster.',
-    author: 'Alexandre G., Toronto',
   },
   {
-    id: 'melon',
-    name: 'Melon & Mint',
-    frenchName: 'Melon & Menthe',
-    colorName: 'lime',
-    bg: '#acd084',
-    bgLight: '#f0f8e4',
-    accent: '#15803d',
-    tagline: 'Sweet honeydew nectar kissed with icy, cool garden mint.',
-    description:
-      'Crisp green honeydew melon combined with brisk garden mint leaves. Exceptionally refreshing, restorative, and revitalizing on hot days.',
-    caffeine: '120 mg',
-    sugar: '8 g',
-    calories: '45 kcal',
-    rating: 4.92,
-    reviews: 295,
-    price: 39.99,
-    packSize: '12 x 355 ml',
-    thumb: '/images/melon_thumb.jpg',
-    hero1: '/images/melon_hero_1.jpg',
-    hero2: '/images/melon_hero_2.jpg',
-    tastingNotes: ['Cool Mint', 'Honeydew Melon', 'Green Tea Notes', 'Effervescent'],
-    metrics: {
-      sweetness: 45,
-      tartness: 40,
-      energy: 90,
-      fizz: 90,
+    id: "melon",
+    bg: "#acd084",
+    sliderBg: "#acd084",
+    btnBg: "#195e1c",
+    btnShadow: "#0e0e0e",
+    texturePath: "/models/MANA_canette_melon_mint_mat.png",
+    sliderBaseImg: "/images/slider/melon-01.jpg",
+    sliderHoverImg: "/images/slider/melon-02.jpg",
+    heroArt: {
+      left: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_melo_1.json",
+          className:
+            "absolute top-[40%] left-[5vw] -translate-y-1/2 w-[40vw] max-w-[700px] z-10",
+        },
+        {
+          type: "image",
+          src: "/svg/home_fleur.svg",
+          className:
+            "absolute bottom-[-3%] left-[18vw] w-[30vw] max-w-[800px] animate-float-slow",
+        },
+      ],
+      right: [
+        {
+          type: "lottie",
+          src: "/lottie/lottie_melo_2.json",
+          className:
+            "absolute top-[6vh] right-[4vw] w-[26vw] max-w-[700px]",
+        },
+        {
+          type: "lottie",
+          src: "/lottie/lottie_melo_3.json",
+          className:
+            "absolute bottom-[-2vh] right-[2vw] w-[35vw] max-w-[800px] z-10",
+        },
+      ],
     },
-    quote: 'Super crisp and not too sweet. The mint finish is pure genius.',
-    author: 'Sophie V., Montreal',
   },
 ];
 
-export const PRODUCTS: Product[] = [
-  ...FLAVORS.map((f) => ({
-    id: f.id,
-    name: `${f.name} 12-Pack`,
-    frenchName: `Caisse 12x ${f.frenchName}`,
-    flavorId: f.id,
-    price: f.price,
-    rating: f.rating,
-    reviews: f.reviews,
-    thumb: f.thumb,
-    badge: 'Signature',
-    desc: f.tagline,
-  })),
-  {
-    id: 'discovery-box',
-    name: 'Discovery Box (Variety 12-Pack)',
-    frenchName: 'Boîte Découverte (12-Pack Mixte)',
-    flavorId: 'discovery',
-    price: 41.99,
-    rating: 4.98,
-    reviews: 864,
-    thumb: '/images/box_thumb.jpg',
-    badge: 'Best Seller',
-    desc: '3 cans of each of our 4 signature flavours: Grapefruit, Hibiscus, Tropical & Melon Mint.',
+export const FLAVOR_MAP: Record<FlavorId, Flavor> = FLAVORS.reduce(
+  (acc, flavor) => {
+    acc[flavor.id] = flavor;
+    return acc;
   },
+  {} as Record<FlavorId, Flavor>,
+);
+
+export const SLIDER_FLAVOR_ORDER: FlavorId[] = [
+  "melon",
+  "grapefruit",
+  "hibiscus",
+  "tropical",
+];
+
+export const SLIDER_FLAVORS: Flavor[] = SLIDER_FLAVOR_ORDER.map(
+  (id) => FLAVOR_MAP[id],
+);
+
+export const HERO_WHEEL_STEPS = Array.from({ length: 8 }, (_, step) => ({
+  step,
+  flavorId: FLAVOR_ORDER[step % FLAVOR_ORDER.length],
+  angle: step * 45,
+}));
+
+export const SLIDER_MASK_CIRCLES: [number, number][][] = [
+  [
+    [80, 50],
+    [60, 80],
+    [40, 20],
+  ],
+  [
+    [30, 80],
+    [80, 65],
+    [50, 30],
+  ],
+  [
+    [50, 40],
+    [80, 60],
+    [30, 80],
+  ],
+  [
+    [30, 20],
+    [65, 80],
+    [80, 40],
+  ],
+];
+
+export const FLAVOR_STAR_LAYERS: string[][] = [
+  [
+    "left-[22.5%] top-[58%] w-[2.8vw] min-w-[22px] max-w-[42px]",
+    "left-[65.5%] top-[16%] w-[2.4vw] min-w-[20px] max-w-[36px]",
+    "left-[75%] top-[19%] w-[2.5vw] min-w-[20px] max-w-[38px]",
+    "left-[94%] top-[38%] w-[2.6vw] min-w-[22px] max-w-[40px]",
+  ],
+  [
+    "left-[5%] top-[24%] w-[2.3vw] min-w-[18px] max-w-[34px]",
+    "left-[45.2%] top-[62%] w-[1.8vw] min-w-[16px] max-w-[28px]",
+    "left-[47.8%] top-[57%] w-[2.2vw] min-w-[18px] max-w-[32px]",
+    "left-[78%] top-[60%] w-[2.6vw] min-w-[22px] max-w-[40px]",
+  ],
 ];

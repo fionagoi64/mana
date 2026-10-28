@@ -1,164 +1,140 @@
 {
-  "nav": {
-    "announcement": "⚡ Livraison gratuite sur tous les achats de 35$ ou plus au Québec et en Ontario",
-    "announcement_short": "Livraison gratuite dès 35$ CAD",
-    "free_delivery": "Livraison Gratuite",
-    "flavours": "Saveurs",
-    "why_yerba_mate": "Pourquoi le Maté?",
-    "taste_profile": "Profil de Goût",
-    "shop_cases": "Boutique 12-Packs",
-    "community": "Communauté",
-    "discovery_box": "Boîte Découverte"
+  "common": {
+    "lang": "fr",
+    "previous": "Précédent",
+    "next": "Suivant"
   },
-  "hero": {
-    "tag": "Yerba Maté 100% Biologique",
-    "caffeine_badge": "Caféine Végétale",
-    "vegan_badge": "100% Végétalien",
-    "organic_badge": "Certifié Biologique",
-    "per_can": "Par Canette 355ml",
-    "organic_cane_sugar": "Sucre de Canne Bio",
-    "add_case": "Ajouter 12-Pack",
-    "next_flavor": "Saveur Suivante",
-    "drag_rotate": "Glisser pour tourner à 360°",
-    "tasting_profile": "Profil Aromatique",
-    "sweetness": "Douceur",
-    "tartness": "Acidité / Vivacité",
-    "loading_model": "Infusion de la canette 3D..."
+  "header": {
+    "brandAria": "MANA Yerba Maté",
+    "nav": {
+      "shop": "Shop",
+      "learn": "Learn",
+      "subscription": "Subscription"
+    },
+    "toggleLang": "En",
+    "nextLang": "en",
+    "toggleLangAria": "Toggle language",
+    "accountAria": "Account",
+    "cartAria": "Shopping Cart",
+    "menuAria": "Menu"
   },
   "flavors": {
     "grapefruit": {
-      "name": "Pamplemousse",
-      "tagline": "Acidulé, pétillant et revigorant à chaque gorgée.",
-      "description": "Pamplemousse rose biologique croquant marié au yerba maté d'Amérique du Sud cultivé à l'ombre. Procure un regain d'énergie propre sans coup de barre.",
-      "quote": "Le punch pamplemousse est incomparable pour les sessions de travail intenses du matin.",
-      "author": "Mathieu L., Montréal",
-      "notes": ["Pamplemousse Rose", "Zeste Écrasé", "Herbacé Subtil", "Bulles Vives"]
+      "heroName": "Pamplemousse",
+      "sliderName": "Pamplemousse"
     },
     "hibiscus": {
-      "name": "Mûre & Hibiscus",
-      "tagline": "Richesse des baies sauvages équilibrée par la délicatesse florale.",
-      "description": "Mûres sauvages canadiennes infusées avec des fleurs d'hibiscus biologiques acidulées. Une infusion de baies sophistiquée qui réveille le palais.",
-      "quote": "Goûte comme un soda naturel artisanal, mais me soutient toute l'après-midi.",
-      "author": "Chloé D., Québec",
-      "notes": ["Mûre Sauvage", "Hibiscus Acidulé", "Tanins Végétaux", "Finale Douce"]
+      "heroName": "Mûre et Hibiscus",
+      "sliderName": "Mûre & Hibiscus"
     },
     "tropical": {
-      "name": "Punch Tropical",
-      "tagline": "De vraies vacances en canette — fruit de la passion, mangue & ananas.",
-      "description": "Jus de fruits tropicaux gorgés de soleil mélangés au yerba maté énergisant. Naturellement doré, intensément rafraîchissant et lumineux.",
-      "quote": "Le punch tropical est littéralement l'été en canette. Boost d'humeur instantané.",
-      "author": "Alexandre G., Toronto",
-      "notes": ["Mangue Mûre", "Fruit de la Passion", "Ananas Juteux", "Maté Radieux"]
+      "heroName": "Tropical",
+      "sliderName": "Punch Tropical"
     },
     "melon": {
-      "name": "Melon & Menthe",
-      "tagline": "Nectar doux de melon miel rehaussé de menthe fraîche et glacée.",
-      "description": "Melon miel vert croquant associé à des feuilles fraîches de menthe poivrée. Exceptionnellement rafraîchissant et revitalisant lors des chaudes journées.",
-      "quote": "Super frais et pas trop sucré. La finale mentholée est purement géniale.",
-      "author": "Sophie V., Montréal",
-      "notes": ["Menthe Fraîche", "Melon Miel", "Notes de Thé Vert", "Effervescent"]
+      "heroName": "Melon et Menthe",
+      "sliderName": "Melon & Menthe"
     }
   },
-  "why_mana": {
-    "tag": "L'Avantage Super-Feuille",
-    "title": "MANA ? Yerba Maté ?",
+  "hero": {
+    "prevFlavor": "Previous Flavor",
+    "nextFlavor": "Next Flavor",
+    "selectFlavor": "Select {{name}}"
+  },
+  "features": {
+    "headingLine1": "MANA ? YERBA MATÉ ?",
+    "headingLine2": "DE QUOI ON PARLE ?",
     "subtitle": "(on va se dire les vraies affaires)",
-    "card1_title": "Sans le crash",
-    "card1_desc": "Une douce vague d'énergie. Pour vous lancer sans le crash de l'après-midi ni les tremblements.",
-    "card1_badge": "Énergie Fluide",
-    "card2_title": "Caféine naturelle",
-    "card2_desc": "120mg de caféine biologique certifiée issue directement de la plante. Un cadeau de Mère Nature.",
-    "card2_badge": "120mg Végétale",
-    "card3_title": "Riche en antioxydants",
-    "card3_desc": "Plus riche en polyphénols et antioxydants que le thé vert. Bon pour votre corps et votre esprit.",
-    "card3_badge": "Supérieur au Thé Vert",
-    "card4_title": "100% Végétalien",
-    "card4_desc": "Une boisson à base de plantes au goût divin. Zéro conservateur, uniquement des ingrédients propres.",
-    "card4_badge": "Ingrédients Propres"
+    "onlyBestText": "Que du bon",
+    "onlyBestPaths": [
+      "M160.735 135.655C149.288 86.2542 109.326 57.9879 61.994 68.9565C14.6616 79.9252 -8.56365 122.834 2.88417 172.234C14.332 221.635 54.1167 250.184 101.449 239.215C119.601 235.009 134.23 226.05 144.684 213.701L169.873 229.412L178.169 216.11L153.83 200.929C163.642 182.676 166.38 160.01 160.735 135.655ZM98.0414 224.51C57.602 233.881 29.3451 207.019 20.3466 168.188C11.3481 129.357 24.9624 93.033 65.4018 83.6618C106.071 74.2373 134.275 100.87 143.273 139.701C147.692 158.772 146.631 177.176 139.679 192.103L113.359 175.686L105.062 188.988L131.383 205.405C123.56 214.481 112.517 221.156 98.0414 224.51Z",
+      "M295.361 27.8845L278.378 30.718L296.776 140.99C301.744 170.768 289.262 187.676 258.553 192.8C227.844 197.924 210.549 185.984 205.58 156.206L187.182 45.9336L170.199 48.7671L188.598 159.039C194.498 194.401 217.533 214.948 261.037 207.689C304.541 200.431 319.659 173.518 313.759 138.157L295.361 27.8845Z",
+      "M346.579 36.8577L445.508 25.9169L443.849 10.9135L327.807 23.7468L346.344 191.363L464.964 178.245L463.305 163.241L361.798 174.467L354.616 109.531L442.996 99.7565L441.337 84.753L352.957 94.5271L346.579 36.8577Z",
+      "M605.878 170.83C653.028 169.379 678.687 136.733 677.084 84.6329C675.48 32.533 648.311 0.805548 601.161 2.2569L540.339 4.12915L545.527 172.688L605.878 170.83ZM601.626 17.3447C643.824 16.0457 658.013 47.7008 659.167 85.1844C660.313 122.432 647.613 154.443 605.414 155.742L562.272 157.07L558.013 18.6872L601.626 17.3447Z",
+      "M831.415 3.78182L814.204 3.31051L811.144 115.065C810.317 145.244 794.828 159.448 763.706 158.596C732.585 157.744 717.896 142.713 718.722 112.534L721.782 0.779657L704.571 0.30835L701.511 112.063C700.53 147.9 719.204 172.478 763.293 173.685C807.382 174.893 827.374 151.373 828.355 115.537L831.415 3.78182Z",
+      "M1042.12 65.5351C1044.92 39.2676 1026.68 21.1961 993.61 17.6739L926.769 10.5544L908.908 178.244L980.205 185.838C1013.51 189.386 1037.3 175.316 1040.68 143.655C1043.25 119.498 1029.95 104.087 1011.79 98.5955L1011.84 98.1265C1027.4 94.5655 1039.99 85.4702 1042.12 65.5351ZM942.291 27.388L995.295 33.0336C1016.87 35.3318 1025.94 48.1575 1024.12 65.2783C1022.34 81.93 1012.21 92.4727 989.224 90.0247L936.22 84.3791L942.291 27.388ZM993.489 105.659C1013.42 107.783 1024.95 122.056 1022.85 141.756C1020.78 161.222 1009.01 173.726 982.273 170.878L927.627 165.058L934.622 99.3891L993.489 105.659Z",
+      "M1130.42 210.266C1178.32 218.404 1216.57 187.582 1225.06 137.589C1233.56 87.5959 1207.59 46.1025 1159.69 37.9642C1111.79 29.8259 1073.81 60.455 1065.32 110.448C1056.83 160.441 1082.52 202.127 1130.42 210.266ZM1132.95 195.384C1092.02 188.431 1076.31 152.747 1082.99 113.451C1089.67 74.1537 1116.24 45.8928 1157.16 52.8459C1198.32 59.8385 1214.07 95.2896 1207.39 134.586C1200.72 173.883 1174.1 202.377 1132.95 195.384Z",
+      "M1247.79 229.654L1280.95 89.4111L1281.4 89.5196L1336.84 250.71L1357.27 255.54L1396.08 91.4264L1379.55 87.5191L1346.28 228.221L1345.82 228.112L1290.26 66.4083L1269.83 61.5784L1231.03 225.692L1247.79 229.654Z"
+    ],
+    "cards": {
+      "crash": {
+        "title": "SANS LE CRASH",
+        "desc": "Une douce vague d'énergie. Pour vous lancer sans le crash."
+      },
+      "caffeine": {
+        "title": "CAFÉINE NATURELLE",
+        "desc": "Cette caféine certifiée biologique provient directement de la plante. Un cadeau de Mère Nature."
+      },
+      "antioxidant": {
+        "title": "ANTIOXYDANTS",
+        "desc": "Plus riche en antioxydants que le thé. Pas mal, non ?"
+      },
+      "vegan": {
+        "title": "VÉGÉTALIEN",
+        "desc": "Une boisson à base de plantes au goût divin. Que demander de plus ?"
+      }
+    }
   },
-  "matrix": {
-    "tag": "Calibration des Saveurs",
-    "title": "Matrice de Goût & Intensité",
-    "signature_blend": "Infusion Signature",
-    "sweetness": "Douceur",
-    "tartness": "Acidité / Vivacité",
-    "energy": "Énergie Durable",
-    "fizz": "Effervescence (Bulles)",
-    "subtle": "Subtile",
-    "balanced": "Équilibrée",
-    "rich": "Gourmande",
-    "mellow": "Douce",
-    "zesty": "Acidulée",
-    "punchy": "Vive",
-    "gentle": "Légère",
-    "smooth": "Fluide (120mg)",
-    "peak_focus": "Focus Maximal",
-    "still": "Calme",
-    "sparkling": "Pétillante",
-    "ultra_crisp": "Ultra Vive"
-  },
-  "editorial": {
-    "tag": "Le Rituel Mana",
-    "title": "Frais, fruité, pétillant, belles couleurs, réveillez vos papilles.",
-    "desc": "Infusé avec soin à Montréal, Québec. Nous avons réinventé la feuille sacrée de Yerba Maté d'Amérique du Sud en une infusion pétillante vivifiante.",
-    "card1_tag": "Vitalité Durable",
-    "card1_title": "La Force des Plantes",
-    "card1_desc": "Plus d'antioxydants que le thé vert et le boost propre d'un expresso sans la rechute.",
-    "card2_tag": "Fait au Québec",
-    "card2_title": "Énergie Pour Connecter",
-    "card2_desc": "Créé pour les esprits créatifs, les sportifs et tous ceux qui veulent conquérir leur journée.",
-    "bottom_badge": "Certifié Biologique • Sans Gluten • Sans OGM"
+  "flavorsSection": {
+    "heading": "Saveurs"
   },
   "shop": {
-    "tag": "Boutique Canettes & Caisses",
-    "title": "Produits Recommandés",
-    "one_time": "Achat unique",
-    "subscribe": "Abonnement (-10%)",
-    "save_10": "Économisez 10%",
-    "discovery_title": "Boîte Découverte (12-Pack Mixte)",
-    "discovery_desc": "3 canettes de chacune de nos 4 saveurs signatures : Pamplemousse, Hibiscus, Tropical & Melon Menthe."
+    "intro": "Fraîche, fruitée, pétillante, de belles couleurs, de quoi éveiller tes papilles.",
+    "seeAll": "Voir tous nos produits",
+    "recommended": "Produits recommandés",
+    "discover": "Découvrir",
+    "prevProducts": "Previous products",
+    "nextProducts": "Next products",
+    "addToCart": "Add {{name}} to cart"
   },
-  "community": {
-    "title": "Pour une dose d'énergie dans votre feed",
-    "follow": "Suivre sur Instagram"
+  "newsletter": {
+    "heading": "Tu en boirais tous les jours ?",
+    "curvePaths": [
+      "m164.905 596.217-74.4584-86.226 32.1854-27.793-7.32-8.477-74.04 63.936 7.32 8.477 32.1856-27.794 74.4584 86.226z",
+      "m146.33 468.151 5.386-4.191c4.406 5.663 5.205 9.255 2.243 13.998l4.729 6.077c6.966-9.855 4.233-17.928-1.032-24.696l-8.812-11.325-11.326 8.811z",
+      "m192.106 429.225 60.495-42.358-6.424-9.175-70.96 49.685 71.768 102.498 72.536-50.79-6.423-9.175-62.072 43.463-27.804-39.709 54.044-37.841-6.424-9.175-54.044 37.841z",
+      "m351.016 459.233-54.298-92.112.301-.178 112.49 57.809 13.418-7.909-63.541-107.791-10.854 6.398 54.476 92.414-.302.178-112.818-58.022-13.418 7.909 63.541 107.791z",
+      "m534.602 259.622c-8.013-17.887-26.453-22.667-48.972-12.579l-45.517 20.389 51.152 114.191 48.551-21.748c22.679-10.159 32.684-28.063 23.026-49.624-7.369-16.45-21.651-21.366-35.342-18.11l-.143-.319c8.648-8.092 13.326-18.625 7.245-32.2zm-78.251 12.809 36.094-16.169c14.693-6.581 25.297-1.744 30.52 9.915 5.079 11.339 2.516 21.884-13.136 28.895l-36.094 16.168zm62.05 31.073c13.575-6.081 26.294-1.231 32.303 12.184 5.938 13.256 3.06 25.667-15.147 33.823l-37.212 16.669-20.031-44.719z",
+      "m653.857 317.305c34.043-11.858 47.869-45.583 35.492-81.114-12.376-35.531-44.105-53.203-78.149-41.344s-47.762 45.361-35.385 80.892 43.998 53.425 78.042 41.566zm-3.684-10.576c-29.086 10.131-52.069-7.436-61.798-35.365s-2.577-55.809 26.509-65.94c29.251-10.19 52.177 7.213 61.906 35.142 9.728 27.929 2.634 55.973-26.617 66.163z",
+      "m735.607 288.935 12.297-3.461-33.906-120.444-12.297 3.462z",
+      "m787.421 274.736-11.471-50.693 37.38-8.459c32.089-7.26 31.477 40.784 38.439 44.592l13.314-3.013-.232-1.024c-6.949-.58-8.492-51.008-37.736-49.415l-.077-.341c13.565-6.658 20.332-18.776 16.354-36.356-5.02-22.189-23.675-30.887-47.059-25.596l-48.986 11.085 27.614 122.039zm7.97-118.608c15.533-3.515 31.061-3.081 35.812 17.913 4.673 20.653-9.762 28.225-24.611 31.585l-33.113 7.493-11.201-49.499z",
+      "m975.261 240.21 12.989-1.883-64.189-117.129-14.202 2.059-28.295 130.533 12.99-1.883 7.499-36.099 55.768-8.082zm-56.742-106.007.346-.051 33.168 62.919-47.455 6.877z",
+      "m1010.51 236.938 12.73-1.15-11.26-124.617-12.726 1.149z",
+      "m1095.06 159.485c-20.28-3.777-33.68-6.067-34.35-23.554-.46-11.891 9.39-19.974 27.93-20.683 20.81-.796 30.98 8.623 33.74 25.855l13.29-.509c-2.88-24.933-21.4-37.534-47.28-36.544-26.23 1.003-41.68 13.853-40.92 33.614.88 23.083 21.08 29.14 41.53 32.736 28.56 5.037 39.03 8.489 39.73 26.851.48 12.591-7.49 24.104-30.04 24.967-26.06.996-38.46-11.839-40.94-31.008l-13.29.508c2.84 28.612 25.8 42.795 54.65 41.691 30.26-1.157 43.61-18.305 42.91-36.667-1.02-26.755-18.38-31.695-46.96-37.257z",
+      "m862.327 373.514 17.459 18.806 9.41-2.019-13.351-19.687zm92.072 146.342 12.833-2.753-71.933-112.54-14.031 3.011-19.437 132.142 12.833-2.753 5.051-36.522 55.096-11.821zm-63.753-101.944.342-.074 37.33 60.541-46.883 10.059z",
+      "m1063.33 496.485-23.9-111.39 41.58-8.921-2.35-10.95-95.648 20.521 2.35 10.951 41.578-8.921 23.9 111.39z",
+      "m1163.32 477.359c35.25-7.562 53.14-39.321 45.24-76.109-7.89-36.788-37.19-58.243-72.44-50.681-35.25 7.563-53 39.113-45.11 75.901 7.9 36.788 37.06 58.451 72.31 50.889zm-2.35-10.951c-30.11 6.461-50.75-13.811-56.95-42.728-6.21-28.917 4.33-55.699 34.45-62.16 30.28-6.498 50.88 13.603 57.09 42.52 6.2 28.917-4.3 55.871-34.59 62.368z",
+      "m1300.74 317.578-12.49 2.679 17.4 81.105c4.7 21.901-3.98 34.859-26.56 39.705-22.59 4.846-35.82-3.413-40.52-25.315l-17.4-81.104-12.49 2.68 17.4 81.104c5.58 26.008 23.36 40.451 55.36 33.586 31.99-6.865 42.28-27.328 36.7-53.336z",
+      "m1374.3 356.385c-20.63-.228-34.22-.175-37.89-17.286-2.5-11.635 5.81-21.293 23.95-25.184 20.36-4.369 32 3.157 37.68 19.656l13.01-2.79c-7.13-24.064-27.55-33.287-52.87-27.854-25.67 5.507-38.67 20.825-34.52 40.16 4.84 22.586 25.78 25.074 46.55 25.093 29 .042 39.91 1.64 43.76 19.607 2.64 12.319-3.22 25.032-25.29 29.768-25.5 5.47-39.92-5.038-45.67-23.493l-13.01 2.79c7.74 27.695 32.79 37.711 61.03 31.654 29.6-6.351 39.8-25.543 35.94-43.509-5.61-26.18-23.56-28.057-52.67-28.612z",
+      "m408.944 721.692 79.416 10.826 1.513-11.098-66.758-9.1 15.388-112.881-12.658-1.725z",
+      "m527.163 622.828 73.173 9.975 1.513-11.097-85.832-11.7-16.9 123.978 87.739 11.96 1.513-11.097-75.081-10.235 6.547-48.031 65.371 8.911 1.512-11.097-65.37-8.911z",
+      "m653.91 682.671c-19.326-7.226-32.126-11.797-29.762-29.137 1.607-11.791 12.704-18.049 31.084-15.544 20.634 2.813 29.021 13.847 28.761 31.297l13.178 1.796c1.473-25.055-14.59-40.668-40.253-44.166-26.009-3.546-43.443 6.441-46.114 26.035-3.12 22.888 15.725 32.345 35.248 39.422 27.263 9.898 36.974 15.107 34.492 33.314-1.702 12.484-11.538 22.447-33.906 19.398-25.836-3.522-35.831-18.307-34.964-37.617l-13.179-1.797c-2.142 28.674 18.02 46.611 46.63 50.511 29.998 4.089 46.115-10.492 48.597-28.699 3.616-26.529-12.62-34.395-39.812-44.813z",
+      "m821.58 651.659-12.485-1.702-12.007 88.085c-2.151 15.779-8.716 26.365-26.229 23.977-17.513-2.387-20.658-14.296-18.507-30.075l.543-3.988-12.658-1.726-.543 3.988c-2.695 19.768 3.643 39.353 29.652 42.899 26.01 3.545 37.532-13.606 40.226-33.373z",
+      "m877.26 787.827c35.719 4.869 63.335-18.919 68.417-56.199s-15.183-67.419-50.902-72.288c-35.72-4.869-63.139 18.769-68.221 56.05-5.082 37.28 14.986 67.568 50.706 72.437zm1.513-11.097c-30.518-4.16-43.035-30.24-39.041-59.544 3.995-29.304 23.012-50.908 53.53-46.748 30.691 4.183 43.232 30.09 39.237 59.394-3.994 29.304-23.035 51.081-53.726 46.898z",
+      "m1060.81 684.269-12.66-1.725-11.21 82.189c-3.02 22.195-15.58 31.433-38.472 28.313-22.889-3.12-32.521-15.383-29.495-37.578l11.204-82.19-12.658-1.726-11.204 82.19c-3.593 26.357 8.215 45.981 40.64 50.401s49.055-11.328 52.645-37.684z",
+      "m1071.95 812.07 7.02-51.499 37.97 5.177c32.6 4.443 15.19 49.227 20.38 55.233l13.52 1.844.14-1.041c-6.3-2.979 9.92-50.75-18.02-59.505l.04-.347c15.04-1.482 25.63-10.46 28.06-28.32 3.07-22.541-11.35-37.224-35.11-40.462l-49.76-6.784-16.9 123.978zm49.02-108.296c15.78 2.151 30.17 7.999 27.27 29.327-2.86 20.981-19.04 23.015-34.12 20.958l-33.64-4.585 6.85-50.285z",
+      "m1220.18 759.863c-19.33-7.227-32.13-11.798-29.76-29.137 1.6-11.791 12.7-18.05 31.08-15.544 20.63 2.812 29.02 13.846 28.76 31.296l13.18 1.797c1.47-25.056-14.59-40.669-40.25-44.167-26.01-3.546-43.45 6.441-46.12 26.035-3.12 22.888 15.73 32.345 35.25 39.422 27.26 9.898 36.97 15.108 34.49 33.314-1.7 12.485-11.54 22.447-33.9 19.398-25.84-3.522-35.83-18.307-34.97-37.617l-13.18-1.796c-2.14 28.673 18.02 46.611 46.63 50.511 30 4.089 46.12-10.493 48.6-28.699 3.62-26.53-12.62-34.395-39.81-44.813z",
+      "m1325.18 759.694c2.84-20.808 15.69-28.241 32.68-25.924 14.39 1.961 21.88 11.813 20.34 23.084-1.72 12.658-10.51 16.229-19.26 22.101-12.62 8.347-22.89 16.308-25.7 36.942l12.66 1.726c2.72-19.941 11.15-24.797 22.17-31.772 9.66-6.101 20.69-11.839 22.79-27.272 2.53-18.553-11.37-33.165-31.49-35.907-27.92-3.805-43.88 12.211-47.02 35.273zm3.11 87.32 14.22 1.938 1.94-14.218-14.22-1.939z"
+    ],
+    "flowerLines": ["On a", "ce qu'il", "te faut"],
+    "subtitle": "Inscris-toi aux livraisons automatiques* et économise 10%.",
+    "subscribe": "S'abonner",
+    "subscribeAria": "Subscribe",
+    "footnote": "* On ne livre pas encore dans l'espace, mais qui sait..."
   },
-  "cart": {
-    "your_cart": "Votre Panier",
-    "free_shipping_unlocked": "🎉 Livraison gratuite débloquée!",
-    "away_from_free_shipping": "Plus que {{amount}}$ pour la livraison gratuite",
-    "empty_title": "Votre panier est vide",
-    "empty_desc": "Explorez nos canettes en 3D et ajoutez votre saveur préférée.",
-    "start_shopping": "Découvrir les Saveurs",
-    "subtotal": "Sous-total",
-    "discount": "Rabais (15%)",
-    "shipping": "Livraison",
-    "free": "Gratuite",
-    "total": "Total",
-    "promo_placeholder": "Code promo (essayez MANA15)",
-    "apply": "Appliquer",
-    "promo_applied": "Rabais de 15% appliqué!",
-    "checkout": "Passer à la caisse",
-    "processing": "Validation en cours...",
-    "checkout_alert": "🎉 Merci d'avoir testé la boutique MANA Yerba Maté! Votre commande simulée a été validée."
+  "instagram": {
+    "handle": "@manayerbamate",
+    "heading": "Pour une dose d’énergie dans ton feed.",
+    "followAria": "Follow us on Instagram"
   },
   "footer": {
-    "join_title": "Inscrivez-vous pour 10% de rabais sur votre première commande.",
-    "join_desc": "Soyez les premiers informés des nouvelles saveurs, des kits d'échantillons secrets et des événements à Montréal.",
-    "email_placeholder": "Votre adresse courriel",
-    "join_button": "Rejoindre",
-    "added_button": "Ajouté!",
-    "faqs_tag": "Questions Fréquentes",
-    "faq1_q": "Qu'est-ce que le Yerba Maté exactement?",
-    "faq1_a": "Le Yerba Maté est une plante traditionnelle d'Amérique du Sud infusée à partir des feuilles d'Ilex paraguariensis. Réputée pour offrir une énergie propre sans tremblement ni crash.",
-    "faq2_q": "Combien de caféine contient chaque canette?",
-    "faq2_a": "Chaque canette de 355ml contient 120mg de caféine végétale naturelle — l'équivalent d'une bonne tasse de café filtre.",
-    "faq3_q": "Où est brassé et produit MANA?",
-    "faq3_a": "MANA est fièrement conçu, formulé et brassé au Québec, Canada, avec des ingrédients 100% certifiés biologiques.",
-    "faq4_q": "Quelle est la politique de livraison?",
-    "faq4_a": "Nous offrons une livraison rapide et suivie avec LIVRAISON GRATUITE sur toute commande de plus de 35$ au Québec et en Ontario.",
-    "credits_3d": "Modèle 3D par Jeff Clermont",
-    "credits_design": "Design par Louis Paquet",
-    "credits_fe": "Développement front-end par Michaël Garcia",
-    "copyright": "© 2026 MANA Yerba Maté. Fait au Québec, Canada."
+    "jumpPrompt": "Appuie sur Espace pour sauter",
+    "jumpAria": "Press Space to jump",
+    "copyright": "2026 © Mana Yerba Maté",
+    "legalLinks": ["Terms of use", "Refund policy"],
+    "credits": "Credits",
+    "creditsAlert": "Mana Yerba Maté - Montreal, Quebec",
+    "canAlt": "Mana Can",
+    "obstacleAlt": "Obstacle"
   }
 }

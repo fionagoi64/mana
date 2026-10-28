@@ -1,164 +1,142 @@
 {
-  "nav": {
-    "announcement": "⚡ Free shipping on all purchases of $35 or more in Quebec and Ontario",
-    "announcement_short": "Free shipping over $35 CAD",
-    "free_delivery": "Free Delivery",
-    "flavours": "Flavours",
-    "why_yerba_mate": "Why Yerba Maté?",
-    "taste_profile": "Taste Profile",
-    "shop_cases": "Shop 12-Packs",
-    "community": "Community",
-    "discovery_box": "Discovery Box"
+  "common": {
+    "lang": "en",
+    "previous": "Previous",
+    "next": "Next"
   },
-  "hero": {
-    "tag": "100% Organic Yerba Maté",
-    "caffeine_badge": "Plant Caffeine",
-    "vegan_badge": "100% Vegan",
-    "organic_badge": "Certified Organic",
-    "per_can": "Per 355ml Can",
-    "organic_cane_sugar": "Organic Cane Sugar",
-    "add_case": "Add 12-Pack",
-    "next_flavor": "Next Flavor",
-    "drag_rotate": "Drag to rotate 360°",
-    "tasting_profile": "Tasting Profile",
-    "sweetness": "Sweetness",
-    "tartness": "Tartness / Crisp",
-    "loading_model": "Loading 3D Can..."
+  "header": {
+    "brandAria": "MANA Yerba Maté",
+    "nav": {
+      "shop": "Shop",
+      "learn": "Learn",
+      "subscription": "Subscription"
+    },
+    "toggleLang": "Fr",
+    "nextLang": "fr",
+    "toggleLangAria": "Toggle language",
+    "accountAria": "Account",
+    "cartAria": "Shopping Cart",
+    "menuAria": "Menu"
   },
   "flavors": {
     "grapefruit": {
-      "name": "Grapefruit",
-      "tagline": "Tart, sparkling and invigorating with every sip.",
-      "description": "Crisp organic pink grapefruit paired with shade-grown South American yerba mate. Delivers a clean, sustained lift without the afternoon slump.",
-      "quote": "The grapefruit punch is unbeatable for early morning deep work sessions.",
-      "author": "Mathieu L., Montreal",
-      "notes": ["Pink Grapefruit", "Crushed Zest", "Earthy Herbal", "Crisp Fizz"]
+      "heroName": "Grapefruit",
+      "sliderName": "Grapefruit"
     },
     "hibiscus": {
-      "name": "Blackberry & Hibiscus",
-      "tagline": "Deep berry richness balanced with delicate floral botanicals.",
-      "description": "Wild Canadian blackberries steeped with tart organic hibiscus flowers. A sophisticated, vibrant berry infusion that awakens the palate.",
-      "quote": "Tastes like an artisanal natural soda, but powers my whole afternoon.",
-      "author": "Chloe D., Quebec City",
-      "notes": ["Wild Blackberry", "Tart Hibiscus", "Botanical Tannins", "Smooth Finish"]
+      "heroName": "Blackberry & Hibiscus",
+      "sliderName": "Blackberry & Hibiscus"
     },
     "tropical": {
-      "name": "Tropical Punch",
-      "tagline": "A sunny vacation in a can — passion fruit, mango & pineapple.",
-      "description": "Lush tropical fruit juices blended with energizing yerba mate. Naturally golden, intensely refreshing, and bursting with vibrant sunshine.",
-      "quote": "The tropical punch is literally summer in a can. Instant mood booster.",
-      "author": "Alexandre G., Toronto",
-      "notes": ["Ripe Mango", "Passion Fruit", "Juicy Pineapple", "Bright Mate"]
+      "heroName": "Tropical",
+      "sliderName": "Tropical"
     },
     "melon": {
-      "name": "Melon & Mint",
-      "tagline": "Sweet honeydew nectar kissed with icy, cool garden mint.",
-      "description": "Crisp green honeydew melon combined with brisk garden mint leaves. Exceptionally refreshing, restorative, and revitalizing on hot days.",
-      "quote": "Super crisp and not too sweet. The mint finish is pure genius.",
-      "author": "Sophie V., Montreal",
-      "notes": ["Cool Mint", "Honeydew Melon", "Green Tea Notes", "Effervescent"]
+      "heroName": "Melon & Mint",
+      "sliderName": "Melon & Mint"
     }
   },
-  "why_mana": {
-    "tag": "The Superleaf Advantage",
-    "title": "MANA ? Yerba Maté ?",
+  "hero": {
+    "prevFlavor": "Previous Flavor",
+    "nextFlavor": "Next Flavor",
+    "selectFlavor": "Select {{name}}"
+  },
+  "features": {
+    "headingLine1": "MANA ? YERBA MATÉ ?",
+    "headingLine2": "WHAT ARE WE TALKING ABOUT?",
     "subtitle": "(we're going to tell each other the real things)",
-    "card1_title": "Without the crash",
-    "card1_desc": "A gentle wave of energy. Sustained focus without the afternoon spike, jitters or crash.",
-    "card1_badge": "0 Jitters",
-    "card2_title": "Natural caffeine",
-    "card2_desc": "120mg certified organic caffeine straight from the yerba mate plant. A gift from Mother Nature.",
-    "card2_badge": "120mg Plant",
-    "card3_title": "Rich in Antioxidants",
-    "card3_desc": "Richer in active polyphenols and antioxidants than green tea. Pure goodness for your body and mind.",
-    "card3_badge": "Superior to Green Tea",
-    "card4_title": "100% Vegan & Plant",
-    "card4_desc": "A refreshing plant-based drink that tastes heavenly. Zero preservatives, only clean ingredients.",
-    "card4_badge": "Clean Label"
+    "onlyBestText": "Only the best",
+    "onlyBestPaths": [
+      "M95.2243 246.195C83.4358 250.731 71.9077 252.019 60.6398 250.057C49.326 247.98 39.2259 243.023 30.3397 235.187C21.4074 227.234 14.4781 217.037 9.55183 204.596C4.62552 192.154 2.73811 180.083 3.88958 168.384C5.04105 156.685 9.08682 146.352 16.0269 137.383C22.9209 128.298 32.2621 121.487 44.0506 116.95C55.8391 112.414 67.3902 111.184 78.7041 113.262C90.0887 115.179 100.224 120.055 109.11 127.891C117.997 135.727 124.903 145.866 129.829 158.308C134.755 170.75 136.666 182.878 135.56 194.693C134.409 206.392 130.328 216.807 123.317 225.937C116.377 234.905 107.013 241.658 95.2243 246.195ZM90.8044 235.032C100.842 231.169 108.442 225.564 113.603 218.218C118.719 210.756 121.497 202.316 121.938 192.901C122.334 183.369 120.529 173.545 116.523 163.428C112.564 153.428 107.187 145.113 100.392 138.482C93.5505 131.735 85.7077 127.383 76.863 125.427C67.9724 123.355 58.5082 124.25 48.4705 128.113C38.5495 131.931 30.9729 137.594 25.7408 145.101C20.5794 152.448 17.801 160.887 17.4055 170.419C17.0808 179.789 18.8981 189.475 22.8576 199.475C26.8631 209.591 32.228 218.045 38.9524 224.837C45.7474 231.468 53.5902 235.82 62.4809 237.892C71.4423 239.803 80.8835 238.85 90.8044 235.032Z",
+      "M170.156 216.334L130.994 88.0488L147 83.3L250.176 172.635L250.535 172.528L216.96 62.5441L229.909 58.7024L269.071 186.987L253.065 191.736L150.179 102.707L149.819 102.813L183.285 212.439L170.156 216.334Z",
+      "M258.209 51.9023L271.567 48.8869L299.201 167.843L369.652 151.939L372.369 163.634L288.56 182.553L258.209 51.9023Z",
+      "M345.723 32.4551L360.357 30.1201L411.716 90.5029L412.087 90.4438L441.497 17.1745L456.132 14.8395L420.425 100.701L429.332 154.94L415.809 157.097L406.902 102.859L345.723 32.4551Z",
+      "M575.496 138.952L567.575 17.0855L522.08 19.9553L521.302 7.97461L625.958 1.37299L626.737 13.3537L581.242 16.2234L589.163 138.09L575.496 138.952Z",
+      "M648.901 0.886719L662.595 0.986488L662.167 58.9513L737.953 59.5034L738.381 1.53864L752.074 1.63841L751.085 135.764L737.391 135.664L737.864 71.509L662.079 70.9569L661.605 135.112L647.911 135.012L648.901 0.886719Z",
+      "M792.263 62.2829L862.776 67.7185L861.829 79.687L791.315 74.2514L787.214 126.053L868.202 132.296L867.254 144.264L772.613 136.969L783.199 3.25781L875.596 10.3804L874.648 22.3489L795.905 16.2789L792.263 62.2829Z",
+      "M1041.89 69.935C1040.57 77.3217 1037.6 82.9605 1032.96 86.8515C1028.47 90.6408 1022.83 93.0864 1016.02 94.1884L1015.96 94.5577C1023.48 97.2616 1029.14 101.863 1032.93 108.362C1036.84 114.882 1037.99 122.697 1036.36 131.807C1034.18 143.995 1028.57 152.666 1019.51 157.82C1010.59 162.995 999.407 164.415 985.977 162.08L929.791 152.31L953.391 20.2734L1006.06 29.4323C1019 31.6818 1028.64 36.4039 1034.98 43.5987C1041.44 50.8149 1043.74 59.5937 1041.89 69.935ZM998.519 86.5749C1007.14 88.0746 1013.84 87.2081 1018.61 83.9755C1023.38 80.743 1026.38 75.6796 1027.62 68.7854C1028.87 61.768 1027.7 55.8531 1024.12 51.0406C1020.65 46.2495 1014.8 43.1362 1006.54 41.7008L964.77 34.4381L956.75 79.3121L998.519 86.5749ZM954.637 91.1308L945.395 142.837L988.459 150.325C998.562 152.082 1006.36 151.09 1011.86 147.349C1017.35 143.608 1020.84 137.613 1022.31 129.365C1023.7 121.609 1022.47 114.985 1018.62 109.492C1014.78 104 1008.91 100.568 1001.03 99.1969L954.637 91.1308Z",
+      "M1076.46 102.735L1145.16 119.545L1142.23 131.188L1073.53 114.379L1060.85 164.772L1139.75 184.078L1136.83 195.721L1044.62 173.16L1077.35 43.084L1167.36 65.1104L1164.43 76.7536L1087.72 57.9821L1076.46 102.735Z",
+      "M1224.26 142.535C1234.85 148.782 1242.82 154.196 1248.16 158.779C1253.55 163.242 1257.21 168.538 1259.16 174.666C1261.11 180.795 1260.66 188.198 1257.83 196.878C1255.74 203.298 1252.13 208.713 1247.01 213.123C1241.89 217.534 1235.4 220.266 1227.56 221.32C1219.72 222.375 1210.85 221.332 1200.96 218.193C1191.06 215.054 1182.67 210.553 1175.77 204.69C1168.9 198.708 1164.11 191.612 1161.4 183.404C1158.84 175.114 1158.82 166.118 1161.32 156.418L1174.91 160.729C1172.49 171.376 1173.59 180.711 1178.21 188.736C1182.98 196.68 1191.81 202.694 1204.68 206.779C1212.07 209.124 1218.44 209.964 1223.79 209.299C1229.29 208.553 1233.7 206.737 1237.01 203.851C1240.36 200.846 1242.77 197.084 1244.24 192.566C1246.03 187.097 1246.49 182.455 1245.63 178.639C1244.77 174.824 1242.58 171.244 1239.07 167.899C1235.56 164.554 1230.28 160.78 1223.23 156.576C1221.8 155.727 1220.3 154.86 1218.75 153.974C1217.32 153.125 1215.78 152.18 1214.15 151.137C1206.39 146.706 1199.98 142.375 1194.91 138.144C1189.96 133.951 1186.34 128.93 1184.04 123.083C1181.86 117.274 1181.99 110.624 1184.43 103.133C1187.73 93.0274 1194.14 86.2717 1203.67 82.8664C1213.32 79.4989 1224.82 79.9332 1238.17 84.1692C1246.99 86.9679 1254.3 90.9909 1260.08 96.238C1265.91 101.366 1269.9 107.486 1272.05 114.598C1274.2 121.71 1274.28 129.54 1272.28 138.09L1258.69 133.778C1260.48 124.245 1259.45 116.309 1255.6 109.97C1251.75 103.631 1244.64 98.8168 1234.27 95.5264C1224.97 92.5763 1217.18 92.0715 1210.89 94.0121C1204.6 95.9526 1200.44 100.014 1198.43 106.197C1196.64 111.666 1196.44 116.324 1197.81 120.172C1199.35 123.939 1201.93 127.316 1205.56 130.304C1209.19 133.293 1214.48 136.81 1221.45 140.858C1221.89 141.128 1222.33 141.398 1222.77 141.668C1223.2 141.938 1223.7 142.227 1224.26 142.535Z",
+      "M1289.64 251.052L1335.49 137.86L1293.07 121.155L1297.58 110.027L1395.15 148.455L1390.64 159.583L1348.23 142.878L1302.38 256.07L1289.64 251.052Z"
+    ],
+    "cards": {
+      "crash": {
+        "title": "WITHOUT THE CRASH",
+        "desc": "A gentle wave of energy. To get you going without the crash."
+      },
+      "caffeine": {
+        "title": "NATURAL CAFFEINE",
+        "desc": "This certified organic caffeine comes from the plant. A gift from Mother Nature."
+      },
+      "antioxidant": {
+        "title": "ANTIOXIDANT",
+        "desc": "Richer in antioxidants than tea. Not bad."
+      },
+      "vegan": {
+        "title": "VEGAN",
+        "desc": "A plant-based drink that tastes like heaven. Who could ask for more?"
+      }
+    }
   },
-  "matrix": {
-    "tag": "Flavor Calibration",
-    "title": "Taste Matrix & Intensity",
-    "signature_blend": "Signature Blend",
-    "sweetness": "Sweetness",
-    "tartness": "Tartness / Zest",
-    "energy": "Sustained Energy",
-    "fizz": "Effervescence (Bubbles)",
-    "subtle": "Subtle",
-    "balanced": "Balanced",
-    "rich": "Rich",
-    "mellow": "Mellow",
-    "zesty": "Zesty",
-    "punchy": "Punchy",
-    "gentle": "Gentle",
-    "smooth": "Smooth (120mg)",
-    "peak_focus": "Peak Focus",
-    "still": "Still",
-    "sparkling": "Sparkling",
-    "ultra_crisp": "Ultra Crisp"
-  },
-  "editorial": {
-    "tag": "The Mana Ritual",
-    "title": "Fresh, fruity, sparkling, vibrant colours, awaken your taste buds.",
-    "desc": "Brewed with care in Montreal, Quebec. We took the sacred, nutrient-dense South American Yerba Maté superleaf and reimagined it into the most refreshing, guilt-free sparkling infusion.",
-    "card1_tag": "Sustained Vitality",
-    "card1_title": "The Plant Power",
-    "card1_desc": "More antioxidants than green tea and the clean kick of espresso without the crash.",
-    "card2_tag": "Made In Quebec",
-    "card2_title": "Energy to Connect",
-    "card2_desc": "Crafted for creators, dreamers, athletes, and anyone who wants to conquer their day.",
-    "bottom_badge": "Certified Organic • Naturally Gluten Free • Non-GMO"
+  "flavorsSection": {
+    "heading": "Flavors"
   },
   "shop": {
-    "tag": "Shop Cans & Cases",
-    "title": "Recommended Cases",
-    "one_time": "One-time purchase",
-    "subscribe": "Subscribe (-10%)",
-    "save_10": "Save 10%",
-    "discovery_title": "Discovery Box (Variety 12-Pack)",
-    "discovery_desc": "3 cans of each of our 4 signature flavours: Grapefruit, Hibiscus, Tropical & Melon Mint."
+    "intro": "Fresh, fruity, sparkling, beautiful colours, awaken your taste buds.",
+    "seeAll": "See all our products",
+    "recommended": "Recommended products",
+    "discover": "Discover this product",
+    "prevProducts": "Previous products",
+    "nextProducts": "Next products",
+    "addToCart": "Add {{name}} to cart"
   },
-  "community": {
-    "title": "For a dose of energy in your feed",
-    "follow": "Follow on Instagram"
+  "newsletter": {
+    "heading": "Would you drink it every day?",
+    "curvePaths": [
+      "M66.1982 527.236L76.3262 517.761L147.571 537.897L147.827 537.657L132.479 465.23L142.607 455.755L159.63 541.28L194.771 578.843L185.413 587.598L150.272 550.035L66.1982 527.236Z",
+      "M287.5 503.672C278.115 510.859 268.126 515.044 257.534 516.227C246.87 517.317 236.552 515.489 226.579 510.744C216.535 505.905 207.706 498.514 200.092 488.572C192.478 478.629 187.681 468.225 185.699 457.36C183.717 446.495 184.678 436.103 188.582 426.186C192.414 416.175 199.023 407.576 208.408 400.389C217.793 393.202 227.817 389.064 238.481 387.974C249.166 386.72 259.495 388.466 269.468 393.211C279.441 397.957 288.234 405.301 295.848 415.244C303.462 425.186 308.295 435.637 310.348 446.595C312.33 457.46 311.358 467.934 307.433 478.015C303.529 487.933 296.885 496.485 287.5 503.672ZM280.669 494.752C288.66 488.632 294.02 481.579 296.749 473.593C299.407 465.514 299.721 457.165 297.692 448.548C295.591 439.837 291.446 431.44 285.255 423.356C279.136 415.364 272.181 409.266 264.39 405.06C256.529 400.762 248.387 398.889 239.965 399.441C231.473 399.901 223.23 403.19 215.239 409.31C207.341 415.358 202.016 422.458 199.265 430.608C196.536 438.594 196.222 446.943 198.323 455.653C200.445 464.2 204.566 472.468 210.685 480.46C216.876 488.544 223.856 494.771 231.624 499.141C239.415 503.346 247.556 505.22 256.049 504.76C264.564 504.136 272.77 500.8 280.669 494.752Z",
+      "M409.302 368.461C416.625 380.308 419.044 391.678 416.558 402.571C414.111 413.302 406.117 422.853 392.578 431.222C379.038 439.591 366.872 442.501 356.079 439.954C345.324 437.246 336.285 429.968 328.962 418.121L285.209 347.338L296.11 340.6L339.863 411.383C345.771 420.94 352.56 426.582 360.231 428.307C368.001 429.971 376.814 427.756 386.67 421.664C396.526 415.572 402.397 408.71 404.283 401.077C406.269 393.383 404.309 384.757 398.401 375.199L354.649 304.416L365.55 297.678L409.302 368.461Z",
+      "M435.385 258.818L447.629 253.517L513.95 341.308L514.273 341.168L499.021 231.267L512.232 225.547L581.937 311.873L582.259 311.733L563.625 203.297L575.869 197.996L596.742 325.742L583.692 331.391L511.856 242.353L511.534 242.493L527.466 355.734L514.416 361.384L435.385 258.818Z",
+      "M698.886 293.809C687.558 297.184 676.734 297.54 666.414 294.875C656.061 292.097 647.069 286.716 639.439 278.732C631.775 270.635 626.155 260.585 622.579 248.584C619.003 236.582 618.223 225.152 620.239 214.293C622.255 203.434 626.852 194.065 634.03 186.187C641.175 178.196 650.412 172.513 661.74 169.138C673.069 165.762 683.91 165.463 694.263 168.24C704.695 170.872 713.726 176.18 721.356 184.165C728.986 192.15 734.589 202.143 738.165 214.144C741.741 226.146 742.538 237.633 740.556 248.604C738.54 259.463 733.903 268.904 726.647 276.928C719.468 284.807 710.215 290.434 698.886 293.809ZM695.678 283.041C705.324 280.167 712.844 275.484 718.237 268.992C723.597 262.388 726.862 254.699 728.033 245.923C729.171 237.036 728.286 227.713 725.379 217.954C722.504 208.308 718.176 200.133 712.393 193.43C706.576 186.614 699.635 181.966 691.568 179.485C683.468 176.891 674.595 177.031 664.948 179.905C655.414 182.746 647.912 187.485 642.44 194.122C637.047 200.614 633.781 208.304 632.643 217.192C631.584 225.934 632.492 235.128 635.366 244.774C638.274 254.532 642.58 262.836 648.284 269.685C654.067 276.388 661.009 281.037 669.109 283.63C677.288 286.078 686.144 285.882 695.678 283.041Z",
+      "M860.83 210.812C863.456 224.49 861.669 235.976 855.469 245.27C849.362 254.427 838.492 260.507 822.86 263.508C807.229 266.509 794.823 264.899 785.644 258.676C776.557 252.317 770.701 242.299 768.075 228.621L752.384 146.899L764.97 144.483L780.66 226.204C782.779 237.238 787.115 244.927 793.67 249.27C800.339 253.591 809.363 254.659 820.742 252.474C832.121 250.289 840.05 245.966 844.53 239.505C849.125 233.021 850.363 224.262 848.244 213.228L832.554 131.507L845.14 129.091L860.83 210.812Z",
+      "M878.272 124.583L891.016 123.232L903.065 236.883L970.278 229.757L971.463 240.93L891.506 249.407L878.272 124.583Z",
+      "M990.389 239.494L988.014 113.993L1033.3 113.136C1044.88 112.917 1054.82 115.304 1063.11 120.298C1071.4 125.174 1077.74 132.312 1082.13 141.711C1086.52 150.992 1088.83 162.128 1089.08 175.116C1089.33 188.105 1087.37 199.321 1083.22 208.765C1079.18 218.089 1073.06 225.345 1064.84 230.534C1056.75 235.721 1046.91 238.424 1035.32 238.643L990.389 239.494ZM1001.04 124.984L1002.99 228.018L1035.11 227.41C1049.86 227.131 1060.36 222.25 1066.62 212.766C1072.99 203.281 1076.03 190.815 1075.74 175.369C1075.45 159.806 1071.99 147.346 1065.38 137.989C1058.76 128.633 1048.14 124.093 1033.51 124.37L1001.04 124.984Z",
+      "M777.78 542.14L750 419.73L794.17 409.71C805.47 407.15 815.68 407.47 824.81 410.68C833.91 413.78 841.57 419.48 847.77 427.79C853.95 435.99 858.48 446.42 861.35 459.09C864.23 471.76 864.59 483.14 862.43 493.23C860.37 503.18 855.84 511.53 848.85 518.27C841.97 524.99 832.89 529.63 821.59 532.2L777.76 542.15L777.78 542.14ZM764.98 427.85L787.78 528.35L819.11 521.24C833.49 517.98 842.78 511.07 846.99 500.51C851.31 489.93 851.76 477.11 848.34 462.04C844.9 446.86 838.99 435.36 830.61 427.54C822.23 419.72 810.91 417.43 796.65 420.66L764.98 427.85Z",
+      "M892.78 516.109L865 393.699L914.14 382.549C926.13 379.829 936.34 380.689 944.79 385.139C953.35 389.559 958.88 397.249 961.36 408.199C963.3 416.759 962.82 424.129 959.9 430.309C956.96 436.379 951.98 441.169 944.98 444.679L945.06 445.019C951.09 444.609 956.15 446.279 960.24 450.039C964.45 453.769 967.67 458.189 969.92 463.329C972.16 468.459 974.4 474.619 976.63 481.789C978.15 486.369 979.31 489.639 980.12 491.619C981.02 493.459 981.96 494.439 982.95 494.579L983.18 495.609L969.83 498.639C968.88 498.139 968.01 496.949 967.22 495.089C966.53 493.089 965.69 490.209 964.73 486.469C962.59 479.149 960.42 473.049 958.23 468.139C956.04 463.239 952.73 459.249 948.31 456.169C943.89 453.089 938.2 452.339 931.24 453.919L893.75 462.429L905.29 513.279L892.79 516.119L892.78 516.109ZM879.98 401.819L891.24 451.469L924.45 443.929C930.16 442.639 935.02 440.809 939.05 438.459C943.19 436.079 946.27 432.739 948.3 428.439C950.32 424.139 950.6 418.739 949.12 412.229C947.59 405.499 945.06 400.669 941.52 397.749C937.95 394.719 933.86 393.069 929.23 392.799C924.58 392.409 919.23 392.909 913.18 394.279L879.97 401.819H879.98Z",
+      "M972 368.84L984.5 366L1012.27 488.41L999.77 491.25L972 368.84Z",
+      "M1033.78 483.78L1006 361.37L1021.24 357.91L1111.31 447.82L1111.65 447.74L1087.84 342.8L1100.17 340L1127.94 462.41L1112.7 465.87L1022.88 376.26L1022.54 376.34L1046.28 480.95L1033.78 483.79V483.78Z",
+      "M1121 335.29L1133.5 332.45L1149.31 402.13L1199.41 317.5L1214.82 314L1177.51 376.47L1245.85 435.67L1231.3 438.97L1171.24 386.89L1152.85 417.71L1161.28 454.86L1148.78 457.7L1121 335.29Z",
+      "M1271 301.84L1283.5 299L1311.28 421.41L1298.78 424.25L1271 301.84Z",
+      "M1366.38 408.69L1341.09 297.23L1299.49 306.67L1297 295.72L1392.7 274L1395.19 284.96L1353.59 294.4L1378.88 405.85L1366.38 408.69Z",
+      "M440.13 653.64L505.73 662.41L504.24 673.55L438.64 664.78L432.2 712.98L507.55 723.06L506.06 734.2L418 722.42L434.64 598L520.6 609.49L519.11 620.63L445.85 610.83L440.13 653.64Z",
+      "M532 612L545.22 613.77L568.55 729.36L568.72 729.38L621.61 623.98L634.84 625.75L573.48 744.19L560.08 742.4L532 612Z",
+      "M655.12 682.64L720.72 691.41L719.23 702.55L653.63 693.78L647.18 741.98L722.53 752.05L721.04 763.19L633 751.42L649.63 627L735.59 638.49L734.1 649.63L660.85 639.84L655.13 682.65L655.12 682.64Z",
+      "M738 765.42L754.63 641L804.57 647.68C816.75 649.31 826.03 653.68 832.4 660.79C838.89 667.92 841.39 677.05 839.9 688.18C838.74 696.88 835.71 703.62 830.82 708.4C825.95 713.06 819.61 715.82 811.83 716.66L811.78 717.01C817.57 718.73 821.73 722.06 824.26 727C826.9 731.96 828.38 737.23 828.7 742.83C829.01 748.42 828.97 754.97 828.55 762.47C828.38 767.29 828.33 770.77 828.4 772.9C828.6 774.93 829.14 776.19 830.02 776.66L829.88 777.7L816.31 775.88C815.59 775.08 815.19 773.66 815.11 771.65C815.16 769.53 815.38 766.55 815.77 762.71C816.31 755.11 816.41 748.63 816.07 743.27C815.72 737.91 814.02 733.02 810.95 728.59C807.88 724.17 802.81 721.48 795.73 720.53L757.62 715.43L750.71 767.11L738.01 765.41L738 765.42ZM765.85 653.83L759.1 704.29L792.86 708.8C798.66 709.57 803.86 709.56 808.45 708.76C813.16 707.97 817.21 705.92 820.61 702.59C824.01 699.26 826.15 694.3 827.03 687.68C827.95 680.84 827.25 675.43 824.95 671.46C822.66 667.38 819.4 664.4 815.16 662.54C810.94 660.56 805.75 659.16 799.6 658.33L765.84 653.82L765.85 653.83Z",
+      "M849 654L862.75 655.84L892.28 723.73L892.63 723.78L938.96 666.03L952.71 667.87L897.3 735.21L890.48 786.19L877.78 784.49L884.6 733.5L849 654Z",
+      "M991 800.42L1007.64 676L1052.53 682C1064.02 683.54 1073.48 687.4 1080.91 693.59C1088.36 699.66 1093.55 707.68 1096.47 717.63C1099.4 727.47 1100.01 738.83 1098.29 751.7C1096.57 764.58 1092.94 775.37 1087.41 784.07C1082.01 792.68 1074.86 798.92 1065.95 802.81C1057.16 806.71 1047.03 807.9 1035.54 806.36L991 800.42ZM1018.85 688.83L1005.19 790.97L1037.03 795.23C1051.65 797.18 1062.77 793.95 1070.39 785.52C1078.13 777.11 1083.02 765.25 1085.07 749.93C1087.13 734.5 1085.6 721.66 1080.48 711.41C1075.36 701.16 1065.54 695.07 1051.04 693.13L1018.85 688.83Z",
+      "M1177.22 789.66L1121.19 782.17L1104.05 814.95L1091 813.2L1154.09 695L1168.36 696.91L1198.19 827.54L1185.14 825.8L1177.22 789.67V789.66ZM1126.88 771.42L1174.56 777.8L1159.8 707.99L1159.45 707.94L1126.87 771.42H1126.88Z",
+      "M1199 701L1212.75 702.84L1242.28 770.73L1242.63 770.78L1288.96 713.03L1302.71 714.87L1247.3 782.21L1240.48 833.19L1227.78 831.49L1234.6 780.5L1199 701Z",
+      "M1303.01 754.062C1304.06 746.172 1306.57 739.362 1310.52 733.632C1314.49 727.782 1319.78 723.532 1326.4 720.872C1333.14 718.122 1341.04 717.342 1350.09 718.552C1356.7 719.432 1362.56 721.582 1367.65 724.972C1372.88 728.272 1376.74 732.502 1379.24 737.682C1381.75 742.742 1382.6 748.342 1381.77 754.492C1381.18 758.902 1379.91 762.682 1377.95 765.852C1376.01 768.902 1373.77 771.492 1371.24 773.632C1368.73 775.652 1365.35 777.922 1361.12 780.422L1358.8 781.882L1357.81 782.632C1353.43 785.352 1349.97 787.842 1347.42 790.102C1344.89 792.242 1342.66 795.192 1340.75 798.952C1338.95 802.722 1337.63 807.692 1336.81 813.832L1324.11 812.132C1324.28 810.852 1324.45 809.582 1324.62 808.302C1324.91 807.042 1325.25 805.792 1325.65 804.542C1326.98 799.882 1328.77 795.812 1331 792.332C1333.25 788.732 1335.84 785.722 1338.77 783.272C1341.71 780.712 1345.38 778.012 1349.77 775.182C1350.68 774.592 1351.51 774.062 1352.29 773.572C1353.2 772.982 1354.04 772.392 1354.83 771.782C1359.09 769.042 1362.35 766.352 1364.59 763.702C1366.97 760.952 1368.46 757.312 1369.06 752.782C1369.84 746.982 1368.38 741.952 1364.7 737.672C1361.04 733.282 1355.67 730.622 1348.59 729.672C1339.66 728.482 1332.31 730.032 1326.54 734.342C1320.78 738.532 1317.23 745.672 1315.88 755.762L1303 754.042L1303.01 754.062ZM1321.14 829.102L1335.41 831.012L1333.5 845.282L1319.23 843.372L1321.14 829.102Z"
+    ],
+    "flowerLines": ["We have", "what", "you need"],
+    "subtitle": "Sign up for automatic delivery* and save 10%.",
+    "subscribe": "Subscribe",
+    "subscribeAria": "Subscribe",
+    "footnote": "* We don't deliver in space yet, but who knows..."
   },
-  "cart": {
-    "your_cart": "Your Cart",
-    "free_shipping_unlocked": "🎉 Free shipping unlocked!",
-    "away_from_free_shipping": "${{amount}} away from free shipping",
-    "empty_title": "Your cart is empty",
-    "empty_desc": "Explore our refreshing 3D cans and add your favorite flavour.",
-    "start_shopping": "Start Shopping",
-    "subtotal": "Subtotal",
-    "discount": "Discount (15%)",
-    "shipping": "Shipping",
-    "free": "Free",
-    "total": "Total",
-    "promo_placeholder": "Promo code (try MANA15)",
-    "apply": "Apply",
-    "promo_applied": "15% Discount Applied!",
-    "checkout": "Proceed to Checkout",
-    "processing": "Processing Order...",
-    "checkout_alert": "🎉 Thank you for testing the MANA Yerba Maté store! Your order has been placed in simulation mode."
+  "instagram": {
+    "handle": "@manayerbamate",
+    "heading": "For a dose of energy in your feed.",
+    "followAria": "Follow us on Instagram"
   },
   "footer": {
-    "join_title": "Sign up for 10% off your first order.",
-    "join_desc": "Be the first to know about seasonal flavor drops, secret sample kits, and pop-up events in Montreal.",
-    "email_placeholder": "Enter your email",
-    "join_button": "Join",
-    "added_button": "Added!",
-    "faqs_tag": "Frequently Asked Questions",
-    "faq1_q": "What exactly is Yerba Maté?",
-    "faq1_a": "Yerba Maté is a traditional South American botanical powerhouse brewed from the leaves of the Ilex paraguariensis plant. Renowned for providing natural caffeine alongside theobromine and polyphenols, delivering clean energy without caffeine jitters or crashes.",
-    "faq2_q": "How much caffeine is in each can?",
-    "faq2_a": "Each 355ml can contains 120mg of naturally occurring plant caffeine — equivalent to approximately 1.5 shots of espresso or a strong cup of brewed coffee.",
-    "faq3_q": "Where is MANA brewed and produced?",
-    "faq3_a": "MANA is proudly developed, formulated, and brewed in Quebec, Canada, using certified organic organic ingredients and pure water.",
-    "faq4_q": "What is the shipping policy?",
-    "faq4_a": "We offer fast, tracked shipping with FREE shipping on all orders over $35 CAD across Quebec and Ontario.",
-    "credits_3d": "3D Model by Jeff Clermont",
-    "credits_design": "Design by Louis Paquet",
-    "credits_fe": "Front-end by Michaël Garcia",
-    "copyright": "© 2026 MANA Yerba Maté. Made in Quebec, Canada."
+    "jumpPrompt": "Press Space to jump",
+    "jumpAria": "Press Space to jump",
+    "copyright": "2026 © Mana Yerba Maté",
+    "legalLinks": ["Terms of use", "Refund policy"],
+    "credits": "Credits",
+    "creditsAlert": "Mana Yerba Maté - Montreal, Quebec",
+    "canAlt": "Mana Can",
+    "obstacleAlt": "Obstacle"
   }
 }

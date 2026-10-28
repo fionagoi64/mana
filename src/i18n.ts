@@ -1,22 +1,25 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import enTranslation from './locales/en.json';
-import frTranslation from './locales/fr.json';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import enTranslation from "./locales/en.json";
+import frTranslation from "./locales/fr.json";
 
 i18n.use(initReactI18next).init({
   resources: {
-    EN: {
-      translation: enTranslation,
-    },
-    FR: {
-      translation: frTranslation,
-    },
+    en: { translation: enTranslation },
+    fr: { translation: frTranslation },
   },
-  lng: 'EN',
-  fallbackLng: 'EN',
+  lng: "en",
+  fallbackLng: "en",
+  lowerCaseLng: true,
   interpolation: {
     escapeValue: false,
   },
+});
+
+i18n.on("languageChanged", (lng) => {
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = lng;
+  }
 });
 
 export default i18n;
