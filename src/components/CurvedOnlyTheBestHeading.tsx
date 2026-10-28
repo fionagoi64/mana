@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from 'react';
 import gsap from 'gsap';
-import { ONLY_THE_BEST_PATHS_EN, ONLY_THE_BEST_PATHS_FR } from './curvedOnlyTheBestPaths.ts';
+import { ONLY_THE_BEST_PATHS_EN, ONLY_THE_BEST_PATHS_FR } from '../data/curvedOnlyTheBestPaths.ts';
 
 const RAINBOW_CLASSES = [
   'c-orange',

@@ -84,28 +84,28 @@ export const FlavourTextSection = () => {
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[22.5%] top-[58%] w-[2.8vw] min-w-[22px] max-w-[42px] opacity-85"
+            className="absolute left-[22.5%] top-[58%] w-[2.8vw] min-w-[22px] max-w-[42px]"
           />
 
           {/* Near top-right of 'V' */}
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[65.5%] top-[16%] w-[2.4vw] min-w-[20px] max-w-[36px] opacity-80"
+            className="absolute left-[65.5%] top-[16%] w-[2.4vw] min-w-[20px] max-w-[36px]"
           />
 
           {/* Near top-right of 'O' */}
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[75%] top-[19%] w-[2.5vw] min-w-[20px] max-w-[38px] opacity-85"
+            className="absolute left-[75%] top-[19%] w-[2.5vw] min-w-[20px] max-w-[38px]"
           />
 
           {/* Far right near 'S' */}
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[94%] top-[38%] w-[2.6vw] min-w-[22px] max-w-[40px] opacity-80"
+            className="absolute left-[94%] top-[38%] w-[2.6vw] min-w-[22px] max-w-[40px]"
           />
         </div>
 
@@ -118,26 +118,26 @@ export const FlavourTextSection = () => {
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[5%] top-[24%] w-[2.3vw] min-w-[18px] max-w-[34px] opacity-75"
+            className="absolute left-[5%] top-[24%] w-[2.3vw] min-w-[18px] max-w-[34px]"
           />
 
           {/* Double stars right at the bottom tip of 'V' */}
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[45.2%] top-[62%] w-[1.8vw] min-w-[16px] max-w-[28px] opacity-85"
+            className="absolute left-[45.2%] top-[62%] w-[1.8vw] min-w-[16px] max-w-[28px]"
           />
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[47.8%] top-[57%] w-[2.2vw] min-w-[18px] max-w-[32px] opacity-90"
+            className="absolute left-[47.8%] top-[57%] w-[2.2vw] min-w-[18px] max-w-[32px]"
           />
 
           {/* Right of 'R' (between R and S) */}
           <img
             src="/assets/etoile.svg"
             alt=""
-            className="absolute left-[78%] top-[60%] w-[2.6vw] min-w-[22px] max-w-[40px] opacity-85"
+            className="absolute left-[78%] top-[60%] w-[2.6vw] min-w-[22px] max-w-[40px] "
           />
         </div>
 

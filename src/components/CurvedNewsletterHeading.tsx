@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CURVE_PATHS_EN, CURVE_PATHS_FR } from './curvedNewsletterPaths.ts';
+import { CURVE_PATHS_EN, CURVE_PATHS_FR } from '../data/curvedNewsletterPaths.ts';
 
 gsap.registerPlugin(ScrollTrigger);
 

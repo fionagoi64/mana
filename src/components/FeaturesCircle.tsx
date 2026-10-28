@@ -1,9 +1,12 @@
-import React, { useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import lottie, { AnimationItem } from 'lottie-web';
-import { CurvedOnlyTheBestHeading, CurvedOnlyTheBestHeadingRef } from './CurvedOnlyTheBestHeading';
+import React, { useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import lottie, { AnimationItem } from "lottie-web";
+import {
+  CurvedOnlyTheBestHeading,
+  CurvedOnlyTheBestHeadingRef,
+} from "./CurvedOnlyTheBestHeading";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,13 +15,15 @@ export interface FeaturesCircleProps {
 }
 
 const FLAVOR_COLORS: Record<string, string> = {
-  grapefruit: '#f15b40',
-  hibiscus: '#2b3d73',
-  tropical: '#e72f63',
-  melon: '#195e1c',
+  grapefruit: "#f15b40",
+  hibiscus: "#2b3d73",
+  tropical: "#e72f63",
+  melon: "#195e1c",
 };
 
-export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId }) => {
+export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({
+  currentFlavorId,
+}) => {
   const { t, i18n } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const arcRef = useRef<SVGSVGElement>(null);
@@ -32,39 +37,51 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
   const hasAnimatedOnlyBestRef = useRef(false);
 
   const FLAVOR_HERO_BG: Record<string, string> = {
-    grapefruit: '#ffd372',
-    hibiscus: '#85baea',
-    tropical: '#f6b1cf',
-    melon: '#acd084',
+    grapefruit: "#ffd372",
+    hibiscus: "#85baea",
+    tropical: "#f6b1cf",
+    melon: "#acd084",
   };
 
-  const headerBg = FLAVOR_COLORS[currentFlavorId] || '#f15b40';
-  const heroBgColor = FLAVOR_HERO_BG[currentFlavorId] || '#ffd372';
-  const isFrench = Boolean(i18n.language && i18n.language.startsWith('fr'));
+  const headerBg = FLAVOR_COLORS[currentFlavorId] || "#f15b40";
+  const heroBgColor = FLAVOR_HERO_BG[currentFlavorId] || "#ffd372";
+  const isFrench = Boolean(i18n.language && i18n.language.startsWith("fr"));
 
   const cards = [
     {
-      title: t('features.crash_title', 'WITHOUT THE CRASH'),
-      desc: t('features.crash_desc', 'A gentle wave of energy. To get you going without the crash.'),
-      lottiePath: '/assets/carte_crash.json',
+      title: t("features.crash_title", "WITHOUT THE CRASH"),
+      desc: t(
+        "features.crash_desc",
+        "A gentle wave of energy. To get you going without the crash.",
+      ),
+      lottiePath: "/assets/carte_crash.json",
       angle: 25,
     },
     {
-      title: t('features.caffeine_title', 'NATURAL CAFFEINE'),
-      desc: t('features.caffeine_desc', 'This certified organic caffeine comes from the plant. A gift from Mother Nature.'),
-      lottiePath: '/assets/carte_caf.json',
+      title: t("features.caffeine_title", "NATURAL CAFFEINE"),
+      desc: t(
+        "features.caffeine_desc",
+        "This certified organic caffeine comes from the plant. A gift from Mother Nature.",
+      ),
+      lottiePath: "/assets/carte_caf.json",
       angle: 50,
     },
     {
-      title: t('features.antioxidant_title', 'ANTIOXIDANT'),
-      desc: t('features.antioxidant_desc', 'Richer in antioxidants than tea. Not bad.'),
-      lottiePath: '/assets/carte_antiox.json',
+      title: t("features.antioxidant_title", "ANTIOXIDANT"),
+      desc: t(
+        "features.antioxidant_desc",
+        "Richer in antioxidants than tea. Not bad.",
+      ),
+      lottiePath: "/assets/carte_antiox.json",
       angle: 75,
     },
     {
-      title: t('features.vegan_title', 'VEGAN'),
-      desc: t('features.vegan_desc', 'A plant-based drink that tastes like heaven. Who could ask for more?'),
-      lottiePath: '/assets/carte_vege.json',
+      title: t("features.vegan_title", "VEGAN"),
+      desc: t(
+        "features.vegan_desc",
+        "A plant-based drink that tastes like heaven. Who could ask for more?",
+      ),
+      lottiePath: "/assets/carte_vege.json",
       angle: 100,
     },
   ];
@@ -79,7 +96,7 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
       if (container) {
         const anim = lottie.loadAnimation({
           container,
-          renderer: 'svg',
+          renderer: "svg",
           loop: true,
           autoplay: true,
           path: card.lottiePath,
@@ -111,14 +128,14 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
         { scaleY: 0 },
         {
           scaleY: 1,
-          ease: 'none',
+          ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: () => 'top bottom-=' + 0.06 * window.innerWidth,
-            end: 'top top',
+            start: () => "top bottom-=" + 0.06 * window.innerWidth,
+            end: "top top",
             scrub: true,
           },
-        }
+        },
       );
 
       // 2. Horizontal Left-Right Parallax on Bubbles as user scrolls through the section
@@ -128,14 +145,14 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
           { x: -120 },
           {
             x: 120,
-            ease: 'none',
+            ease: "none",
             scrollTrigger: {
               trigger: section,
-              start: 'top top',
-              end: () => '+=' + 2.4 * window.innerWidth,
+              start: "top top",
+              end: () => "+=" + 2.4 * window.innerWidth,
               scrub: 1.2,
             },
-          }
+          },
         );
       }
 
@@ -145,14 +162,14 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
           { x: 130 },
           {
             x: -130,
-            ease: 'none',
+            ease: "none",
             scrollTrigger: {
               trigger: section,
-              start: 'top top',
-              end: () => '+=' + 2.4 * window.innerWidth,
+              start: "top top",
+              end: () => "+=" + 2.4 * window.innerWidth,
               scrub: 1.4,
             },
-          }
+          },
         );
       }
 
@@ -162,25 +179,25 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
           { x: 80 },
           {
             x: -80,
-            ease: 'none',
+            ease: "none",
             scrollTrigger: {
               trigger: section,
-              start: 'top top',
-              end: () => '+=' + 2.4 * window.innerWidth,
+              start: "top top",
+              end: () => "+=" + 2.4 * window.innerWidth,
               scrub: 0.8,
             },
-          }
+          },
         );
       }
 
       // 3. Authentic Pinned Wheel Rotation from 0 to -130 degrees across 450vw circular path
       gsap.to(wheel, {
         rotation: -130,
-        ease: 'power1.inOut',
+        ease: "power1.inOut",
         scrollTrigger: {
           trigger: section,
-          start: 'top top',
-          end: () => '+=' + 2.4 * window.innerWidth,
+          start: "top top",
+          end: () => "+=" + 2.4 * window.innerWidth,
           scrub: true,
           pin: true,
           anticipatePin: 1,
@@ -198,10 +215,10 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
           },
           onUpdate: (self) => {
             // Trigger rainbow bounce when Slide 5 rotates into view
-            if (self.progress >= 0.70 && !hasAnimatedOnlyBestRef.current) {
+            if (self.progress >= 0.7 && !hasAnimatedOnlyBestRef.current) {
               hasAnimatedOnlyBestRef.current = true;
               rainbowRef.current?.play();
-            } else if (self.progress < 0.60) {
+            } else if (self.progress < 0.6) {
               hasAnimatedOnlyBestRef.current = false;
             }
           },
@@ -228,7 +245,7 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
       <svg
         ref={arcRef}
         className="arc absolute top-0 left-0 w-full h-[6.5vw] min-h-[55px] max-h-[115px] block pointer-events-none z-20 overflow-visible"
-        style={{ transformOrigin: '0 100%' }}
+        style={{ transformOrigin: "0 100%" }}
         viewBox="0 0 1517 93"
         preserveAspectRatio="none"
         fill="none"
@@ -243,7 +260,7 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
       {/* Solid Beige fill below the arc curve */}
       <div
         className="absolute left-0 w-full bg-[#FEF7E6] pointer-events-none z-0"
-        style={{ top: 'max(52px, 6vw)', bottom: 0 }}
+        style={{ top: "max(52px, 6vw)", bottom: 0 }}
       />
 
       {/* ========================================================
@@ -253,12 +270,12 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
         ref={wheelRef}
         className="innerCercle innerCercleCartes absolute pointer-events-auto z-10"
         style={{
-          width: '450vw',
-          height: '450vw',
-          borderRadius: '100%',
+          width: "450vw",
+          height: "450vw",
+          borderRadius: "100%",
           top: 0,
-          left: 'calc(50% - 225vw)',
-          transformOrigin: '50% 50%',
+          left: "calc(50% - 225vw)",
+          transformOrigin: "50% 50%",
         }}
       >
         {/* ----------------------------------------------------
@@ -266,7 +283,7 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
             ---------------------------------------------------- */}
         <div
           className="cercle absolute top-0 left-0 w-full h-full text-center"
-          style={{ transform: 'rotate(0deg)', transformOrigin: '50% 50%' }}
+          style={{ transform: "rotate(0deg)", transformOrigin: "50% 50%" }}
         >
           <div className="etape h-screen w-full flex flex-col items-center justify-start pt-24 sm:pt-36">
             <div className="max-w-[1050px] px-6 text-center">
@@ -291,7 +308,7 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
             className="cercle absolute top-0 left-0 w-full h-full text-center"
             style={{
               transform: `rotate(${card.angle}deg)`,
-              transformOrigin: '50% 50%',
+              transformOrigin: "50% 50%",
             }}
           >
             <div className="etape h-screen w-full flex items-center justify-center -translate-y-12 sm:-translate-y-16">
@@ -327,11 +344,10 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
             ---------------------------------------------------- */}
         <div
           className="cercle absolute top-0 left-0 w-full h-full text-center"
-          style={{ transform: 'rotate(130deg)', transformOrigin: '50% 50%' }}
+          style={{ transform: "rotate(130deg)", transformOrigin: "50% 50%" }}
         >
           <div className="etape h-screen w-full flex items-center justify-center">
             <div className="w-[95vw] max-w-[1300px] flex items-center justify-center px-4 relative overflow-visible">
-              
               {/* Parallax Bubbles Layer 1 (scrubs left-to-right) */}
               <div
                 ref={bubblesLeftRef}
@@ -340,57 +356,24 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
                 <img
                   src="/assets/bulle.svg"
                   alt=""
-                  className="absolute left-[6%] top-[16%] w-[2.8vw] min-w-[22px] max-w-[42px] opacity-85"
+                  className="absolute left-[6%] top-[16%] w-[2.8vw] min-w-[22px] max-w-[42px]"
                 />
                 <img
                   src="/assets/bulle.svg"
                   alt=""
-                  className="absolute left-[46%] top-[6%] w-[1.9vw] min-w-[16px] max-w-[28px] opacity-75"
+                  className="absolute left-[46%] top-[6%] w-[1.9vw] min-w-[16px] max-w-[28px]"
                 />
                 <img
                   src="/assets/bulle.svg"
                   alt=""
-                  className="absolute left-[86%] top-[22%] w-[3.2vw] min-w-[26px] max-w-[46px] opacity-90"
+                  className="absolute left-[86%] top-[22%] w-[3.2vw] min-w-[26px] max-w-[46px]"
                 />
                 <img
                   src="/assets/bulle.svg"
                   alt=""
-                  className="absolute left-[22%] top-[78%] w-[2.2vw] min-w-[18px] max-w-[32px] opacity-80"
+                  className="absolute left-[22%] top-[78%] w-[2.2vw] min-w-[18px] max-w-[32px]"
                 />
               </div>
-
-              {/* Parallax Bubbles Layer 2 (scrubs right-to-left) */}
-              <div
-                ref={bubblesRightRef}
-                className="parallaxBulles absolute inset-0 w-full h-full pointer-events-none z-10"
-              >
-                <img
-                  src="/assets/bulle.svg"
-                  alt=""
-                  className="absolute left-[16%] top-[10%] w-[2vw] min-w-[16px] max-w-[30px] opacity-80"
-                />
-                <img
-                  src="/assets/bulle.svg"
-                  alt=""
-                  className="absolute left-[34%] top-[82%] w-[2.7vw] min-w-[22px] max-w-[38px] opacity-85"
-                />
-                <img
-                  src="/assets/bulle.svg"
-                  alt=""
-                  className="absolute left-[68%] top-[12%] w-[2.1vw] min-w-[17px] max-w-[30px] opacity-75"
-                />
-                <img
-                  src="/assets/bulle.svg"
-                  alt=""
-                  className="absolute left-[78%] top-[76%] w-[2.6vw] min-w-[20px] max-w-[36px] opacity-90"
-                />
-                <img
-                  src="/assets/bulle.svg"
-                  alt=""
-                  className="absolute left-[94%] top-[66%] w-[1.6vw] min-w-[14px] max-w-[24px] opacity-70"
-                />
-              </div>
-
               {/* Curved Only The Best Heading */}
               <CurvedOnlyTheBestHeading
                 ref={rainbowRef}
@@ -406,13 +389,62 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle cx="1142.34" cy="146" r="10.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
-                <circle cx="411.344" cy="105" r="10.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
-                <circle cx="149.344" cy="196" r="10.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
-                <circle cx="649.344" cy="94" r="10.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
-                <circle cx="781.344" cy="32" r="6.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
-                <circle cx="1098.34" cy="76" r="6.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
-                <circle cx="315.344" cy="7" r="6.375" fill="#FEF7E6" stroke="#0E0E0E" strokeWidth="1.25" />
+                <circle
+                  cx="1142.34"
+                  cy="146"
+                  r="10.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
+                <circle
+                  cx="411.344"
+                  cy="105"
+                  r="10.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
+                <circle
+                  cx="149.344"
+                  cy="196"
+                  r="10.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
+                <circle
+                  cx="649.344"
+                  cy="94"
+                  r="10.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
+                <circle
+                  cx="781.344"
+                  cy="32"
+                  r="6.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
+                <circle
+                  cx="1098.34"
+                  cy="76"
+                  r="6.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
+                <circle
+                  cx="315.344"
+                  cy="7"
+                  r="6.375"
+                  fill="#FEF7E6"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.25"
+                />
               </svg>
             </div>
           </div>
