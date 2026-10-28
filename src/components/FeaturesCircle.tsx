@@ -26,6 +26,10 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
   const lottieContainersRef = useRef<(HTMLDivElement | null)[]>([]);
   const animsRef = useRef<AnimationItem[]>([]);
   const rainbowRef = useRef<CurvedOnlyTheBestHeadingRef>(null);
+  const allBullesRef = useRef<SVGSVGElement>(null);
+  const bubblesLeftRef = useRef<HTMLDivElement>(null);
+  const bubblesRightRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedOnlyBestRef = useRef(false);
 
   const FLAVOR_HERO_BG: Record<string, string> = {
     grapefruit: '#ffd372',
@@ -95,9 +99,10 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
     const section = sectionRef.current;
     const arc = arcRef.current;
     const wheel = wheelRef.current;
+    const allBulles = allBullesRef.current;
+    const bubblesLeft = bubblesLeftRef.current;
+    const bubblesRight = bubblesRightRef.current;
     if (!section || !arc || !wheel) return;
-
-    let rainbowTriggered = false;
 
     const ctx = gsap.context(() => {
       // 1. Authentic Arc Parallax Reveal (scales up vertically as user approaches the section)
@@ -116,8 +121,59 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
         }
       );
 
-      // 2. Authentic Pinned Wheel Rotation from 0 to -130 degrees across 450vw circular path
-      // Stops and pins immediately when the rounded arc reaches the top, and starts rotating on scroll
+      // 2. Horizontal Left-Right Parallax on Bubbles as user scrolls through the section
+      if (bubblesLeft) {
+        gsap.fromTo(
+          bubblesLeft,
+          { x: -120 },
+          {
+            x: 120,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: () => '+=' + 2.4 * window.innerWidth,
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      if (bubblesRight) {
+        gsap.fromTo(
+          bubblesRight,
+          { x: 130 },
+          {
+            x: -130,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: () => '+=' + 2.4 * window.innerWidth,
+              scrub: 1.4,
+            },
+          }
+        );
+      }
+
+      if (allBulles) {
+        gsap.fromTo(
+          allBulles,
+          { x: 80 },
+          {
+            x: -80,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: () => '+=' + 2.4 * window.innerWidth,
+              scrub: 0.8,
+            },
+          }
+        );
+      }
+
+      // 3. Authentic Pinned Wheel Rotation from 0 to -130 degrees across 450vw circular path
       gsap.to(wheel, {
         rotation: -130,
         ease: 'power1.inOut',
@@ -141,11 +197,10 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
             animsRef.current.forEach((anim) => anim.pause());
           },
           onUpdate: (self) => {
-            if (self.progress >= 0.74 && !rainbowTriggered) {
-              rainbowTriggered = true;
+            // ONLY animate ONCE when entering view!
+            if (self.progress >= 0.72 && !hasAnimatedOnlyBestRef.current) {
+              hasAnimatedOnlyBestRef.current = true;
               rainbowRef.current?.play();
-            } else if (self.progress < 0.66) {
-              rainbowTriggered = false;
             }
           },
         },
@@ -273,16 +328,78 @@ export const FeaturesCircle: React.FC<FeaturesCircleProps> = ({ currentFlavorId 
           style={{ transform: 'rotate(130deg)', transformOrigin: '50% 50%' }}
         >
           <div className="etape h-screen w-full flex items-center justify-center">
-            <div className="w-[95vw] max-w-[1300px] flex items-center justify-center px-4 relative">
+            <div className="w-[95vw] max-w-[1300px] flex items-center justify-center px-4 relative overflow-visible">
+              
+              {/* Parallax Bubbles Layer 1 (scrubs left-to-right) */}
+              <div
+                ref={bubblesLeftRef}
+                className="parallaxBulles absolute inset-0 w-full h-full pointer-events-none z-10"
+              >
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[6%] top-[16%] w-[2.8vw] min-w-[22px] max-w-[42px] opacity-85"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[46%] top-[6%] w-[1.9vw] min-w-[16px] max-w-[28px] opacity-75"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[86%] top-[22%] w-[3.2vw] min-w-[26px] max-w-[46px] opacity-90"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[22%] top-[78%] w-[2.2vw] min-w-[18px] max-w-[32px] opacity-80"
+                />
+              </div>
+
+              {/* Parallax Bubbles Layer 2 (scrubs right-to-left) */}
+              <div
+                ref={bubblesRightRef}
+                className="parallaxBulles absolute inset-0 w-full h-full pointer-events-none z-10"
+              >
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[16%] top-[10%] w-[2vw] min-w-[16px] max-w-[30px] opacity-80"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[34%] top-[82%] w-[2.7vw] min-w-[22px] max-w-[38px] opacity-85"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[68%] top-[12%] w-[2.1vw] min-w-[17px] max-w-[30px] opacity-75"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[78%] top-[76%] w-[2.6vw] min-w-[20px] max-w-[36px] opacity-90"
+                />
+                <img
+                  src="/assets/bulle.svg"
+                  alt=""
+                  className="absolute left-[94%] top-[66%] w-[1.6vw] min-w-[14px] max-w-[24px] opacity-70"
+                />
+              </div>
+
+              {/* Curved Only The Best Heading */}
               <CurvedOnlyTheBestHeading
                 ref={rainbowRef}
                 isFrench={isFrench}
-                className="w-full max-w-[1300px]"
+                className="w-full max-w-[1300px] z-5 relative"
               />
 
-              {/* Authentic allBulles SVG matching live site & Screenshot 3 */}
+              {/* Authentic allBulles SVG with horizontal parallax scrub */}
               <svg
-                className="allBulles absolute inset-0 w-full h-full pointer-events-none"
+                ref={allBullesRef}
+                className="allBulles absolute inset-0 w-full h-full pointer-events-none z-10"
                 viewBox="0 0 1456 363"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

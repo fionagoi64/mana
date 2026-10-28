@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import lottie from 'lottie-web';
 import CurvedNewsletterHeading from './CurvedNewsletterHeading.tsx';
+import { ShadowButton } from './ShadowButton.tsx';
 
 export const NewsletterSection: React.FC = () => {
   const { i18n } = useTranslation();
@@ -58,17 +59,20 @@ export const NewsletterSection: React.FC = () => {
 
         {/* Authentic 3D Shadow Subscribe Button (.btnOmbre) */}
         <div className="mt-8 sm:mt-10 mb-20 md:mb-28 flex justify-center z-10 relative">
-          <a
+          <ShadowButton
             href="#subscribe"
-            className="btn btnOmbre relative group cursor-pointer select-none transition-transform active:scale-95 inline-block"
+            variant="text"
+            size="lg"
+            rounded="full"
+            bg="#f15b40"
+            shadowColor="#2b3d73"
+            textColor="#ffffff"
+            borderColor="#2b3d73"
+            shadowOffset={5}
+            aria-label="Subscribe"
           >
-            {/* 3D Navy Shadow Base */}
-            <div className="absolute inset-0 rounded-full translate-y-[5px] bg-[#2b3d73] transition-transform group-hover:translate-y-[2px]" />
-            {/* Top Coral Button */}
-            <div className="relative px-12 sm:px-16 py-3.5 sm:py-4 rounded-full font-bold text-white text-base sm:text-lg tracking-wide flex items-center justify-center bg-[#f15b40] border border-[#2b3d73] transition-transform group-hover:translate-y-[2px]">
-              <span>{isFrench ? "S'abonner" : 'Subscribe'}</span>
-            </div>
-          </a>
+            <span>{isFrench ? "S'abonner" : 'Subscribe'}</span>
+          </ShadowButton>
         </div>
 
         {/* Space Rocket Lottie (.lottieFusee) on Bottom Left */}

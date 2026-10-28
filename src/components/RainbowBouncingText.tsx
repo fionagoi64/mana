@@ -78,7 +78,7 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
     const pathId = `curve-path-${cleanId}`;
 
     const containerRef = useRef<HTMLDivElement>(null);
-    const timeoutsMap = useRef<Map<HTMLElement | SVGElement, NodeJS.Timeout[]>>(new Map());
+    const timeoutsMap = useRef<Map<HTMLElement | SVGElement, ReturnType<typeof setTimeout>[]>>(new Map());
     const hasAnimatedRef = useRef(false);
 
     // Clear active timeouts for a single element to prevent color race conditions
@@ -116,7 +116,7 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
         const delays = [70, 140, 210, 280, 350, 420];
         const sequence = ['c-bleu2', 'c-rouge', 'c-rose', 'c-bleu', 'c-jaune', 'c-noir'];
 
-        const timers: NodeJS.Timeout[] = [];
+        const timers: ReturnType<typeof setTimeout>[] = [];
         sequence.forEach((cls, i) => {
           const prevCls = i === 0 ? 'c-orange' : sequence[i - 1];
           const t = setTimeout(() => {

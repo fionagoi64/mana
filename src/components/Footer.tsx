@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import lottie, { AnimationItem } from 'lottie-web';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ShadowButton } from './ShadowButton.tsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -323,41 +324,53 @@ export const Footer: React.FC = () => {
           ======================================================== */}
       <div className="relative z-20 w-full pt-8 px-6 sm:px-12 flex items-center justify-between pointer-events-none">
         <div className="flex items-center gap-3 sm:gap-4 pointer-events-auto">
-          {/* Facebook circular button */}
-          <a
+          {/* Facebook circular 3D button */}
+          <ShadowButton
+            variant="icon"
+            size="circle"
+            rounded="full"
+            bg="#ffd372"
+            shadowColor="#2b3d73"
+            borderColor="#0e0e0e"
+            shadowOffset={4}
             href="https://www.facebook.com/manayerbamate/"
             target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="w-13 h-13 sm:w-16 sm:h-16 rounded-full bg-[#ffd372] border-2 border-[#0e0e0e] shadow-[2px_3px_0px_#0e0e0e] flex items-center justify-center hover:-translate-y-0.5 active:translate-y-0.5 transition-all"
             aria-label="Facebook"
-          >
-            <img src="/assets/i_fb.svg" alt="Facebook" className="w-5 h-5 sm:w-6 sm:h-6" />
-          </a>
+            onClick={(e) => e.stopPropagation()}
+            icon={<img src="/assets/i_fb.svg" alt="Facebook" className="w-5 h-5 sm:w-6 sm:h-6" />}
+          />
 
-          {/* LinkedIn circular button */}
-          <a
+          {/* LinkedIn circular 3D button */}
+          <ShadowButton
+            variant="icon"
+            size="circle"
+            rounded="full"
+            bg="#ffd372"
+            shadowColor="#2b3d73"
+            borderColor="#0e0e0e"
+            shadowOffset={4}
             href="https://www.linkedin.com/company/mana-yerba-mate/"
             target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="w-13 h-13 sm:w-16 sm:h-16 rounded-full bg-[#ffd372] border-2 border-[#0e0e0e] shadow-[2px_3px_0px_#0e0e0e] flex items-center justify-center hover:-translate-y-0.5 active:translate-y-0.5 transition-all"
             aria-label="LinkedIn"
-          >
-            <img src="/assets/i_li.svg" alt="LinkedIn" className="w-5 h-5 sm:w-6 sm:h-6" />
-          </a>
+            onClick={(e) => e.stopPropagation()}
+            icon={<img src="/assets/i_li.svg" alt="LinkedIn" className="w-5 h-5 sm:w-6 sm:h-6" />}
+          />
 
-          {/* Instagram circular button */}
-          <a
+          {/* Instagram circular 3D button */}
+          <ShadowButton
+            variant="icon"
+            size="circle"
+            rounded="full"
+            bg="#ffd372"
+            shadowColor="#2b3d73"
+            borderColor="#0e0e0e"
+            shadowOffset={4}
             href="https://www.instagram.com/manayerbamate/"
             target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="w-13 h-13 sm:w-16 sm:h-16 rounded-full bg-[#ffd372] border-2 border-[#0e0e0e] shadow-[2px_3px_0px_#0e0e0e] flex items-center justify-center hover:-translate-y-0.5 active:translate-y-0.5 transition-all"
             aria-label="Instagram"
-          >
-            <img src="/assets/i_ig.svg" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />
-          </a>
+            onClick={(e) => e.stopPropagation()}
+            icon={<img src="/assets/i_ig.svg" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />}
+          />
         </div>
       </div>
 

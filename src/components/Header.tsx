@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { ChevronDown, ShoppingBag, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export interface HeaderProps {
   cartCount: number;
-  onOpenCart: () => void;
+  onOpenCart?: () => void;
   activeColor?: string;
 }
 
-export const Header = ({ cartCount, onOpenCart, activeColor }: HeaderProps) => {
-  const { t, i18n } = useTranslation();
-  const [shopMenuOpen, setShopMenuOpen] = useState(false);
-  const [learnMenuOpen, setLearnMenuOpen] = useState(false);
+export const Header = ({ cartCount, onOpenCart }: HeaderProps) => {
+  const { i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [atFooter, setAtFooter] = useState(false);
 
@@ -29,18 +26,14 @@ export const Header = ({ cartCount, onOpenCart, activeColor }: HeaderProps) => {
   }, []);
 
   const toggleLanguage = () => {
-    const nextLang = i18n.language === "EN" ? "FR" : "EN";
+    const current = i18n.language ? i18n.language.toUpperCase() : "EN";
+    const nextLang = current.startsWith("FR") ? "en" : "fr";
     i18n.changeLanguage(nextLang);
   };
 
-  const scrollTo = (id: string) => {
-    setShopMenuOpen(false);
-    setLearnMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const isFrench = Boolean(
+    i18n.language && i18n.language.toLowerCase().startsWith("fr"),
+  );
 
   let logoFill = "white";
   if (scrolled) {
@@ -52,9 +45,17 @@ export const Header = ({ cartCount, onOpenCart, activeColor }: HeaderProps) => {
     logoVisibilityClass = "opacity-0 pointer-events-none -translate-x-4";
   }
 
+  // Authentic Mana pill button styling (matching .btn50h)
+  const pillBtnClass =
+    "h-[clamp(44px,3.2vw,56px)] px-[clamp(16px,1.4vw,26px)] rounded-full bg-white text-[#0E0E0E] text-[clamp(15px,1.15vw,19px)] font-normal flex items-center justify-center gap-2 shadow-[0_2px_10px_rgba(0,0,0,0.06)] hover:bg-[#fafafa] active:scale-95 transition-all cursor-pointer whitespace-nowrap";
+
+  // Authentic Mana circle button styling (matching .btnRond4)
+  const circleBtnClass =
+    "w-[clamp(44px,3.2vw,56px)] h-[clamp(44px,3.2vw,56px)] rounded-full bg-white text-[#0E0E0E] text-[clamp(15px,1.15vw,19px)] font-normal flex items-center justify-center shadow-[0_2px_10px_rgba(0,0,0,0.06)] hover:bg-[#fafafa] active:scale-95 transition-all cursor-pointer relative shrink-0";
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 pt-6 sm:pt-8 flex items-center justify-between pointer-events-none select-none transition-all duration-300">
-      {/* Authentic Chunky MANA Logo (White on hero, black on beige section) */}
+    <header className="fixed top-0 left-0 right-0 z-50 px-5 sm:px-10 pt-5 sm:pt-7 flex items-center justify-between pointer-events-none select-none transition-all duration-300">
+      {/* Authentic Chunky MANA Logo */}
       <a
         href="#"
         className={`pointer-events-auto flex items-center transition-all duration-300 hover:scale-105 active:scale-95 ${logoVisibilityClass}`}
@@ -70,104 +71,114 @@ export const Header = ({ cartCount, onOpenCart, activeColor }: HeaderProps) => {
         </svg>
       </a>
 
-      {/* Floating White Pills Navigation */}
-      <nav className="pointer-events-auto flex items-center gap-2 sm:gap-3">
-        {/* Shop Dropdown Pill */}
-        <div className="relative">
-          <button
-            onClick={() => {
-              setShopMenuOpen(!shopMenuOpen);
-              setLearnMenuOpen(false);
-            }}
-            className="flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-neutral-900 font-bold text-sm tracking-wide shadow-sm hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+      {/* Floating Header Buttons (matching authentic Mana header) */}
+      <nav className="pointer-events-auto flex items-center gap-2 sm:gap-2.5">
+        {/* Shop Pill Button */}
+        <button className={pillBtnClass} aria-label="Shop">
+          <span>Shop</span>
+          <svg
+            className="w-3 h-2 text-[#0E0E0E]"
+            viewBox="0 0 12 7"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span>{t("nav.shop_cases").replace(" 12-Packs", "")}</span>
-            <ChevronDown className="w-4 h-4 text-neutral-600 transition-transform duration-200" />
-          </button>
-
-          {shopMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-100 p-2 z-50 text-left">
-              <button
-                onClick={() => scrollTo("shop-products")}
-                className="w-full text-left px-3 py-2 text-xs font-bold text-neutral-800 hover:bg-neutral-100 rounded-xl"
-              >
-                {t("shop.discovery_title")}
-              </button>
-              <button
-                onClick={() => scrollTo("shop-products")}
-                className="w-full text-left px-3 py-2 text-xs font-bold text-neutral-800 hover:bg-neutral-100 rounded-xl"
-              >
-                12-Pack Cases
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Learn Dropdown Pill */}
-        <div className="relative hidden md:block">
-          <button
-            onClick={() => {
-              setLearnMenuOpen(!learnMenuOpen);
-              setShopMenuOpen(false);
-            }}
-            className="flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-neutral-900 font-bold text-sm tracking-wide shadow-sm hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
-          >
-            <span>Learn</span>
-            <ChevronDown className="w-4 h-4 text-neutral-600 transition-transform duration-200" />
-          </button>
-
-          {learnMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-neutral-100 p-2 z-50 text-left">
-              <button
-                onClick={() => scrollTo("why-mana")}
-                className="w-full text-left px-3 py-2 text-xs font-bold text-neutral-800 hover:bg-neutral-100 rounded-xl"
-              >
-                {t("nav.why_yerba_mate")}
-              </button>
-              <button
-                onClick={() => scrollTo("taste-matrix")}
-                className="w-full text-left px-3 py-2 text-xs font-bold text-neutral-800 hover:bg-neutral-100 rounded-xl"
-              >
-                {t("nav.taste_profile")}
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Subscription Pill */}
-        <button
-          onClick={() => scrollTo("shop-products")}
-          className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-full bg-white text-neutral-900 font-bold text-sm tracking-wide shadow-sm hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
-        >
-          Subscription
+            <path
+              d="M5.46967 6.53033C5.76256 6.82322 6.23744 6.82322 6.53033 6.53033L11.3033 1.75736C11.5962 1.46447 11.5962 0.989593 11.3033 0.696699C11.0104 0.403806 10.5355 0.403806 10.2426 0.696699L6 4.93934L1.75736 0.696699C1.46447 0.403806 0.989593 0.403806 0.696699 0.696699C0.403806 0.989592 0.403806 1.46447 0.696699 1.75736L5.46967 6.53033ZM5.25 5L5.25 6L6.75 6L6.75 5L5.25 5Z"
+              fill="currentColor"
+            />
+          </svg>
         </button>
 
-        {/* Language Pill: FR / EN */}
+        {/* Learn Pill Button */}
+        <button
+          className={`${pillBtnClass} hidden md:inline-flex`}
+          aria-label="Learn"
+        >
+          <span>Learn</span>
+          <svg
+            className="w-3 h-2 text-[#0E0E0E]"
+            viewBox="0 0 12 7"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.46967 6.53033C5.76256 6.82322 6.23744 6.82322 6.53033 6.53033L11.3033 1.75736C11.5962 1.46447 11.5962 0.989593 11.3033 0.696699C11.0104 0.403806 10.5355 0.403806 10.2426 0.696699L6 4.93934L1.75736 0.696699C1.46447 0.403806 0.989593 0.403806 0.696699 0.696699C0.403806 0.989592 0.403806 1.46447 0.696699 1.75736L5.46967 6.53033ZM5.25 5L5.25 6L6.75 6L6.75 5L5.25 5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+
+        {/* Subscription Pill Button */}
+        <button
+          className={`${pillBtnClass} hidden sm:inline-flex`}
+          aria-label="Subscription"
+        >
+          <span>Subscription</span>
+        </button>
+
+        {/* Language Circle Button: Fr / En */}
         <button
           onClick={toggleLanguage}
-          className="px-4 py-2.5 rounded-full bg-white text-neutral-900 font-bold text-sm uppercase tracking-wide shadow-sm hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+          className={circleBtnClass}
+          aria-label="Toggle language"
         >
-          {i18n.language === "EN" ? "Fr" : "En"}
+          <span>{isFrench ? "En" : "Fr"}</span>
         </button>
 
         {/* User Account Circle Button */}
         <button
-          onClick={() => alert("Account simulation")}
-          className="hidden sm:flex w-10 h-10 rounded-full bg-white items-center justify-center text-neutral-900 shadow-sm hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+          className={`${circleBtnClass} hidden sm:flex`}
           aria-label="Account"
         >
-          <User className="w-4 h-4" />
+          <svg
+            className="w-5 h-5 sm:w-6 sm:h-6"
+            viewBox="0 0 26 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 1.33334C6.55648 1.33334 1.33331 6.55651 1.33331 13C1.33331 19.4435 6.55648 24.6667 13 24.6667C19.4435 24.6667 24.6666 19.4435 24.6666 13C24.6666 6.55651 19.4435 1.33334 13 1.33334Z"
+              stroke="#0E0E0E"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M3.98285 20.4037C3.98285 20.4037 6.58335 17.0833 13 17.0833C19.4167 17.0833 22.0183 20.4037 22.0183 20.4037"
+              stroke="#0E0E0E"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M13 13C13.9283 13 14.8185 12.6313 15.4749 11.9749C16.1313 11.3185 16.5 10.4283 16.5 9.5C16.5 8.57174 16.1313 7.6815 15.4749 7.02513C14.8185 6.36875 13.9283 6 13 6C12.0717 6 11.1815 6.36875 10.5251 7.02513C9.86875 7.6815 9.5 8.57174 9.5 9.5C9.5 10.4283 9.86875 11.3185 10.5251 11.9749C11.1815 12.6313 12.0717 13 13 13V13Z"
+              stroke="#0E0E0E"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
 
-        {/* Cart Circle Button */}
+        {/* Shopping Cart Circle Button */}
         <button
           onClick={onOpenCart}
-          className="relative w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-sm hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+          className={circleBtnClass}
           aria-label="Shopping Cart"
         >
-          <ShoppingBag className="w-4 h-4" />
+          <svg
+            className="w-5 h-5 sm:w-6 sm:h-6"
+            viewBox="0 0 25 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.8125 4.6894V6.25191H22.6562V9.34492L20.9229 14.8457H7.3209L5.36777 0.78125H0.78125V2.34375H4.00723L5.96035 16.4082H22.0687L24.2188 9.58526V4.6894H7.8125ZM8.6418 17.9855C7.81328 17.9865 7.01898 18.316 6.43313 18.9019C5.84728 19.4877 5.51774 20.282 5.5168 21.1105C5.5168 21.9394 5.84604 22.7342 6.43209 23.3203C7.01814 23.9063 7.81299 24.2355 8.6418 24.2355C9.4706 24.2355 10.2655 23.9063 10.8515 23.3203C11.4376 22.7342 11.7668 21.9394 11.7668 21.1105C11.7659 20.282 11.4363 19.4877 10.8505 18.9019C10.2646 18.316 9.47031 17.9865 8.6418 17.9855ZM8.6418 22.673C8.33276 22.673 8.03067 22.5814 7.77372 22.4097C7.51677 22.238 7.3165 21.994 7.19824 21.7085C7.07997 21.423 7.04903 21.1088 7.10932 20.8057C7.16961 20.5026 7.31842 20.2242 7.53694 20.0057C7.75546 19.7872 8.03387 19.6384 8.33697 19.5781C8.64006 19.5178 8.95423 19.5487 9.23974 19.667C9.52525 19.7852 9.76928 19.9855 9.94097 20.2425C10.1127 20.4994 10.2043 20.8015 10.2043 21.1105C10.2038 21.5248 10.039 21.9219 9.74611 22.2149C9.45319 22.5078 9.05605 22.6726 8.6418 22.673ZM19.5793 17.9855C18.7508 17.9865 17.9565 18.316 17.3706 18.9019C16.7848 19.4877 16.4552 20.282 16.4543 21.1105C16.4543 21.9394 16.7835 22.7342 17.3696 23.3203C17.9556 23.9063 18.7505 24.2355 19.5793 24.2355C20.4081 24.2355 21.203 23.9063 21.789 23.3203C22.3751 22.7342 22.7043 21.9394 22.7043 21.1105C22.7034 20.282 22.3738 19.4877 21.788 18.9019C21.2021 18.316 20.4078 17.9865 19.5793 17.9855ZM19.5793 22.673C19.2703 22.673 18.9682 22.5814 18.7112 22.4097C18.4543 22.238 18.254 21.994 18.1357 21.7085C18.0175 21.423 17.9865 21.1088 18.0468 20.8057C18.1071 20.5026 18.2559 20.2242 18.4744 20.0057C18.693 19.7872 18.9714 19.6384 19.2745 19.5781C19.5776 19.5178 19.8917 19.5487 20.1772 19.667C20.4627 19.7852 20.7068 19.9855 20.8785 20.2425C21.0502 20.4994 21.1418 20.8015 21.1418 21.1105C21.1413 21.5248 20.9765 21.9219 20.6836 22.2149C20.3907 22.5078 19.9935 22.6726 19.5793 22.673Z"
+              fill="#0E0E0E"
+            />
+          </svg>
           {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-neutral-950 text-white rounded-full text-[10px] font-extrabold flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 min-w-[20px] h-[20px] px-1 bg-[#0E0E0E] text-white rounded-full text-[11px] font-semibold flex items-center justify-center leading-none">
               {cartCount}
             </span>
           )}

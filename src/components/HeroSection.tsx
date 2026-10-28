@@ -1,17 +1,18 @@
-import React, { useRef, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { Flavor } from '../data/flavors.ts';
-import { useTranslation } from 'react-i18next';
-import lottie from 'lottie-web';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Flavor } from "../data/flavors.ts";
+import { useTranslation } from "react-i18next";
+import lottie from "lottie-web";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShadowButton } from "./ShadowButton.tsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export interface HeroSectionProps {
   currentFlavor: Flavor;
   flavors: Flavor[];
-  onSelectFlavor: (flavorId: Flavor['id']) => void;
+  onSelectFlavor: (flavorId: Flavor["id"]) => void;
   onAddToCart: (flavorId: string) => void;
 }
 
@@ -26,7 +27,7 @@ const LottieItem: React.FC<{
     if (!containerRef.current) return;
     const anim = lottie.loadAnimation({
       container: containerRef.current,
-      renderer: 'svg',
+      renderer: "svg",
       loop: true,
       autoplay: true,
       path,
@@ -42,7 +43,7 @@ const LottieItem: React.FC<{
 const StepContent: React.FC<{
   flavor: string;
 }> = ({ flavor }) => {
-  if (flavor === 'grapefruit') {
+  if (flavor === "grapefruit") {
     return (
       <div className="absolute top-0 left-[calc(50%-50vw)] w-[100vw] h-screen overflow-hidden flex items-center justify-center pointer-events-none">
         <div className="art-left absolute inset-0 pointer-events-none transition-transform duration-100 ease-out">
@@ -75,7 +76,7 @@ const StepContent: React.FC<{
     );
   }
 
-  if (flavor === 'hibiscus') {
+  if (flavor === "hibiscus") {
     return (
       <div className="absolute top-0 left-[calc(50%-50vw)] w-[100vw] h-screen overflow-hidden flex items-center justify-center pointer-events-none">
         <div className="art-left absolute inset-0 pointer-events-none transition-transform duration-100 ease-out">
@@ -108,7 +109,7 @@ const StepContent: React.FC<{
     );
   }
 
-  if (flavor === 'tropical') {
+  if (flavor === "tropical") {
     return (
       <div className="absolute top-0 left-[calc(50%-50vw)] w-[100vw] h-screen overflow-hidden flex items-center justify-center pointer-events-none">
         <div className="art-left absolute inset-0 pointer-events-none transition-transform duration-100 ease-out">
@@ -189,28 +190,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     }
   > = {
     grapefruit: {
-      bg: '#ffd372', // Authentic warm citrus yellow
-      btnBg: '#f15b40', // Coral red
-      btnShadow: '#2b3d73', // Navy shadow
-      name: i18n.language === 'fr' ? 'Pamplemousse' : 'Grapefruit',
+      bg: "#ffd372", // Authentic warm citrus yellow
+      btnBg: "#f15b40", // Coral red
+      btnShadow: "#2b3d73", // Navy shadow
+      name: i18n.language === "fr" ? "Pamplemousse" : "Grapefruit",
     },
     hibiscus: {
-      bg: '#85baea', // Authentic soft sky blue
-      btnBg: '#2b3d73', // Navy
-      btnShadow: '#141d36', // Dark blue shadow
-      name: i18n.language === 'fr' ? 'Mûre et Hibiscus' : 'Blackberry & Hibiscus',
+      bg: "#85baea", // Authentic soft sky blue
+      btnBg: "#2b3d73", // Navy
+      btnShadow: "#141d36", // Dark blue shadow
+      name:
+        i18n.language === "fr" ? "Mûre et Hibiscus" : "Blackberry & Hibiscus",
     },
     tropical: {
-      bg: '#f6b1cf', // Authentic rosy pink
-      btnBg: '#e72f63', // Hot pink
-      btnShadow: '#6b122c', // Wine shadow
-      name: 'Tropical',
+      bg: "#f6b1cf", // Authentic rosy pink
+      btnBg: "#e72f63", // Hot pink
+      btnShadow: "#6b122c", // Wine shadow
+      name: "Tropical",
     },
     melon: {
-      bg: '#acd084', // Authentic lime green
-      btnBg: '#195e1c', // Forest green
-      btnShadow: '#0e0e0e', // Dark shadow
-      name: i18n.language === 'fr' ? 'Melon et Menthe' : 'Melon & Mint',
+      bg: "#acd084", // Authentic lime green
+      btnBg: "#195e1c", // Forest green
+      btnShadow: "#0e0e0e", // Dark shadow
+      name: i18n.language === "fr" ? "Melon et Menthe" : "Melon & Mint",
     },
   };
 
@@ -228,14 +230,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
+      if (e.key === "ArrowRight") {
         handleNext();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === "ArrowLeft") {
         handlePrev();
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentIndex, flavors]);
 
   const scrollTrackRef = useRef<HTMLDivElement>(null);
@@ -248,14 +250,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   // 8 steps placed at every 45 degrees on the 450vw wheel for seamless infinite spinning
   const EIGHT_STEPS = [
-    { step: 0, flavor: 'grapefruit', angle: 0 },
-    { step: 1, flavor: 'hibiscus', angle: 45 },
-    { step: 2, flavor: 'tropical', angle: 90 },
-    { step: 3, flavor: 'melon', angle: 135 },
-    { step: 4, flavor: 'grapefruit', angle: 180 },
-    { step: 5, flavor: 'hibiscus', angle: 225 },
-    { step: 6, flavor: 'tropical', angle: 270 },
-    { step: 7, flavor: 'melon', angle: 315 },
+    { step: 0, flavor: "grapefruit", angle: 0 },
+    { step: 1, flavor: "hibiscus", angle: 45 },
+    { step: 2, flavor: "tropical", angle: 90 },
+    { step: 3, flavor: "melon", angle: 135 },
+    { step: 4, flavor: "grapefruit", angle: 180 },
+    { step: 5, flavor: "hibiscus", angle: 225 },
+    { step: 6, flavor: "tropical", angle: 270 },
+    { step: 7, flavor: "melon", angle: 315 },
   ];
 
   // 1. Authentic circular background carousel rotation on flavor change
@@ -263,7 +265,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     const bgWheel = bgWheelRef.current;
     if (!bgWheel) return;
 
-    const flavorOrder = ['grapefruit', 'hibiscus', 'tropical', 'melon'];
+    const flavorOrder = ["grapefruit", "hibiscus", "tropical", "melon"];
     const prevIdx = flavorOrder.indexOf(prevFlavorRef.current);
     const currIdx = flavorOrder.indexOf(currentFlavor.id);
     prevFlavorRef.current = currentFlavor.id;
@@ -278,16 +280,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       currentStepRef.current += diff;
 
       gsap.killTweensOf(bgWheel);
-      gsap.timeline()
+      gsap
+        .timeline()
         .to(bgWheel, {
           rotation: rotationHomeRef.current + 30 * dir,
           duration: 0.4,
-          ease: 'power2.in',
+          ease: "power2.in",
         })
         .to(bgWheel, {
           rotation: rotationHomeRef.current,
           duration: 1.2,
-          ease: 'elastic.out(0.34, 0.26)',
+          ease: "elastic.out(0.34, 0.26)",
         });
     }
   }, [currentFlavor.id]);
@@ -300,8 +303,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
     const st = ScrollTrigger.create({
       trigger: track,
-      start: 'top top',
-      end: 'bottom bottom',
+      start: "top top",
+      end: "bottom bottom",
       pin: stage,
       pinSpacing: false,
       scrub: 1.2,
@@ -309,8 +312,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       onUpdate: (self) => {
         const p = self.progress;
 
-        const leftArts = bgWheelRef.current?.querySelectorAll<HTMLElement>('.art-left');
-        const rightArts = bgWheelRef.current?.querySelectorAll<HTMLElement>('.art-right');
+        const leftArts =
+          bgWheelRef.current?.querySelectorAll<HTMLElement>(".art-left");
+        const rightArts =
+          bgWheelRef.current?.querySelectorAll<HTMLElement>(".art-right");
 
         if (leftArts) {
           const transform = `translate(${-p * 180}px, ${-p * 120}px) rotate(${-p * 20}deg)`;
@@ -334,9 +339,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           navRef.current.style.transform = `translateY(${p * 220}px)`;
           navRef.current.style.opacity = `${Math.max(0, 1 - p * 3.5)}`;
           if (p > 0.35) {
-            navRef.current.style.display = 'none';
+            navRef.current.style.display = "none";
           } else {
-            navRef.current.style.display = 'flex';
+            navRef.current.style.display = "flex";
           }
         }
       },
@@ -367,20 +372,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           ref={bgWheelRef}
           className="innerCercle lotties absolute pointer-events-none"
           style={{
-            width: '450vw',
-            height: '450vw',
-            borderRadius: '100%',
+            width: "450vw",
+            height: "450vw",
+            borderRadius: "100%",
             top: 0,
-            left: 'calc(50% - 225vw)',
-            transformOrigin: '50% 50%',
-            transform: 'rotate(0deg)',
+            left: "calc(50% - 225vw)",
+            transformOrigin: "50% 50%",
+            transform: "rotate(0deg)",
           }}
         >
           {EIGHT_STEPS.map((s) => (
             <div
               key={s.step}
               className={`step step${s.step} absolute top-0 left-0 w-full h-full pointer-events-none`}
-              style={{ transform: `rotate(${s.angle}deg)`, transformOrigin: '50% 50%' }}
+              style={{
+                transform: `rotate(${s.angle}deg)`,
+                transformOrigin: "50% 50%",
+              }}
             >
               <StepContent flavor={s.flavor} />
             </div>
@@ -397,7 +405,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* ========================================================
           AUTHENTIC SLIDER CONTROLS (PORTALED TO z-30 ABOVE 3D CAN)
           ======================================================== */}
-      {typeof document !== 'undefined' &&
+      {typeof document !== "undefined" &&
         createPortal(
           <div
             ref={navRef}
@@ -411,29 +419,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shrink-0"
                 aria-label="Previous Flavor"
               >
-                <img src="/assets/i_arrow.svg" alt="" className="w-4 sm:w-5 h-auto" />
+                <img
+                  src="/assets/i_arrow.svg"
+                  alt=""
+                  className="w-4 sm:w-5 h-auto"
+                />
               </button>
 
-              {/* Single Flavor Name Button (matching authentic .btnOmbre) */}
-              <button
+              {/* Single Flavor Name Button using reusable ShadowButton */}
+              <ShadowButton
                 id="hero-flavor-btn"
+                variant="text"
+                size="lg"
+                rounded="full"
+                bg={currentConfig.btnBg}
+                shadowColor={currentConfig.btnShadow}
+                textColor="#ffffff"
+                borderColor="rgba(14,14,14)"
+                shadowOffset={4}
                 onClick={() => onAddToCart(currentFlavor.id)}
-                className="relative group cursor-pointer select-none transition-transform active:scale-95 shrink-0"
                 aria-label={`Select ${currentConfig.name}`}
               >
-                {/* Authentic 3D shadow layer underneath */}
-                <div
-                  className="absolute inset-0 rounded-full translate-y-[4px] transition-transform group-hover:translate-y-[2px]"
-                  style={{ backgroundColor: currentConfig.btnShadow }}
-                />
-                {/* Pill button content */}
-                <div
-                  className="relative px-8 sm:px-12 py-3 sm:py-3.5 rounded-full font-bold text-white text-base sm:text-lg md:text-xl tracking-wide flex items-center justify-center min-w-[200px] sm:min-w-[260px] border border-black/20 transition-transform group-hover:translate-y-[2px]"
-                  style={{ backgroundColor: currentConfig.btnBg }}
-                >
-                  <span>{currentConfig.name}</span>
-                </div>
-              </button>
+                <span>{currentConfig.name}</span>
+              </ShadowButton>
 
               {/* Next White Circle Button */}
               <button
@@ -442,11 +450,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shrink-0"
                 aria-label="Next Flavor"
               >
-                <img src="/assets/i_arrow.svg" alt="" className="w-4 sm:w-5 h-auto rotate-180" />
+                <img
+                  src="/assets/i_arrow.svg"
+                  alt=""
+                  className="w-4 sm:w-5 h-auto rotate-180"
+                />
               </button>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </div>
   );

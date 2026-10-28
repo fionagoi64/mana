@@ -16,10 +16,10 @@ export interface Can3DViewerProps {
   ) => void;
 }
 
-export const Can3DViewer: React.FC<Can3DViewerProps> = ({
+export const Can3DViewer = ({
   currentFlavor = "grapefruit",
   className = "",
-}) => {
+}: Can3DViewerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
@@ -86,8 +86,8 @@ export const Can3DViewer: React.FC<Can3DViewerProps> = ({
     const H = container.clientHeight || window.innerHeight;
     const size =
       W >= 650
-        ? Math.min(840, Math.max(580, Math.floor(Math.min(W * 0.50, H * 0.82))))
-        : Math.floor(W * 0.90);
+        ? Math.min(840, Math.max(580, Math.floor(Math.min(W * 0.5, H * 0.82))))
+        : Math.floor(W * 0.9);
 
     // 2. Camera with aspect ratio 1 matching authentic site (Z = 80 on desktop)
     const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
@@ -322,8 +322,11 @@ export const Can3DViewer: React.FC<Can3DViewerProps> = ({
       const curH = container.clientHeight || window.innerHeight;
       currentSize =
         curW >= 650
-          ? Math.min(840, Math.max(580, Math.floor(Math.min(curW * 0.50, curH * 0.82))))
-          : Math.floor(curW * 0.90);
+          ? Math.min(
+              840,
+              Math.max(580, Math.floor(Math.min(curW * 0.5, curH * 0.82))),
+            )
+          : Math.floor(curW * 0.9);
       currentMarge = (curH - currentSize) / 2;
 
       camera.aspect = 1;
