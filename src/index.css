@@ -220,10 +220,10 @@ html[lang='en'] .rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
 
 .group:hover .shadow-btn-top,
 .group:focus-visible .shadow-btn-top {
-  transform: translateY(var(--shadow-offset, 4px));
+  transform: translateY(var(--shadow-offset, 2.5px));
 }
 
 .group:active .shadow-btn-top {
-  transform: translateY(var(--shadow-offset, 4px));
+  transform: translateY(var(--shadow-offset, 2.5px));
 }
 

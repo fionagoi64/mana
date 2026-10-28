@@ -198,14 +198,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     hibiscus: {
       bg: "#85baea", // Authentic soft sky blue
       btnBg: "#2b3d73", // Navy
-      btnShadow: "#141d36", // Dark blue shadow
+      btnShadow: "#0e0e0e", // Dark blue shadow
       name:
         i18n.language === "fr" ? "Mûre et Hibiscus" : "Blackberry & Hibiscus",
     },
     tropical: {
       bg: "#f6b1cf", // Authentic rosy pink
       btnBg: "#e72f63", // Hot pink
-      btnShadow: "#6b122c", // Wine shadow
+      btnShadow: "#2b3d73", // Wine shadow
       name: "Tropical",
     },
     melon: {
@@ -409,7 +409,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         createPortal(
           <div
             ref={navRef}
-            className="fixed bottom-8 sm:bottom-12 left-0 right-0 z-30 pointer-events-none flex items-center justify-center transition-transform duration-100 ease-out"
+            className="fixed bottom-6 sm:bottom-8 left-0 right-0 z-30 pointer-events-none flex items-center justify-center transition-transform duration-100 ease-out"
           >
             <div className="w-[92vw] max-w-[1000px] flex items-center justify-center gap-4 sm:gap-6 pointer-events-auto">
               {/* Previous White Circle Button */}
@@ -426,28 +426,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 />
               </button>
 
-              {/* Single Flavor Name Button using reusable ShadowButton */}
-              <ShadowButton
-                id="hero-flavor-btn"
-                variant="text"
-                size="lg"
-                rounded="full"
-                bg={currentConfig.btnBg}
-                shadowColor={currentConfig.btnShadow}
-                textColor="#ffffff"
-                borderColor="rgba(14,14,14)"
-                shadowOffset={4}
-                onClick={() => onAddToCart(currentFlavor.id)}
-                aria-label={`Select ${currentConfig.name}`}
-              >
-                <span>{currentConfig.name}</span>
-              </ShadowButton>
+              {/* Fixed middle slot container so next and previous buttons won't move around when flavor names change */}
+              <div className="w-[280px] sm:w-[380px] md:w-[420px] shrink-0 flex items-center justify-center">
+                <ShadowButton
+                  id="hero-flavor-btn"
+                  variant="text"
+                  size="lg"
+                  rounded="full"
+                  bg={currentConfig.btnBg}
+                  shadowColor={currentConfig.btnShadow}
+                  textColor="#ffffff"
+                  borderColor="rgba(14,14,14)"
+                  shadowOffset={2.5}
+                  onClick={() => onAddToCart(currentFlavor.id)}
+                  aria-label={`Select ${currentConfig.name}`}
+                >
+                  <span>{currentConfig.name}</span>
+                </ShadowButton>
+              </div>
 
               {/* Next White Circle Button */}
               <button
                 id="hero-next-btn"
                 onClick={handleNext}
-                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shrink-0"
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:scale-105 transition-all duration-200 cursor-pointer shrink-0"
                 aria-label="Next Flavor"
               >
                 <img

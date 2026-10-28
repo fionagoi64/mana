@@ -68,7 +68,7 @@ export const NewsletterSection: React.FC = () => {
             shadowColor="#2b3d73"
             textColor="#ffffff"
             borderColor="#2b3d73"
-            shadowOffset={5}
+            shadowOffset={3}
             aria-label="Subscribe"
           >
             <span>{isFrench ? "S'abonner" : 'Subscribe'}</span>

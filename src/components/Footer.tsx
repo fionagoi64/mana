@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import lottie, { AnimationItem } from 'lottie-web';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ShadowButton } from './ShadowButton.tsx';
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import lottie, { AnimationItem } from "lottie-web";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShadowButton } from "./ShadowButton.tsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Footer: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isFrench = Boolean(i18n.language && i18n.language.startsWith("fr"));
+
   const containerRef = useRef<HTMLElement>(null);
   const paysageRef = useRef<HTMLDivElement>(null);
   const walkRef = useRef<HTMLDivElement>(null);
@@ -14,7 +18,7 @@ export const Footer: React.FC = () => {
   const sadRef = useRef<HTMLDivElement>(null);
   const happyRef = useRef<HTMLDivElement>(null);
   const denreeRef = useRef<HTMLDivElement>(null);
-  const startBtnRef = useRef<HTMLButtonElement>(null);
+  const startBtnRef = useRef<HTMLDivElement>(null);
 
   // Animations references
   const animWalkRef = useRef<AnimationItem | null>(null);
@@ -23,12 +27,19 @@ export const Footer: React.FC = () => {
   const animHappyRef = useRef<AnimationItem | null>(null);
   const animPaysageRef = useRef<AnimationItem | null>(null);
 
-  const [gameState, setGameState] = useState<'idle' | 'running' | 'gameover'>('idle');
-  const [activeChar, setActiveChar] = useState<'walk' | 'jump' | 'sad' | 'happy'>('walk');
+  const [gameState, setGameState] = useState<"idle" | "running" | "gameover">(
+    "idle",
+  );
+  const [activeChar, setActiveChar] = useState<
+    "walk" | "jump" | "sad" | "happy"
+  >("walk");
   const [currentWord, setCurrentWord] = useState<string | null>(null);
-  const [currentObstacle, setCurrentObstacle] = useState<{ isCan: boolean; src: string }>({
+  const [currentObstacle, setCurrentObstacle] = useState<{
+    isCan: boolean;
+    src: string;
+  }>({
     isCan: false,
-    src: '/assets/obs1.svg',
+    src: "/assets/obs1.svg",
   });
 
   const isJumpingRef = useRef(false);
@@ -42,63 +53,63 @@ export const Footer: React.FC = () => {
     if (walkRef.current) {
       animWalkRef.current = lottie.loadAnimation({
         container: walkRef.current,
-        renderer: 'svg',
+        renderer: "svg",
         loop: true,
         autoplay: true,
-        path: '/assets/jeu_walk.json',
+        path: "/assets/jeu_walk.json",
       });
     }
 
     if (jumpRef.current) {
       animJumpRef.current = lottie.loadAnimation({
         container: jumpRef.current,
-        renderer: 'svg',
+        renderer: "svg",
         loop: false,
         autoplay: false,
-        path: '/assets/jeu_jump.json',
+        path: "/assets/jeu_jump.json",
       });
     }
 
     if (sadRef.current) {
       animSadRef.current = lottie.loadAnimation({
         container: sadRef.current,
-        renderer: 'svg',
+        renderer: "svg",
         loop: false,
         autoplay: false,
-        path: '/assets/jeu_sad.json',
+        path: "/assets/jeu_sad.json",
       });
     }
 
     if (happyRef.current) {
       animHappyRef.current = lottie.loadAnimation({
         container: happyRef.current,
-        renderer: 'svg',
+        renderer: "svg",
         loop: false,
         autoplay: false,
-        path: '/assets/jeu_happy.json',
+        path: "/assets/jeu_happy.json",
       });
     }
 
     if (paysageRef.current) {
       animPaysageRef.current = lottie.loadAnimation({
         container: paysageRef.current,
-        renderer: 'svg',
+        renderer: "svg",
         loop: true,
         autoplay: true,
-        path: '/assets/jeu_paysage.json',
+        path: "/assets/jeu_paysage.json",
       });
     }
 
     // Clouds infinite drifting
-    const cloud1 = containerRef.current?.querySelector('.nuage1');
-    const cloud2 = containerRef.current?.querySelector('.nuage2');
+    const cloud1 = containerRef.current?.querySelector(".nuage1");
+    const cloud2 = containerRef.current?.querySelector(".nuage2");
 
     if (cloud1) {
       cloudTl1Ref.current = gsap.timeline({ repeat: -1 });
       cloudTl1Ref.current.fromTo(
         cloud1,
-        { x: '100vw' },
-        { x: '-120vw', duration: 14, ease: 'none' }
+        { x: "100vw" },
+        { x: "-120vw", duration: 14, ease: "none" },
       );
     }
 
@@ -106,8 +117,8 @@ export const Footer: React.FC = () => {
       cloudTl2Ref.current = gsap.timeline({ repeat: -1 });
       cloudTl2Ref.current.fromTo(
         cloud2,
-        { x: '100vw' },
-        { x: '-120vw', duration: 18, delay: 4, ease: 'none' }
+        { x: "100vw" },
+        { x: "-120vw", duration: 18, delay: 4, ease: "none" },
       );
     }
 
@@ -129,7 +140,7 @@ export const Footer: React.FC = () => {
     isJumpingRef.current = true;
 
     // Switch to jump animation
-    setActiveChar('jump');
+    setActiveChar("jump");
     if (animWalkRef.current) animWalkRef.current.pause();
     if (animJumpRef.current) {
       animJumpRef.current.goToAndPlay(0, true);
@@ -138,7 +149,7 @@ export const Footer: React.FC = () => {
     // Jump duration is 0.95s matching authentic site
     gsap.delayedCall(0.95, () => {
       isJumpingRef.current = false;
-      setActiveChar('walk');
+      setActiveChar("walk");
       if (animJumpRef.current) animJumpRef.current.pause();
       if (animWalkRef.current) {
         animWalkRef.current.goToAndPlay(0, true);
@@ -148,8 +159,8 @@ export const Footer: React.FC = () => {
 
   // 3. Play happy "BOOST" animation on catching canette
   const triggerHappy = () => {
-    setActiveChar('happy');
-    setCurrentWord('BOOST');
+    setActiveChar("happy");
+    setCurrentWord("BOOST");
 
     if (animWalkRef.current) animWalkRef.current.pause();
     if (animHappyRef.current) {
@@ -165,7 +176,7 @@ export const Footer: React.FC = () => {
     }
 
     gsap.delayedCall(1.5, () => {
-      setActiveChar('walk');
+      setActiveChar("walk");
       setCurrentWord(null);
       if (animHappyRef.current) animHappyRef.current.pause();
       if (animWalkRef.current) {
@@ -176,8 +187,8 @@ export const Footer: React.FC = () => {
 
   // 4. Play sad "ark..." animation on colliding with obstacle
   const triggerSad = () => {
-    setActiveChar('sad');
-    setCurrentWord('ark...');
+    setActiveChar("sad");
+    setCurrentWord("ark...");
 
     if (animWalkRef.current) animWalkRef.current.pause();
     if (animSadRef.current) {
@@ -185,17 +196,17 @@ export const Footer: React.FC = () => {
     }
 
     // Wobble clouds down on crash
-    gsap.to('.nuage', {
-      y: '60%',
+    gsap.to(".nuage", {
+      y: "60%",
       stagger: 0.08,
       duration: 0.6,
-      ease: 'elastic.inOut(1, 1)',
+      ease: "elastic.inOut(1, 1)",
       yoyo: true,
       repeat: 1,
     });
 
     gsap.delayedCall(2.2, () => {
-      setActiveChar('walk');
+      setActiveChar("walk");
       setCurrentWord(null);
       if (animSadRef.current) animSadRef.current.pause();
       if (animWalkRef.current) {
@@ -209,7 +220,7 @@ export const Footer: React.FC = () => {
     if (!gameRunningRef.current || !denreeRef.current) return;
 
     const isCan = Math.random() >= 0.7;
-    let obstacleSrc = '/assets/canette.svg';
+    let obstacleSrc = "/assets/canette.svg";
     if (!isCan) {
       const idx = Math.floor(Math.random() * 7) + 1;
       obstacleSrc = `/assets/obs${idx}.svg`;
@@ -228,12 +239,12 @@ export const Footer: React.FC = () => {
       },
     });
 
-    gsap.set(denreeRef.current, { x: '105vw', opacity: 1, scale: 1 });
+    gsap.set(denreeRef.current, { x: "105vw", opacity: 1, scale: 1 });
 
     obstacleTimelineRef.current.to(denreeRef.current, {
-      x: '-20vw',
+      x: "-20vw",
       duration: dur,
-      ease: 'none',
+      ease: "none",
       onUpdate: function () {
         const p = this.progress();
 
@@ -244,13 +255,17 @@ export const Footer: React.FC = () => {
           if (isCan) {
             // Player collects can
             triggerHappy();
-            gsap.to(denreeRef.current, { opacity: 0, scale: 1.4, duration: 0.2 });
+            gsap.to(denreeRef.current, {
+              opacity: 0,
+              scale: 1.4,
+              duration: 0.2,
+            });
           } else {
             if (!isJumpingRef.current) {
               // Collision! Player hit obstacle
               triggerSad();
               gsap.to(denreeRef.current, {
-                y: '40px',
+                y: "40px",
                 rotation: -25,
                 opacity: 0,
                 duration: 0.4,
@@ -270,15 +285,15 @@ export const Footer: React.FC = () => {
     }
 
     gameRunningRef.current = true;
-    setGameState('running');
+    setGameState("running");
 
     // Hide start button
     if (startBtnRef.current) {
       gsap.to(startBtnRef.current, {
-        y: '100px',
+        y: "100px",
         opacity: 0,
         duration: 0.5,
-        ease: 'power2.in',
+        ease: "power2.in",
       });
     }
 
@@ -291,7 +306,7 @@ export const Footer: React.FC = () => {
   // 7. Keyboard Space listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === "Space") {
         // Prevent default window scrolling when pressing spacebar
         e.preventDefault();
         if (!gameRunningRef.current) {
@@ -302,8 +317,8 @@ export const Footer: React.FC = () => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
@@ -332,12 +347,18 @@ export const Footer: React.FC = () => {
             bg="#ffd372"
             shadowColor="#2b3d73"
             borderColor="#0e0e0e"
-            shadowOffset={4}
+            shadowOffset={2.5}
             href="https://www.facebook.com/manayerbamate/"
             target="_blank"
             aria-label="Facebook"
             onClick={(e) => e.stopPropagation()}
-            icon={<img src="/assets/i_fb.svg" alt="Facebook" className="w-5 h-5 sm:w-6 sm:h-6" />}
+            icon={
+              <img
+                src="/assets/i_fb.svg"
+                alt="Facebook"
+                className="w-5 h-5 sm:w-6 sm:h-6"
+              />
+            }
           />
 
           {/* LinkedIn circular 3D button */}
@@ -348,12 +369,18 @@ export const Footer: React.FC = () => {
             bg="#ffd372"
             shadowColor="#2b3d73"
             borderColor="#0e0e0e"
-            shadowOffset={4}
+            shadowOffset={2.5}
             href="https://www.linkedin.com/company/mana-yerba-mate/"
             target="_blank"
             aria-label="LinkedIn"
             onClick={(e) => e.stopPropagation()}
-            icon={<img src="/assets/i_li.svg" alt="LinkedIn" className="w-5 h-5 sm:w-6 sm:h-6" />}
+            icon={
+              <img
+                src="/assets/i_li.svg"
+                alt="LinkedIn"
+                className="w-5 h-5 sm:w-6 sm:h-6"
+              />
+            }
           />
 
           {/* Instagram circular 3D button */}
@@ -364,12 +391,18 @@ export const Footer: React.FC = () => {
             bg="#ffd372"
             shadowColor="#2b3d73"
             borderColor="#0e0e0e"
-            shadowOffset={4}
+            shadowOffset={2.5}
             href="https://www.instagram.com/manayerbamate/"
             target="_blank"
             aria-label="Instagram"
             onClick={(e) => e.stopPropagation()}
-            icon={<img src="/assets/i_ig.svg" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />}
+            icon={
+              <img
+                src="/assets/i_ig.svg"
+                alt="Instagram"
+                className="w-5 h-5 sm:w-6 sm:h-6"
+              />
+            }
           />
         </div>
       </div>
@@ -395,13 +428,13 @@ export const Footer: React.FC = () => {
         <div className="absolute top-[28vh] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none text-center select-none">
           <h2
             className={`text-7xl sm:text-9xl md:text-[14rem] font-black uppercase tracking-tight leading-none animate-bounce-subtle ${
-              currentWord === 'BOOST' ? 'text-black' : 'text-neutral-700'
+              currentWord === "BOOST" ? "text-black" : "text-neutral-700"
             }`}
             style={{
               textShadow:
-                currentWord === 'BOOST'
-                  ? '4px 4px 0px #ffd372, 8px 8px 0px #f15b40'
-                  : '4px 4px 0px #d4c5a9',
+                currentWord === "BOOST"
+                  ? "4px 4px 0px #ffd372, 8px 8px 0px #f15b40"
+                  : "4px 4px 0px #d4c5a9",
             }}
           >
             {currentWord}
@@ -429,25 +462,25 @@ export const Footer: React.FC = () => {
         {/* Walking State */}
         <div
           ref={walkRef}
-          className={`w-full h-full ${activeChar === 'walk' ? 'block' : 'hidden'}`}
+          className={`w-full h-full ${activeChar === "walk" ? "block" : "hidden"}`}
         />
 
         {/* Jumping State */}
         <div
           ref={jumpRef}
-          className={`w-full h-full ${activeChar === 'jump' ? 'block' : 'hidden'}`}
+          className={`w-full h-full ${activeChar === "jump" ? "block" : "hidden"}`}
         />
 
         {/* Happy BOOST State */}
         <div
           ref={happyRef}
-          className={`w-full h-full ${activeChar === 'happy' ? 'block' : 'hidden'}`}
+          className={`w-full h-full ${activeChar === "happy" ? "block" : "hidden"}`}
         />
 
         {/* Sad ARK State */}
         <div
           ref={sadRef}
-          className={`w-full h-full ${activeChar === 'sad' ? 'block' : 'hidden'}`}
+          className={`w-full h-full ${activeChar === "sad" ? "block" : "hidden"}`}
         />
       </div>
 
@@ -468,22 +501,37 @@ export const Footer: React.FC = () => {
       {/* ========================================================
           START BUTTON ("Press Space to jump" / "Jump key")
           ======================================================== */}
-      {gameState === 'idle' && (
-        <div className="absolute bottom-[25%] left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
-          <div className="relative inline-block">
-            <div className="absolute inset-0 rounded-xl translate-y-1.5 bg-[#0e0e0e]" />
-            <button
-              ref={startBtnRef}
-              onClick={(e) => {
-                e.stopPropagation();
-                startGame();
-              }}
-              className="relative px-8 sm:px-12 py-3.5 sm:py-4.5 rounded-xl font-bold text-[#0e0e0e] text-base sm:text-xl tracking-wide border-2 border-[#0e0e0e] bg-[#ffd372] transition-transform duration-150 hover:-translate-y-0.5 active:translate-y-1 cursor-pointer flex items-center justify-center shadow-md"
-            >
-              <span className="hidden sm:inline">Press Space to jump</span>
-              <span className="inline sm:hidden">Jump key</span>
-            </button>
-          </div>
+      {gameState === "idle" && (
+        <div
+          ref={startBtnRef}
+          className="absolute bottom-[25%] left-1/2 -translate-x-1/2 z-30 pointer-events-auto"
+        >
+          <ShadowButton
+            variant="text"
+            size="lg"
+            rounded="xl"
+            bg="#ffd372"
+            shadowColor="#0e0e0e"
+            borderColor="#0e0e0e"
+            textColor="#0e0e0e"
+            shadowOffset={3}
+            onClick={(e) => {
+              e?.stopPropagation();
+              startGame();
+            }}
+            className="tracking-wide"
+            innerClassName="px-8 sm:px-10 py-3 sm:py-4"
+            aria-label="Press Space to jump"
+          >
+            <span className="hidden sm:inline">
+              {isFrench
+                ? "Appuie sur Espace pour sauter"
+                : "Press Space to jump"}
+            </span>
+            <span className="inline sm:hidden">
+              {isFrench ? "Touche pour sauter" : "Touch to jump"}
+            </span>
+          </ShadowButton>
         </div>
       )}
 
@@ -491,7 +539,9 @@ export const Footer: React.FC = () => {
           BOTTOM COPYRIGHT & LEGAL LINKS (MATCHING AUTHENTIC SIZING)
           ======================================================== */}
       <div className="relative z-20 w-full pb-8 px-6 sm:px-14 flex flex-col sm:flex-row items-center justify-between text-sm sm:text-base font-medium text-[#0e0e0e] pointer-events-auto">
-        <p className="order-2 sm:order-1 mt-3 sm:mt-0">2026 © Mana Yerba Maté</p>
+        <p className="order-2 sm:order-1 mt-3 sm:mt-0">
+          2026 © Mana Yerba Maté
+        </p>
 
         <div className="order-1 sm:order-2 flex items-center gap-6 sm:gap-8">
           <a
@@ -511,7 +561,7 @@ export const Footer: React.FC = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              alert('Mana Yerba Maté - Montreal, Quebec');
+              alert("Mana Yerba Maté - Montreal, Quebec");
             }}
             className="hover:underline cursor-pointer"
           >
