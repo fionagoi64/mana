@@ -21,30 +21,47 @@ interface CurvedNewsletterHeadingProps {
 
 export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = ({ isFrench }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const timeoutsMap = useRef<Map<SVGPathElement, ReturnType<typeof setTimeout>[]>>(new Map());
   const hasAnimatedRef = useRef(false);
 
   const paths = isFrench ? CURVE_PATHS_FR : CURVE_PATHS_EN;
   const headingText = isFrench ? 'Tu en boirais tous les jours ?' : 'Would you drink it every day?';
 
+  const clearElementTimeouts = useCallback((el: SVGPathElement) => {
+    const active = timeoutsMap.current.get(el);
+    if (active) {
+      active.forEach(clearTimeout);
+      timeoutsMap.current.delete(el);
+    }
+  }, []);
+
+  const clearAllTimeouts = useCallback(() => {
+    timeoutsMap.current.forEach((timers) => timers.forEach(clearTimeout));
+    timeoutsMap.current.clear();
+  }, []);
+
   // Authentic rainbow color cascading function matching live site global.js
   const triggerRainbowLetter = useCallback((el: SVGPathElement) => {
-    // Clear any previous class colors
+    clearElementTimeouts(el);
+
     el.classList.remove('c-beige', ...RAINBOW_CLASSES);
     el.classList.add('c-orange');
 
     const delays = [70, 140, 210, 280, 350, 420];
     const sequence = ['c-bleu2', 'c-rouge', 'c-rose', 'c-bleu', 'c-jaune', 'c-noir'];
 
+    const timers: ReturnType<typeof setTimeout>[] = [];
     sequence.forEach((cls, i) => {
       const prevCls = i === 0 ? 'c-orange' : sequence[i - 1];
       const timer = setTimeout(() => {
         el.classList.remove(prevCls);
         el.classList.add(cls);
       }, delays[i]);
-      timeoutsRef.current.push(timer);
+      timers.push(timer);
     });
-  }, []);
+
+    timeoutsMap.current.set(el, timers);
+  }, [clearElementTimeouts]);
 
   const bounceSingleLetter = useCallback((el: SVGPathElement) => {
     gsap.killTweensOf(el);
@@ -61,15 +78,18 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
   }, [triggerRainbowLetter]);
 
   const playCascadeWave = useCallback(() => {
-    if (!svgRef.current) return;
-    const letters = svgRef.current.querySelectorAll<SVGPathElement>('.lettre');
+    const svg = svgRef.current;
+    if (!svg) return;
+    const letters = svg.querySelectorAll<SVGPathElement>('.lettre');
     if (!letters.length) return;
 
     gsap.killTweensOf(letters);
+    letters.forEach(clearElementTimeouts);
+
     gsap.set(letters, { scale: 0.8, transformOrigin: 'center center' });
 
-    gsap.to(letters, {
-      scale: 1,
+    // Synchronous letter stagger: color wave begins immediately as each letter pops
+    gsap.set(letters, {
       stagger: {
         each: 0.07,
         onComplete: function () {
@@ -79,10 +99,15 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
           }
         },
       },
+    });
+
+    gsap.to(letters, {
+      scale: 1,
+      stagger: 0.07,
       duration: 0.6,
       ease: 'elastic.out(2, 0.5)',
     });
-  }, [triggerRainbowLetter]);
+  }, [clearElementTimeouts, triggerRainbowLetter]);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -112,10 +137,9 @@ export const CurvedNewsletterHeading: React.FC<CurvedNewsletterHeadingProps> = (
 
     return () => {
       ctx.revert();
-      timeoutsRef.current.forEach(clearTimeout);
-      timeoutsRef.current = [];
+      clearAllTimeouts();
     };
-  }, [isFrench, playCascadeWave]);
+  }, [isFrench, playCascadeWave, clearAllTimeouts]);
 
   return (
     <div className="relative w-full flex flex-col items-center select-none">

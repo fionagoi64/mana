@@ -115,7 +115,7 @@ html, body {
   scrollbar-width: none;
 }
 
-/* Authentic Mana rainbow letter palette and SVG styling */
+/* Authentic Mana rainbow letter palette and styling */
 path.c-beige, span.c-beige { fill: #fef7e6; color: #fef7e6; }
 path.c-noir, span.c-noir { fill: #0e0e0e; color: #0e0e0e; }
 path.c-jaune, span.c-jaune { fill: #ffd372; color: #ffd372; }
@@ -124,6 +124,84 @@ path.c-bleu2, span.c-bleu2 { fill: #2b3d73; color: #2b3d73; }
 path.c-rose, span.c-rose { fill: #f6b1cf; color: #f6b1cf; }
 path.c-rouge, span.c-rouge { fill: #e72f63; color: #e72f63; }
 path.c-orange, span.c-orange { fill: #f15b40; color: #f15b40; }
+
+.rainbow .mot {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.rainbow span.lettre {
+  display: inline-block;
+  transform: scale(0.8);
+  transform-origin: center center;
+  user-select: none;
+  cursor: pointer;
+  will-change: transform, color;
+}
+
+/* Authentic Mana curved SVG letters */
+svg.rainbow {
+  overflow: visible;
+}
+
+svg.rainbow .lettre {
+  transform-origin: center center;
+  cursor: pointer;
+  will-change: transform, fill;
+}
+
+/* Authentic Mana bespoke kerning pairs */
+.rainbow .ls + .la { margin: 0 0 0 -0.01em; }
+.rainbow .la + .lv { margin: 0 0 0 -0.14em; }
+.rainbow .lt + .lo { margin: 0 0 0 -0.1em; }
+.rainbow .lt + .la { margin: 0 0 0 -0.12em; }
+.rainbow .la + .lc { margin: 0 0 0 -0.05em; }
+.rainbow .lc + .lt { margin: 0 0 0 -0.05em; }
+
+/* English letter kerning */
+html[lang='en'] .rainbow .la + .lv { margin: 0; }
+html[lang='en'] .rainbow .lt + .lo { margin: 0; }
+html[lang='en'] .rainbow .lt + .la { margin: 0; }
+html[lang='en'] .rainbow .la + .lc { margin: 0; }
+html[lang='en'] .rainbow .lc + .lt { margin: 0; }
+html[lang='en'] .rainbow .lv + .le { margin: 0 -0.04em 0 -0.14em; }
+html[lang='en'] .rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
+
+/* Dedicated FLAVORS letter kerning (F-L-A-V-O-R-S) */
+.rainbow .lf + .ll { margin: 0 0 0 -0.02em; }
+.rainbow .ll + .la { margin: 0 0 0 -0.08em; }
+.rainbow .la + .lv { margin: 0 0 0 -0.14em; }
+.rainbow .lv + .lo { margin: 0 0 0 -0.08em; }
+.rainbow .lo + .lr { margin: 0 0 0 -0.03em; }
+.rainbow .lr + .ls { margin: 0 0 0 -0.02em; }
+
+/* Dedicated SAVEURS letter kerning (S-A-V-E-U-R-S) */
+.rainbow .ls + .la { margin: 0 0 0 -0.01em; }
+.rainbow .la + .lv { margin: 0 0 0 -0.14em; }
+.rainbow .lv + .le { margin: 0 -0.04em 0 -0.14em; }
+.rainbow .le + .lu { margin: 0 0 0 -0.02em; }
+.rainbow .lu + .lr { margin: 0 0 0 -0.01em; }
+.rainbow .lr + .ls { margin: 0 0 0 -0.02em; }
+
+/* Gros titre typography matching Mana live site */
+.grosTitre {
+  font-family: var(--font-main);
+  font-size: clamp(80px, 23.2vw, 446px);
+  font-weight: 300;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 767px) {
+  .grosTitre {
+    font-size: 80px;
+  }
+  .grosTitreSpe {
+    font-size: 21.1vw;
+  }
+}
 
 .tenBoirais {
   width: 95%;
@@ -134,7 +212,3 @@ path.c-orange, span.c-orange { fill: #f15b40; color: #f15b40; }
   overflow: visible;
 }
 
-.tenBoirais .lettre {
-  transform-origin: center center;
-  cursor: pointer;
-}

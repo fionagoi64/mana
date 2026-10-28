@@ -144,13 +144,10 @@ export const WordParagraph: React.FC = () => {
         {/* ========================================================
             BIG TYPOGRAPHY: STRICTLY ONE LINE WITHOUT BREAK
             ======================================================== */}
-        <div className="w-full flex items-center justify-center overflow-hidden px-2 sm:px-4">
+        <div className="w-full flex items-center justify-center overflow-visible px-2 sm:px-4">
           <RainbowBouncingText
             text={word}
             as="h2"
-            fontSize="15.2vw"
-            fontWeight={300}
-            letterSpacing="-0.03em"
             className="w-full text-center"
           />
         </div>

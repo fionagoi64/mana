@@ -1,41 +1,39 @@
-import React, { useEffect, useRef, useId, forwardRef, useImperativeHandle } from 'react';
+import React, { useEffect, useRef, useId, forwardRef, useImperativeHandle, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export interface RainbowBouncingTextRef {
-  /** Trigger the rainbow letter-stagger bouncing animation programmatically */
+  /** Trigger the authentic Mana rainbow wave bouncing animation programmatically */
   play: () => void;
 }
 
 export interface RainbowBouncingTextProps {
-  /** The text string to render and animate */
+  /** The text string to render and animate (e.g. 'Flavors', 'Saveurs') */
   text: string;
-  /** Whether the text should curve along an arched SVG path */
+  /** Whether the text should curve along an arched SVG path (for vector curves) */
   curved?: boolean;
-  /** Custom SVG curve path 'd' attribute (when curved is true). Defaults to authentic Mana arc */
+  /** Custom SVG curve path 'd' attribute (when curved is true) */
   curveD?: string;
-  /** Color palette to cycle through during the bounce animation */
-  colors?: string[];
-  /** Default base text color */
-  baseColor?: string;
-  /** Font size (e.g. '15.2vw', '72px', or 'clamp(36px, 6vw, 84px)') */
+  /** Custom font size (defaults to authentic Mana grosTitre clamp) */
   fontSize?: string;
   /** Custom font family */
   fontFamily?: string;
-  /** Font weight (e.g. 300, 400, 'normal', 'bold') */
+  /** Font weight (defaults to 300) */
   fontWeight?: string | number;
-  /** Custom letter spacing (e.g. '-0.03em' for straight, '0.1em' for curved) */
+  /** Custom letter spacing */
   letterSpacing?: string;
   /** Custom CSS classes for the container */
   className?: string;
-  /** Semantic HTML tag for straight text (defaults to 'div') */
+  /** Semantic HTML tag for straight text (defaults to 'h2') */
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'div' | 'p' | 'span';
   /** Whether to trigger the rainbow bounce animation automatically on scroll */
   triggerOnScroll?: boolean;
-  /** ScrollTrigger start position (defaults to 'top 75%') */
+  /** ScrollTrigger start position (defaults to authentic 'top 70%') */
   scrollStart?: string;
+  /** Whether to trigger only once on scroll (defaults to true) */
+  scrollOnce?: boolean;
   /** Whether hovering over the whole text container triggers the wave */
   interactiveHover?: boolean;
   /** Whether hovering over an individual letter bounces that letter */
@@ -44,14 +42,14 @@ export interface RainbowBouncingTextProps {
   onClick?: () => void;
 }
 
-export const DEFAULT_RAINBOW_PALETTE = [
-  '#f15b40', // c-orange
-  '#2b3d73', // c-bleu2
-  '#e72f63', // c-rouge
-  '#f6b1cf', // c-rose
-  '#88c1f8', // c-bleu
-  '#ffd372', // c-jaune
-  '#0e0e0e', // c-noir
+export const RAINBOW_CLASSES = [
+  'c-orange', // #f15b40
+  'c-bleu2',  // #2b3d73
+  'c-rouge',  // #e72f63
+  'c-rose',   // #f6b1cf
+  'c-bleu',   // #88c1f8
+  'c-jaune',  // #ffd372
+  'c-noir',   // #0e0e0e
 ];
 
 export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBouncingTextProps>(
@@ -60,16 +58,15 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
       text,
       curved = false,
       curveD = 'M 40 230 C 490 30 960 30 1410 230',
-      colors = DEFAULT_RAINBOW_PALETTE,
-      baseColor = '#0E0E0E',
       fontSize,
-      fontFamily = '"Neue Montreal", "Outfit", "Cabinet Grotesk", sans-serif',
-      fontWeight,
+      fontFamily,
+      fontWeight = 300,
       letterSpacing,
       className = '',
-      as: Tag = 'div',
+      as: Tag = 'h2',
       triggerOnScroll = true,
-      scrollStart = 'top 75%',
+      scrollStart = 'top 70%',
+      scrollOnce = true,
       interactiveHover = true,
       bounceOnLetterHover = true,
       onClick,
@@ -79,142 +76,172 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
     const rawId = useId();
     const cleanId = rawId.replace(/[^a-zA-Z0-9_-]/g, '_');
     const pathId = `curve-path-${cleanId}`;
+
     const containerRef = useRef<HTMLDivElement>(null);
-    const isPlayingRef = useRef(false);
+    const timeoutsMap = useRef<Map<HTMLElement | SVGElement, NodeJS.Timeout[]>>(new Map());
+    const hasAnimatedRef = useRef(false);
 
-    // Bounce a single letter with elastic spring and authentic rainbow cycle
-    const bounceSingleLetter = (el: HTMLElement | SVGElement, idx: number) => {
-      gsap.killTweensOf(el);
-      const isSvg = el instanceof SVGElement;
+    // Clear active timeouts for a single element to prevent color race conditions
+    const clearElementTimeouts = useCallback((el: HTMLElement | SVGElement) => {
+      const active = timeoutsMap.current.get(el);
+      if (active) {
+        active.forEach(clearTimeout);
+        timeoutsMap.current.delete(el);
+      }
+    }, []);
 
-      if (isSvg) {
+    // Clear all pending timeouts
+    const clearAllTimeouts = useCallback(() => {
+      timeoutsMap.current.forEach((timers) => timers.forEach(clearTimeout));
+      timeoutsMap.current.clear();
+    }, []);
+
+    /**
+     * Authentic Mana rainbow color cascading function matching live site global.js:
+     * - Immediate: c-orange (0ms)
+     * - 70ms: c-bleu2
+     * - 140ms: c-rouge
+     * - 210ms: c-rose
+     * - 280ms: c-bleu
+     * - 350ms: c-jaune
+     * - 420ms: c-noir (stays pitch black)
+     */
+    const triggerRainbow = useCallback(
+      (el: HTMLElement | SVGElement) => {
+        clearElementTimeouts(el);
+
+        el.classList.remove('c-beige', ...RAINBOW_CLASSES);
+        el.classList.add('c-orange');
+
+        const delays = [70, 140, 210, 280, 350, 420];
+        const sequence = ['c-bleu2', 'c-rouge', 'c-rose', 'c-bleu', 'c-jaune', 'c-noir'];
+
+        const timers: NodeJS.Timeout[] = [];
+        sequence.forEach((cls, i) => {
+          const prevCls = i === 0 ? 'c-orange' : sequence[i - 1];
+          const t = setTimeout(() => {
+            el.classList.remove(prevCls);
+            el.classList.add(cls);
+          }, delays[i]);
+          timers.push(t);
+        });
+
+        timeoutsMap.current.set(el, timers);
+      },
+      [clearElementTimeouts]
+    );
+
+    /**
+     * Elastic bounce & rainbow cascade on an individual letter
+     */
+    const bounceSingleLetter = useCallback(
+      (el: HTMLElement | SVGElement) => {
+        gsap.killTweensOf(el);
         gsap.fromTo(
           el,
-          { baselineShift: '20px' },
-          {
-            baselineShift: '0px',
-            duration: 0.6,
-            ease: 'elastic.out(2, 0.5)',
-          }
-        );
-      } else {
-        gsap.fromTo(
-          el,
-          { scale: 0.8 },
+          { scale: 0.8, transformOrigin: 'center center' },
           {
             scale: 1,
             duration: 0.6,
             ease: 'elastic.out(2, 0.5)',
           }
         );
-      }
+        triggerRainbow(el);
+      },
+      [triggerRainbow]
+    );
 
-      // Cycle colors rapidly: 70ms per color
-      colors.forEach((color, cIdx) => {
-        setTimeout(() => {
-          if (isSvg) {
-            gsap.set(el, { fill: color });
-          } else {
-            gsap.set(el, { color: color });
-          }
-        }, cIdx * 70);
-      });
-    };
-
-    // Trigger the full bouncy rainbow wave across all letters sequentially
-    const play = () => {
+    /**
+     * Authentic Mana full cascading wave across all letters:
+     * Synchronizes 70ms letter stagger with 70ms color step for diagonal rainbow wave!
+     */
+    const play = useCallback(() => {
       const container = containerRef.current;
       if (!container) return;
 
       const letters = container.querySelectorAll<HTMLElement | SVGElement>('.lettre');
       if (!letters || letters.length === 0) return;
 
-      isPlayingRef.current = true;
+      // Kill any running letter tweens and timeouts
+      gsap.killTweensOf(letters);
+      letters.forEach(clearElementTimeouts);
 
-      letters.forEach((el, index) => {
-        gsap.killTweensOf(el);
-        const isSvg = el instanceof SVGElement;
+      // Reset letters to scale 0.8
+      gsap.set(letters, { scale: 0.8, transformOrigin: 'center center' });
 
-        // 1. Elastic vertical bounce with 0.07s stagger
-        if (isSvg) {
-          gsap.fromTo(
-            el,
-            { baselineShift: '20px' },
-            {
-              baselineShift: '0px',
-              duration: 0.6,
-              delay: index * 0.07,
-              ease: 'elastic.out(2, 0.5)',
+      // Staggered color cascade: every 0.07s (70ms), next letter triggers rainbow()
+      gsap.set(letters, {
+        stagger: {
+          each: 0.07,
+          onComplete: function () {
+            const target = this.targets()[0] as HTMLElement | SVGElement;
+            if (target) {
+              triggerRainbow(target);
             }
-          );
-        } else {
-          gsap.fromTo(
-            el,
-            { scale: 0.8 },
-            {
-              scale: 1,
-              duration: 0.6,
-              delay: index * 0.07,
-              ease: 'elastic.out(2, 0.5)',
-            }
-          );
-        }
-
-        // 2. Authentic Mana rainbow color wave cascade (70ms per step)
-        colors.forEach((color, cIdx) => {
-          setTimeout(() => {
-            if (isSvg) {
-              gsap.set(el, { fill: color });
-            } else {
-              gsap.set(el, { color: color });
-            }
-          }, index * 70 + cIdx * 70);
-        });
-
-        // 3. Finish cascade
-        setTimeout(() => {
-          if (isSvg) {
-            gsap.set(el, { fill: baseColor });
-          } else {
-            gsap.set(el, { color: baseColor });
-          }
-          if (index === letters.length - 1) {
-            isPlayingRef.current = false;
-          }
-        }, index * 70 + colors.length * 70 + 50);
+          },
+        },
       });
-    };
+
+      // Staggered elastic spring bounce from scale 0.8 to 1.0 with elastic.out(2, 0.5)
+      gsap.to(letters, {
+        scale: 1,
+        stagger: 0.07,
+        duration: 0.6,
+        ease: 'elastic.out(2, 0.5)',
+      });
+    }, [clearElementTimeouts, triggerRainbow]);
 
     useImperativeHandle(ref, () => ({
       play,
     }));
 
-    // ScrollTrigger: automatically trigger once entering viewport
+    // ScrollTrigger: automatically triggers the rainbow wave on entering viewport (start: 'top 70%')
     useEffect(() => {
-      if (!triggerOnScroll || !containerRef.current) return;
+      const container = containerRef.current;
+      if (!container) return;
 
-      const st = ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: scrollStart,
-        onEnter: () => {
-          play();
-        },
+      const letters = container.querySelectorAll<HTMLElement | SVGElement>('.lettre');
+      if (!letters.length) return;
+
+      // Initialize all letters to c-beige (matching the page background) and scale 0.8
+      letters.forEach((el) => {
+        el.classList.remove(...RAINBOW_CLASSES);
+        el.classList.add('c-beige');
       });
+      gsap.set(letters, { scale: 0.8, transformOrigin: 'center center' });
+
+      if (!triggerOnScroll) return;
+
+      const ctx = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: container,
+          start: scrollStart,
+          once: scrollOnce,
+          onEnter: () => {
+            hasAnimatedRef.current = true;
+            play();
+          },
+        });
+      }, container);
 
       return () => {
-        st.kill();
+        ctx.revert();
+        clearAllTimeouts();
       };
-    }, [text, curved, triggerOnScroll, scrollStart]);
+    }, [text, curved, triggerOnScroll, scrollStart, scrollOnce, play, clearAllTimeouts]);
 
-    // Split text into characters
-    const characters = Array.from(text);
+    // Split text into words and characters
+    const words = text.split(' ');
 
     return (
       <div
         ref={containerRef}
-        onClick={onClick}
+        onClick={() => {
+          play();
+          onClick?.();
+        }}
         onMouseEnter={interactiveHover ? play : undefined}
-        className={`rainbow-bouncing-text relative select-none ${className}`}
+        className={`rainbow-text-wrapper relative select-none w-full flex items-center justify-center cursor-pointer ${className}`}
       >
         {curved ? (
           /* ========================================================
@@ -222,16 +249,16 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
              ======================================================== */
           <svg
             viewBox="0 0 1450 280"
-            className="w-full h-auto overflow-visible cursor-pointer block"
+            className="rainbow w-full h-auto overflow-visible cursor-pointer block"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
               <path id={pathId} d={curveD} fill="none" />
             </defs>
             <text
-              fill={baseColor}
+              className="select-none"
               style={{
-                fontFamily,
+                fontFamily: fontFamily || 'var(--font-main)',
                 fontSize: fontSize || 'clamp(46px, 5.8vw, 88px)',
                 fontWeight: fontWeight ?? 400,
                 textTransform: 'uppercase',
@@ -239,57 +266,67 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
               }}
             >
               <textPath href={`#${pathId}`} startOffset="50%" textAnchor="middle">
-                {characters.map((char, index) => (
-                  <tspan
-                    key={index}
-                    className="lettre transition-colors duration-150 cursor-pointer inline-block"
-                    style={{ fill: baseColor }}
-                    onMouseEnter={
-                      bounceOnLetterHover
-                        ? (e) => {
-                            e.stopPropagation();
-                            bounceSingleLetter(e.currentTarget, index);
-                          }
-                        : undefined
-                    }
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </tspan>
-                ))}
+                {Array.from(text).map((char, index) => {
+                  const letterClass = `l${char.toLowerCase()}`;
+                  return (
+                    <tspan
+                      key={index}
+                      className={`lettre c-beige ${letterClass} inline-block`}
+                      onMouseEnter={
+                        bounceOnLetterHover
+                          ? (e) => {
+                              e.stopPropagation();
+                              bounceSingleLetter(e.currentTarget);
+                            }
+                          : undefined
+                      }
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </tspan>
+                  );
+                })}
               </textPath>
             </text>
           </svg>
         ) : (
           /* ========================================================
-             STRAIGHT TEXT: STRICTLY ONE LINE WITHOUT BREAK
+             AUTHENTIC MANA STRAIGHT RAINBOW HEADLINE
+             Strictly matching: <h2 class="grosTitre grosTitreSpe rainbow">
              ======================================================== */
           <Tag
-            className="flex items-center justify-center whitespace-nowrap overflow-hidden leading-none m-0 p-0"
+            className="grosTitre grosTitreSpe rainbow flex items-center justify-center whitespace-nowrap overflow-visible m-0 p-0"
             style={{
-              fontFamily,
-              fontSize: fontSize || '15.2vw',
+              fontFamily: fontFamily || 'var(--font-main)',
+              fontSize: fontSize || undefined,
               fontWeight: fontWeight ?? 300,
-              letterSpacing: letterSpacing || '-0.03em',
-              color: baseColor,
-              whiteSpace: 'nowrap',
-              textTransform: 'uppercase',
+              letterSpacing: letterSpacing || '-0.02em',
             }}
           >
-            {characters.map((char, index) => (
-              <span
-                key={index}
-                className="lettre inline-block transition-transform duration-150 cursor-pointer select-none"
-                style={{ color: baseColor }}
-                onMouseEnter={
-                  bounceOnLetterHover
-                    ? (e) => {
-                        e.stopPropagation();
-                        bounceSingleLetter(e.currentTarget, index);
+            {words.map((word, wIdx) => (
+              <span key={wIdx} className="mot inline-block whitespace-nowrap">
+                {Array.from(word).map((char, cIdx) => {
+                  const charCode = char.toLowerCase();
+                  const letterClass = `l${charCode}`;
+                  return (
+                    <span
+                      key={cIdx}
+                      className={`lettre c-beige ${letterClass} inline-block`}
+                      onMouseEnter={
+                        bounceOnLetterHover
+                          ? (e) => {
+                              e.stopPropagation();
+                              bounceSingleLetter(e.currentTarget);
+                            }
+                          : undefined
                       }
-                    : undefined
-                }
-              >
-                {char === ' ' ? '\u00A0' : char}
+                    >
+                      {char}
+                    </span>
+                  );
+                })}
+                {wIdx < words.length - 1 ? (
+                  <span className="espace inline-block w-[0.25em]">&nbsp;</span>
+                ) : null}
               </span>
             ))}
           </Tag>
@@ -302,4 +339,3 @@ export const RainbowBouncingText = forwardRef<RainbowBouncingTextRef, RainbowBou
 RainbowBouncingText.displayName = 'RainbowBouncingText';
 
 export default RainbowBouncingText;
-
